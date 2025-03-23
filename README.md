@@ -12,3 +12,6 @@ A project by Fyris AI aiming to build a RAG-based solution for findning informat
 * Aria Assadi
 * Oliver Groth
 * Axel Wohlin
+
+### UX-ramverk, t Aria
+https://inera.atlassian.net/wiki/spaces/USI/overview?homepageId=3041501
