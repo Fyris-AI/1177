@@ -1,0 +1,14 @@
+{
+    "Registrations":[ 
+    {
+      "component": { 
+       "type": "git", 
+       "git": { 
+         "repositoryUrl": "https://github.com/vercel-labs/ai-sdk-preview-rag", 
+         "commitHash": "1a0f08a7080988f1ae8d686142d107a14ea82e7e" 
+         }
+       }
+    }
+ ],
+ "Version": 1
+}
