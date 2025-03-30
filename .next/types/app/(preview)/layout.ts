@@ -1,4 +1,4 @@
-// File: /Users/ariaassadi/Documents/Fyris/poc-1177/app/(preview)/layout.tsx
+// File: /Users/olivergroth/Documents/GitHub/poc-1177/app/(preview)/layout.tsx
 import * as entry from '../../../../app/(preview)/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
