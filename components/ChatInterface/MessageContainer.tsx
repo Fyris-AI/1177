@@ -1,7 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Message } from "ai";
-import ProjectOverview from "./project-overview";
 import { Loader2 } from "lucide-react";
 
 interface MessageContainerProps {
@@ -98,11 +97,6 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
   ({ messages, error, toolCall, isLoading, showCitation, messagesEndRef }) => {
     return (
       <div className="flex-1 overflow-y-auto space-y-4 w-full">
-        {messages.length === 0 && (
-          <div className="flex p-2 overflow-y-auto mb-4 space-y-4 justify-center items-center">
-            <ProjectOverview />
-          </div>
-        )}
         <AnimatePresence initial={false}>
           {messages.map(
             (message: Message) =>

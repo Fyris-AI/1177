@@ -1,12 +1,11 @@
 "use client";
 
 import { ImperativePanelHandle } from "react-resizable-panels";
-import { ThemeChanger } from "@/components/theme-changer";
 import { useRef, useEffect, useState } from "react";
-import MessageContainer from "./message-container";
+import MessageContainer from "./MessageContainer";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "@/components/ui/button";
-import ChatInput from "./chat-input";
+import ChatInput from "./ChatInput";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -112,18 +111,16 @@ export default function ChatInterface() {
 
   return (
     <>
-      <ResizablePanelGroup direction="horizontal">
+      <ResizablePanelGroup
+        direction="horizontal"
+        className="h-[calc(100vh-4rem)]"
+      >
         <ResizablePanel id="chat-panel">
-          <div className="flex flex-col min-w-0 h-screen bg-background">
-            <div className="flex flex-row justify-between items-center p-4">
-              <ThemeChanger />
-            </div>
-            <div className="text-center mb-4 md:mb-8">
-              <h1 className="text-2xl font-bold mb-2">AI Chat</h1>
-              <p className="text-sm text-muted-foreground">
-                Din chatbot som kan allt om sjukvård. Alla svar är baserade på
-                1177.se
-              </p>
+          <div className="flex flex-col h-full bg-background">
+            <div className="text-center py-20 mb-4 md:mb-8">
+              <h2 className="text-[2.5rem] font-semibold mt-[20vh] text-center grow">
+                Vad kan jag hjälpa dig med?
+              </h2>
             </div>
 
             <MessageContainer
@@ -151,7 +148,7 @@ export default function ChatInterface() {
             collapsedSize={0}
             ref={citationPanelRef}
             defaultSize={25}
-            className="overflow-y-scroll h-screen"
+            className="overflow-y-scroll h-full"
           >
             <div className="flex justify-between items-center p-4">
               <h3 className="font-bold">Citation Details:</h3>
