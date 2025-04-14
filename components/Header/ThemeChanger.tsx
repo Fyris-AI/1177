@@ -19,14 +19,14 @@ export const ThemeChanger = () => {
 
   return (
     <div className="flex items-center space-x-2">
-      <Sun className="h-[1.2rem] w-[1.2rem]" />
+      <p>För vårdpersonal</p>
       <Switch
         checked={theme === "dark"}
         onCheckedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
         aria-label="Toggle dark mode"
         className="data-[state=checked]:bg-muted-foreground data-[state=unchecked]:bg-muted-foreground"
       />
-      <Moon className="h-[1.2rem] w-[1.2rem]" />
+      <p>För invånare</p>
       <span className="sr-only">Toggle dark mode</span>
     </div>
   );
