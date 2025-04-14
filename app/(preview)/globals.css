@@ -100,9 +100,9 @@
     --ring: var(--red);
 
     --header-background: var(--black-charcoal);
-    --header-text: var(--pink-light);
+    --header-text: var(--pink-lightt);
     --title: var(--grey-light);
-    --icon: var(--white);
+    --icon: var(--red);
   }
 
   [data-theme='light-personal'] {

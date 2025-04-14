@@ -50,7 +50,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onKeyDown={handleKeyDown}
           onCompositionStart={() => setIsComposing(true)}
           onCompositionEnd={() => setIsComposing(false)}
-          placeholder="Send a message..."
+          placeholder="Skriv en fråga"
           disabled={isLoading}
           className="pr-14 resize-none bg-background"
           rows={1}
