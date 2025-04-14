@@ -32,7 +32,7 @@ export const ThemeAudienceToggle = () => {
       className="flex flex-col items-center justify-center gap-1 cursor-pointer basis-[7rem]"
     >
       <ArrowRightLeft className="h-8 w-8 text-icon" />
-      <p className="text-sm text-title">
+      <p className="text-sm text-header-text">
         {audience === "personal" ? "För invånare" : "För vårdpersonal"}
       </p>
     </div>

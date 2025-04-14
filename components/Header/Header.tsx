@@ -5,7 +5,7 @@ import { HeaderLogo } from "./HeaderLogo";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-header-background backdrop-blur supports-[backdrop-filter]:bg-header-background/60">
+    <header className="sticky top-0 z-50 w-full bg-header-background">
       {/* Absolute positioned logo */}
       <div className="absolute left-0 top-0 h-full flex items-center pl-0">
         <HeaderLogo />

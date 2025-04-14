@@ -50,6 +50,7 @@ module.exports = {
 
         icon: "hsl(var(--icon))",
         title: "hsl(var(--title))",
+        "header-text": "hsl(var(--header-text))",
         "header-background": "hsl(var(--header-background))",
       },
       borderRadius: {
