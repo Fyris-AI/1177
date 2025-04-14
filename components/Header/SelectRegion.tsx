@@ -13,7 +13,7 @@ import {
 export const SelectRegion = () => {
   return (
     <Select defaultValue="uppsala">
-      <SelectTrigger className="w-[150px] border-none bg-header-background text-title">
+      <SelectTrigger className="w-[142px] border-none bg-header-background text-header-text">
         <SelectValue placeholder="Uppsala" />
       </SelectTrigger>
       <SelectContent>

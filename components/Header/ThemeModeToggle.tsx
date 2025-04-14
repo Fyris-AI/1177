@@ -34,7 +34,7 @@ export const ThemeModeToggle = () => {
       ) : (
         <Moon className="h-8 w-8 text-icon" />
       )}
-      <p className="text-sm text-title">
+      <p className="text-sm text-header-text">
         {mode === "dark" ? "Ljust läge" : "Mörkt läge"}
       </p>
     </div>
