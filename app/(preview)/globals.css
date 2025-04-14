@@ -72,7 +72,7 @@
     --accent: var(--red);
     --accent-foreground: var(--white);
 
-    --border: var(--red);
+    --border: var(--black);
     --input: var(--red);
     --ring: var(--red);
 
@@ -95,9 +95,9 @@
     --accent: var(--red-dark);
     --accent-foreground: var(--white);
 
-    --border: var(--red-grey-light);
-    --input: var(--red-dark);
-    --ring: var(--red);
+    --border: var(--grey-light);
+    --input: var(--pink-light);
+    --ring: var(--pink-light);
 
     --header-background: var(--black-charcoal);
     --header-text: var(--pink-lightt);
@@ -118,7 +118,7 @@
     --accent: var(--blue);
     --accent-foreground: var(--white);
 
-    --border: var(--blue);
+    --border: var(--black);
     --input: var(--blue);
     --ring: var(--blue);
 
@@ -141,9 +141,9 @@
     --accent: var(--blue);
     --accent-foreground: var(--white);
 
-    --border: var(--grey-light);
-    --input: var(--blue);
-    --ring: var(--blue);
+    --border: var(--blue);
+    --input: var(--grey-light);
+    --ring: var(--grey-light);
 
     --header-background: var(--black-charcoal);
     --header-text: var(--blue-light);
