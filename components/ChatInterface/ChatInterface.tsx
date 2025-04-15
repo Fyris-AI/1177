@@ -150,7 +150,7 @@ export default function ChatInterface() {
             className="overflow-y-scroll h-full"
           >
             <div className="flex justify-between items-center p-4">
-              <h3 className="font-bold">Citation Details:</h3>
+              <h3 className="font-bold">Källinformation:</h3>
               <button
                 onClick={closeDrawer}
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -165,7 +165,7 @@ export default function ChatInterface() {
                   <p>{currentCitation}</p>
                 </div>
               ) : (
-                <p>Select a citation to view details</p>
+                <p>Välj en källa för att se detaljer</p>
               )}
             </div>
           </ResizablePanel>
@@ -178,13 +178,13 @@ export default function ChatInterface() {
       >
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>Citation Details</DrawerTitle>
+            <DrawerTitle>Källinformation:</DrawerTitle>
             <DrawerDescription className="h-[50vh] overflow-y-auto">
-              {currentCitation || "No citation selected."}
+              {currentCitation || "Ingen källa vald."}
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <Button onClick={closeDrawer}>Close</Button>
+            <Button onClick={closeDrawer}>Stäng</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
