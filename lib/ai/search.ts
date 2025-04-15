@@ -77,5 +77,7 @@ export const findRelevantContent = async (userQuery: string) => {
     });
   }
 
+  console.log("Vector Search Results:", similarDocs); // Add logging here
+
   return similarDocs;
 };

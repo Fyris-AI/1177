@@ -1,64 +1,32 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Message } from "ai";
-import { Loader2 } from "lucide-react";
+import { Loader2, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
+// Define the Message type locally (or import from ChatInterface.tsx)
+interface Message {
+  id: string; 
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  context?: string[]; // Add optional context field
+  createdAt?: Date; 
+}
 
 interface MessageContainerProps {
-  messages: Message[];
+  messages: Message[]; // Now uses the local/correct Message type
   error: string | null;
-  toolCall: string | undefined;
   isLoading: boolean;
-  showCitation: (id: string) => void;
+  showContext: (assistantMessageId: string) => void;
   messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
 const MessageItem: React.FC<{
-  message: Message;
-  showCitation: (id: string) => void;
+  message: Message; // Uses local/correct type
+  showContext: (assistantMessageId: string) => void;
 }> = React.memo(
-  ({ message, showCitation }) => {
-    const replaceCitationFlags = (response: string): JSX.Element => {
-      const citationRegex = /【([^】]+)】/g;
-      const parts: JSX.Element[] = [];
-      let match;
-      const citationMapping: Record<string, number> = {};
-      let citationIndex = 1;
-
-      let lastIndex = 0;
-      while ((match = citationRegex.exec(response)) !== null) {
-        const citationId = match[1];
-
-        if (lastIndex < match.index) {
-          parts.push(
-            <span key={lastIndex}>
-              {response.slice(lastIndex, match.index)}
-            </span>
-          );
-        }
-
-        if (!(citationId in citationMapping)) {
-          citationMapping[citationId] = citationIndex++;
-        }
-
-        parts.push(
-          <button
-            key={`${citationId}-${Math.random() * 1000}`}
-            onClick={() => showCitation(citationId)}
-            className="underline text-muted-foreground hover:text-primary"
-          >
-            [{citationMapping[citationId]}]
-          </button>
-        );
-
-        lastIndex = match.index + match[0].length;
-      }
-
-      if (lastIndex < response.length) {
-        parts.push(<span key={lastIndex}>{response.slice(lastIndex)}</span>);
-      }
-
-      return <>{parts}</>;
-    };
+  ({ message, showContext }) => {
     return (
       <motion.div
         key={message.id}
@@ -70,31 +38,50 @@ const MessageItem: React.FC<{
         }`}
       >
         <div
-          className={`rounded-lg px-4 py-2 max-w-[85%] ${
+          className={`rounded-lg px-4 py-2 max-w-[85%] flex flex-col ${
             message.role === "user"
               ? "bg-primary text-primary-foreground"
               : "bg-muted"
           }`}
         >
-          <div className="whitespace-pre-wrap overflow-wrap-break-word">
-            {message.role === "assistant" ? (
-              replaceCitationFlags(message.content)
-            ) : (
-              <span>{message.content}</span>
-            )}
+          <div className="overflow-wrap-break-word mb-2 prose prose-sm dark:prose-invert max-w-none">
+            {message.role === 'assistant' ? (
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+                  }}
+                >
+                  {message.content}
+                </ReactMarkdown>
+             ) : (
+               message.content
+             )
+            }
           </div>
+
+          {message.role === 'assistant' && message.context && message.context.length > 0 && (
+            <Button 
+              variant="outline"
+              size="sm"
+              className="mt-2 self-start text-xs h-auto py-1 px-2 border-muted-foreground/50 text-muted-foreground hover:bg-muted-foreground/10"
+              onClick={() => showContext(message.id)}
+            >
+              <BookOpen className="h-3 w-3 mr-1" />
+              Read More
+            </Button>
+          )}
         </div>
       </motion.div>
     );
   },
-  (prev, next) => prev.message == next.message
+  (prev, next) => prev.message.id === next.message.id && prev.message.content === next.message.content
 );
 
 MessageItem.displayName = "MessageItem";
 
-// Use React.memo to prevent unnecessary re-renders
 const MessageContainer: React.FC<MessageContainerProps> = React.memo(
-  ({ messages, error, toolCall, isLoading, showCitation, messagesEndRef }) => {
+  ({ messages, error, isLoading, showContext, messagesEndRef }) => {
     return (
       <div className="flex-1 overflow-y-auto space-y-4 w-full">
         <AnimatePresence initial={false}>
@@ -104,13 +91,12 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
                 <MessageItem
                   key={message.id}
                   message={message}
-                  showCitation={showCitation}
+                  showContext={showContext}
                 />
               )
           )}
         </AnimatePresence>
 
-        {/* Error Banner */}
         {error && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
