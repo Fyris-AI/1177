@@ -51,7 +51,7 @@ export async function POST(req: Request) {
           execute: async () => { 
             return [{
               id: "1177-lungcancer-mock-01",
-              text: "Lungcancer är en av de vanligaste cancerformerna i Sverige. Symtom kan inkludera långvarig hosta, andfåddhet, smärta i bröstet och oavsiktlig viktnedgång. Rökning är den största riskfaktorn. Källa 1177.se/sjukdomar--besvar/cancer/cancerformer/lungcancer/",
+              text: "Lungcancer är en av de vanligaste cancerformerna i Sverige. Symtom kan inkludera långvarig hosta, andfåddhet, smärta i bröstet och oavsiktlig viktnedgång. Rökning är den största riskfaktorn.",
               url: "https://www.1177.se/sjukdomar--besvar/cancer/cancerformer/lungcancer/" 
             }];
           },
