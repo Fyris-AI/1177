@@ -31,7 +31,6 @@ export default function ChatInterface() {
   const [isCitationShown, setIsCitationShown] = useState(false);
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
-      maxToolRoundtrips: 4,
       onToolCall({ toolCall }: { toolCall: { toolName: string } }) {
         setToolCall(toolCall.toolName);
       },
