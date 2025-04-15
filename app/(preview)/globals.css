@@ -72,6 +72,9 @@
     --accent: var(--red);
     --accent-foreground: var(--white);
 
+    --muted: var(--grey-light);
+    --muted-foreground: var(--black);
+
     --border: var(--black);
     --input: var(--red);
     --ring: var(--red);
@@ -94,6 +97,9 @@
 
     --accent: var(--red-dark);
     --accent-foreground: var(--white);
+
+    --muted: var(--black-charcoal);
+    --muted-foreground: var(--white);
 
     --border: var(--grey-light);
     --input: var(--pink-light);
@@ -118,6 +124,9 @@
     --accent: var(--blue);
     --accent-foreground: var(--white);
 
+    --muted: var(--grey-light);
+    --muted-foreground: var(--black);
+
     --border: var(--black);
     --input: var(--blue);
     --ring: var(--blue);
@@ -140,6 +149,9 @@
 
     --accent: var(--blue);
     --accent-foreground: var(--white);
+
+    --muted: var(--black-charcoal);
+    --muted-foreground: var(--white);
 
     --border: var(--blue);
     --input: var(--grey-light);
