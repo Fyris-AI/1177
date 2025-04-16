@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Search } from "lucide-react";
 
 export const SelectRegion = () => {
   const [isMobile, setIsMobile] = useState(false);
