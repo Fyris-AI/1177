@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* === 1. Base Palette Tokens === */
 :root {
   --white: 0 0% 100%;
   --black: 0 0% 0%;
@@ -17,7 +16,6 @@
   --grey-light: 30 29% 97%;
 }
 
-/* === 2. Base Design Tokens === */
 @layer base {
   :root {
     --background: var(--white);
@@ -50,14 +48,12 @@
 
     --radius: 0.5rem;
 
-    /* Semantic roles */
     --header-background: var(--white);
     --header-text: var(--black);
     --title: var(--black);
     --icon: var(--black);
   }
 
-  /* === 3. Themes === */
 
   [data-theme='light-invanare'] {
     --background: var(--white);
@@ -164,7 +160,6 @@
   }
 }
 
-/* === 4. Global Base Styling === */
 @layer base {
   * {
     @apply border-border;
@@ -175,7 +170,6 @@
   }
 }
 
-/* === 5. Font === */
 @font-face {
   font-family: "uncut sans";
   src: url("./uncut-sans.woff2") format("woff2");
@@ -185,16 +179,29 @@
   font-family: "uncut sans", sans-serif;
 }
 
-/* === 6. Markdown === */
 #markdown a {
   @apply text-blue-500;
 }
 
-/* === 7. Scrollbar Utility === */
 .no-scrollbar-gutter {
   scrollbar-gutter: auto;
   overflow-y: scroll;
 }
 .no-scrollbar-gutter::-webkit-scrollbar {
   display: none;
+}
+
+.mask-fade-out {
+  mask-image: linear-gradient(
+    to top,
+    black 0%,
+    black 97%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 97%,
+    transparent 100%
+  );
 }
