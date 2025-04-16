@@ -76,7 +76,7 @@
     --muted-foreground: var(--black);
 
     --border: var(--black);
-    --input: var(--red);
+    --input: var(--black);
     --ring: var(--red);
 
     --header-background: var(--pink-light);
@@ -128,7 +128,7 @@
     --muted-foreground: var(--black);
 
     --border: var(--black);
-    --input: var(--blue);
+    --input: var(--black);
     --ring: var(--blue);
 
     --header-background: var(--grey-light);

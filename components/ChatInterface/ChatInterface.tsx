@@ -142,7 +142,7 @@ export default function ChatInterface() {
                   />
                 </div>
 
-                <div className="shrink-0 bg-background pr-[calc(1rem+var(--scrollbar-width))]">
+                <div className="shrink-0 bg-background pr-[17px]">
                   <ChatInput
                     input={input}
                     onInputChange={handleInputChange}
