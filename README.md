@@ -2,6 +2,8 @@
 
 A project made by Fyris AI.
 
+This repo does not use Azure.
+
 ## Getting Started
 
 To get the project up and running, follow these steps:
