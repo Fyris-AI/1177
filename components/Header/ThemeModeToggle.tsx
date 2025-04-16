@@ -27,14 +27,14 @@ export const ThemeModeToggle = () => {
   return (
     <div
       onClick={toggleMode}
-      className="flex flex-col items-center justify-center gap-1 cursor-pointer w-24"
+      className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem]"
     >
       {mode === "dark" ? (
-        <Sun className="h-8 w-8 text-icon" />
+        <Sun className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
       ) : (
-        <Moon className="h-8 w-8 text-icon" />
+        <Moon className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
       )}
-      <p className="text-sm text-header-text">
+      <p className="text-xs text-header-text hidden md:block">
         {mode === "dark" ? "Ljust läge" : "Mörkt läge"}
       </p>
     </div>

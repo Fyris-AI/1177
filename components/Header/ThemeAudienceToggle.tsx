@@ -29,10 +29,10 @@ export const ThemeAudienceToggle = () => {
   return (
     <div
       onClick={toggleAudience}
-      className="flex flex-col items-center justify-center gap-1 cursor-pointer basis-[7rem]"
+      className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem]"
     >
-      <ArrowRightLeft className="h-8 w-8 text-icon" />
-      <p className="text-sm text-header-text">
+      <ArrowRightLeft className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
+      <p className="text-xs text-header-text hidden md:block">
         {audience === "personal" ? "För invånare" : "För vårdpersonal"}
       </p>
     </div>

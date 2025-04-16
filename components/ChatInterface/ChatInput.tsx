@@ -52,7 +52,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           onCompositionEnd={() => setIsComposing(false)}
           placeholder="Skriv en fråga..."
           disabled={isLoading}
-          className="pr-14 resize-none bg-background"
+          className="pr-14 resize-none bg-background text-base md:text-base lg:text-base"
           rows={1}
         />
         <div className="absolute right-3 top-3">

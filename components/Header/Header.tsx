@@ -12,9 +12,9 @@ export function Header() {
       </div>
 
       {/* Main header content */}
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 sm:h-20 md:px-4 ml-[280px]">
-        {/* Left Section - now just contains SelectRegion */}
-        <div className="flex items-center h-full px-2 sm:px-4 md:px-0 justify-start gap-4">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 sm:h-20 md:px-4 ml-[225px] sm:ml-[280px]">
+        {/* Left Section */}
+        <div className="flex items-center h-full px-0 sm:px-2 justify-start gap-0 sm:gap-2 md:gap-4">
           <SelectRegion />
         </div>
 
@@ -24,7 +24,7 @@ export function Header() {
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center h-full px-2 sm:px-4 md:px-0 justify-end gap-4">
+        <div className="flex items-center h-full px-0 sm:px-4 md:px-0 justify-end gap-0 sm:gap-2 md:gap-4">
           <ThemeAudienceToggle />
           <ThemeModeToggle />
         </div>

@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { useState, useEffect } from "react";
 import {
   Select,
   SelectContent,
@@ -9,13 +9,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Search } from "lucide-react";
 
 export const SelectRegion = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Function to check screen width
+    const checkScreenWidth = () => {
+      setIsMobile(window.innerWidth < 470);
+    };
+
+    // Initial check
+    checkScreenWidth();
+
+    // Add event listener
+    window.addEventListener("resize", checkScreenWidth);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenWidth);
+  }, []);
+
   return (
     <Select defaultValue="uppsala">
-      <SelectTrigger className="w-[142px] border-none bg-header-background text-header-text">
-        <SelectValue placeholder="Uppsala" />
-      </SelectTrigger>
+      {isMobile ? (
+        <SelectTrigger className="w-[40px] border-none bg-header-background text-header-text text-xs"></SelectTrigger>
+      ) : (
+        <SelectTrigger className="w-[128px] sm:w-[142px] border-none bg-header-background text-header-text text-xs sm:text-sm">
+          <SelectValue placeholder="Uppsala" />
+        </SelectTrigger>
+      )}
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Välj region</SelectLabel>
