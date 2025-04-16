@@ -116,8 +116,8 @@ export default function ChatInterface() {
       >
         <ResizablePanel id="chat-panel">
           <div className="flex flex-col h-full bg-background">
-            <div className="text-center py-20 mb-4 md:mb-8">
-              <h2 className="text-[2.5rem] font-semibold mt-[20vh] text-center grow text-title">
+            <div className="text-center py-8 sm:py-12 md:py-20 mb-4 md:mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-8 sm:mt-12 md:mt-[20vh] text-center text-title">
                 Vad kan jag hjälpa dig med?
               </h2>
             </div>
