@@ -131,7 +131,7 @@ export default function ChatInterface() {
               </>
             ) : (
               <>
-                <div className="flex-1 overflow-y-auto ">
+                <div className="flex-1 overflow-y-auto scrollbar-gutter-stable">
                   <MessageContainer
                     messages={messages}
                     error={error}
@@ -142,7 +142,7 @@ export default function ChatInterface() {
                   />
                 </div>
 
-                <div className="shrink-0 bg-background">
+                <div className="shrink-0 bg-background pr-[calc(1rem+var(--scrollbar-width))]">
                   <ChatInput
                     input={input}
                     onInputChange={handleInputChange}
