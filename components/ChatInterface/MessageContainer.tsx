@@ -96,7 +96,7 @@ MessageItem.displayName = "MessageItem";
 const MessageContainer: React.FC<MessageContainerProps> = React.memo(
   ({ messages, error, toolCall, isLoading, showCitation, messagesEndRef }) => {
     return (
-      <div className="flex-1 overflow-y-auto space-y-4 w-full pt-2">
+      <div className="flex-1 overflow-y-auto space-y-4 w-full pt-4">
         <AnimatePresence initial={false}>
           {messages.map(
             (message: Message) =>
