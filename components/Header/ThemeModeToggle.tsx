@@ -27,7 +27,7 @@ export const ThemeModeToggle = () => {
   return (
     <div
       onClick={toggleMode}
-      className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem]"
+      className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem] md:basis-[3.6rem]"
     >
       {mode === "dark" ? (
         <Sun className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
