@@ -35,7 +35,7 @@ export default function ChatInterface() {
         setToolCall(toolCall.toolName);
       },
       onError: (error: any) => {
-        console.error("API Error:", error); // Log the error
+        console.error("API Error:", error);
         const errorMessage = error.message
           ? JSON.parse(error.message)?.error
           : "An unexpected error occurred.";
@@ -45,7 +45,6 @@ export default function ChatInterface() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const citationPanelRef = useRef<ImperativePanelHandle>(null);
 
-  // expand the right panel when a citation is selected
   useEffect(() => {
     if (currentCitation) {
       citationPanelRef.current?.expand();
@@ -54,7 +53,6 @@ export default function ChatInterface() {
     }
   }, [currentCitation]);
 
-  // Function to extract document IDs and maintain the mapping
   const extractAndMapDocuments = (messages: Array<any>) => {
     const newDocumentMap: Record<string, string> = {};
 
@@ -72,7 +70,7 @@ export default function ChatInterface() {
                 invocation.result.forEach(
                   (item: { id: string; text: string }) => {
                     if (typeof item === "object" && item.id) {
-                      newDocumentMap[item.id] = item.text; // Assuming item has a `text` field
+                      newDocumentMap[item.id] = item.text;
                     }
                   }
                 );
@@ -86,7 +84,6 @@ export default function ChatInterface() {
     setDocumentMap((prevMap) => ({ ...prevMap, ...newDocumentMap }));
   };
 
-  // Auto scroll to bottom when new messages arrive and extract documents
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     extractAndMapDocuments(messages);
@@ -116,27 +113,45 @@ export default function ChatInterface() {
       >
         <ResizablePanel id="chat-panel">
           <div className="flex flex-col h-full bg-background">
-            <div className="text-center py-8 sm:py-12 md:py-20 mb-4 md:mb-8">
-              <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-8 sm:mt-12 md:mt-[20vh] text-center text-title">
-                Vad kan jag hjälpa dig med?
-              </h2>
-            </div>
+            {messages.length === 0 ? (
+              <>
+                <div className="text-center py-8 sm:py-12 md:py-20 mb-4 md:mb-8">
+                  <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-8 sm:mt-12 md:mt-[20vh] text-center text-title">
+                    Vad kan jag hjälpa dig med?
+                  </h2>
+                </div>
+                <div>
+                  <ChatInput
+                    input={input}
+                    onInputChange={handleInputChange}
+                    onSubmit={handleSubmitWithErrorReset}
+                    isLoading={isLoading}
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex-1 overflow-y-auto ">
+                  <MessageContainer
+                    messages={messages}
+                    error={error}
+                    toolCall={toolCall}
+                    isLoading={isLoading}
+                    showCitation={showCitation}
+                    messagesEndRef={messagesEndRef}
+                  />
+                </div>
 
-            <MessageContainer
-              messages={messages}
-              error={error}
-              toolCall={toolCall}
-              isLoading={isLoading}
-              showCitation={showCitation}
-              messagesEndRef={messagesEndRef}
-            />
-
-            <ChatInput
-              input={input}
-              onInputChange={handleInputChange}
-              onSubmit={handleSubmitWithErrorReset}
-              isLoading={isLoading}
-            />
+                <div className="shrink-0 bg-background">
+                  <ChatInput
+                    input={input}
+                    onInputChange={handleInputChange}
+                    onSubmit={handleSubmitWithErrorReset}
+                    isLoading={isLoading}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </ResizablePanel>
         {isLargeScreen && isCitationShown && <ResizableHandle withHandle />}
@@ -179,7 +194,7 @@ export default function ChatInterface() {
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Källinformation:</DrawerTitle>
-            <DrawerDescription className="h-[50vh] overflow-y-auto">
+            <DrawerDescription className="h-[75vh] overflow-y-auto">
               {currentCitation || "Ingen källa vald."}
             </DrawerDescription>
           </DrawerHeader>
