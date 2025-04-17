@@ -1,64 +1,39 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Message } from "ai";
+import CitationButton from "./CitationButton";
 import { Loader2 } from "lucide-react";
+import { Message } from "ai";
 
 interface MessageContainerProps {
   messages: Message[];
   error: string | null;
-  toolCall: string | undefined;
   isLoading: boolean;
-  showCitation: (id: string) => void;
+  showCitation: (url: string) => void;
   messagesEndRef: React.RefObject<HTMLDivElement>;
+}
+
+interface AssistantMessageContent {
+  message: string;
+  source_links?: string[];
+  source_names?: string[];
 }
 
 const MessageItem: React.FC<{
   message: Message;
-  showCitation: (id: string) => void;
+  showCitation: (url: string) => void;
 }> = React.memo(
   ({ message, showCitation }) => {
-    const replaceCitationFlags = (response: string): JSX.Element => {
-      const citationRegex = /【([^】]+)】/g;
-      const parts: JSX.Element[] = [];
-      let match;
-      const citationMapping: Record<string, number> = {};
-      let citationIndex = 1;
+    let content: AssistantMessageContent = { message: message.content };
 
-      let lastIndex = 0;
-      while ((match = citationRegex.exec(response)) !== null) {
-        const citationId = match[1];
-
-        if (lastIndex < match.index) {
-          parts.push(
-            <span key={lastIndex}>
-              {response.slice(lastIndex, match.index)}
-            </span>
-          );
-        }
-
-        if (!(citationId in citationMapping)) {
-          citationMapping[citationId] = citationIndex++;
-        }
-
-        parts.push(
-          <button
-            key={`${citationId}-${Math.random() * 1000}`}
-            onClick={() => showCitation(citationId)}
-            className="underline text-muted-foreground hover:text-primary"
-          >
-            [{citationMapping[citationId]}]
-          </button>
-        );
-
-        lastIndex = match.index + match[0].length;
+    try {
+      if (message.role === "assistant") {
+        content = JSON.parse(message.content) as AssistantMessageContent;
       }
+    } catch (e) {
+      // If parsing fails, use the original content as message
+      content = { message: "Kunde inte hämta meddelandet." };
+    }
 
-      if (lastIndex < response.length) {
-        parts.push(<span key={lastIndex}>{response.slice(lastIndex)}</span>);
-      }
-
-      return <>{parts}</>;
-    };
     return (
       <motion.div
         key={message.id}
@@ -77,12 +52,23 @@ const MessageItem: React.FC<{
           }`}
         >
           <div className="whitespace-pre-wrap overflow-wrap-break-word">
-            {message.role === "assistant" ? (
-              replaceCitationFlags(message.content)
-            ) : (
-              <span>{message.content}</span>
-            )}
+            {content.message}
           </div>
+
+          {message.role === "assistant" &&
+            content.source_links &&
+            content.source_names && (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {content.source_links.map((link, index) => (
+                  <CitationButton
+                    key={index}
+                    link={link}
+                    name={content.source_names?.[index] || `Källa ${index + 1}`}
+                    onClick={showCitation}
+                  />
+                ))}
+              </div>
+            )}
         </div>
       </motion.div>
     );
@@ -92,9 +78,8 @@ const MessageItem: React.FC<{
 
 MessageItem.displayName = "MessageItem";
 
-// Use React.memo to prevent unnecessary re-renders
 const MessageContainer: React.FC<MessageContainerProps> = React.memo(
-  ({ messages, error, toolCall, isLoading, showCitation, messagesEndRef }) => {
+  ({ messages, error, isLoading, showCitation, messagesEndRef }) => {
     return (
       <div className="flex-1 overflow-y-auto space-y-4 w-full pt-4">
         <AnimatePresence initial={false}>
@@ -118,7 +103,7 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
             exit={{ opacity: 0, y: -10 }}
             className="flex justify-center"
           >
-            <div className="flex items-center gap-2 rounded-lg px-4 py-2 bg-red-500 text-white">
+            <div className="flex items-center gap-2 rounded-lg px-4 py-2 bg-destructive text-destructive-foreground">
               <span>{error}</span>
             </div>
           </motion.div>
