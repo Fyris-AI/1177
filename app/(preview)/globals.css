@@ -85,10 +85,10 @@
     --background: var(--grey-dark);
     --foreground: var(--grey-light);
 
-    --primary: var(--red-dark);
+    --primary: var(--red);
     --primary-foreground: var(--white);
 
-    --secondary: var(--red);
+    --secondary: var(--red-dark);
     --secondary-foreground: var(--white);
 
     --accent: var(--red-dark);
@@ -195,13 +195,13 @@
   mask-image: linear-gradient(
     to top,
     black 0%,
-    black 97%,
+    black 98%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 97%,
+    black 98%,
     transparent 100%
   );
 }
