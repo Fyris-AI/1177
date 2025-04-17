@@ -83,8 +83,8 @@ export default function ChatInterface() {
           <div className="flex flex-col h-full bg-background">
             {messages.length === 0 ? (
               <>
-                <div className="text-center py-8 sm:py-12 md:py-20 mb-4 md:mb-8">
-                  <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-8 sm:mt-12 md:mt-[20vh] text-center text-title">
+                <div className="text-center py-10 sm:py-14 md:py-22">
+                  <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-[30vh] text-center text-title">
                     Vad kan jag hjälpa dig med?
                   </h2>
                 </div>
