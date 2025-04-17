@@ -1,12 +1,14 @@
 "use client";
 
 import { ImperativePanelHandle } from "react-resizable-panels";
+import { CitationWindowActions } from "./CitationWindowAction";
 import { useRef, useEffect, useState } from "react";
 import MessageContainer from "./MessageContainer";
 import { useMediaQuery } from "react-responsive";
-import { Button } from "@/components/ui/button";
-import ChatInput from "./ChatInput";
 import CitationPreview from "./CitationPreview";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
+import ChatInput from "./ChatInput";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -130,24 +132,25 @@ export default function ChatInterface() {
             collapsedSize={0}
             ref={citationPanelRef}
             defaultSize={25}
-            className="overflow-y-scroll h-full"
+            className="h-full flex flex-col"
           >
-            <div className="flex justify-between items-center p-4">
-              <h3 className="font-bold">Källinformation:</h3>
-              <button
-                onClick={closeDrawer}
-                className="text-muted-foreground hover:text-primary transition-colors"
-                aria-label="Close"
-              >
-                <X />
-              </button>
-            </div>
-            <div className="p-4">
+            <div className="p-2 pt-4 flex-1 flex flex-col min-h-0">
               {citationUrl ? (
-                <CitationPreview url={citationUrl} />
+                <div className="flex-1 min-h-0 pb-2 overflow-auto">
+                  <CitationPreview url={citationUrl} className="h-full" />
+                </div>
               ) : (
-                <p>Välj en källa för att se detaljer</p>
+                <p className="flex-1 flex items-center justify-center">
+                  Välj en källa för att se detaljer
+                </p>
               )}
+              <div className="pb-3 pt-1">
+                {" "}
+                <CitationWindowActions
+                  citationUrl={citationUrl}
+                  onClose={closeDrawer}
+                />
+              </div>
             </div>
           </ResizablePanel>
         )}
@@ -157,19 +160,23 @@ export default function ChatInterface() {
         open={!isLargeScreen && isCitationShown}
         onOpenChange={closeDrawer}
       >
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerTitle>Källinformation:</DrawerTitle>
-            <DrawerDescription className="h-[75vh] overflow-y-auto">
+        <DrawerContent className="h-[85vh]">
+          <DrawerHeader className="flex-1 overflow-hidden flex flex-col">
+            <DrawerDescription className="flex-1 overflow-auto">
               {citationUrl ? (
-                <CitationPreview url={citationUrl} />
+                <CitationPreview url={citationUrl} className="h-full" />
               ) : (
-                "Ingen källa vald."
+                <div className="h-full flex items-center justify-center">
+                  Ingen källa vald.
+                </div>
               )}
             </DrawerDescription>
           </DrawerHeader>
-          <DrawerFooter>
-            <Button onClick={closeDrawer}>Stäng</Button>
+          <DrawerFooter className="pb-3 pt-1">
+            <CitationWindowActions
+              citationUrl={citationUrl}
+              onClose={closeDrawer}
+            />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
