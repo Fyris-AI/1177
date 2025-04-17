@@ -24,24 +24,24 @@ import {
 
 export default function ChatInterface() {
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
-  const [toolCall, setToolCall] = useState<string>();
   const [error, setError] = useState<string | null>(null);
-  const [documentMap, setDocumentMap] = useState<Record<string, string>>({});
   const [currentCitation, setCurrentCitation] = useState<string | null>(null);
   const [isCitationShown, setIsCitationShown] = useState(false);
+
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat({
-      onToolCall({ toolCall }: { toolCall: { toolName: string } }) {
-        setToolCall(toolCall.toolName);
+      api: "/api/chat",
+      onResponse: (response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
       },
-      onError: (error: any) => {
+      onError: (error: Error) => {
         console.error("API Error:", error);
-        const errorMessage = error.message
-          ? JSON.parse(error.message)?.error
-          : "An unexpected error occurred.";
-        setError(errorMessage);
+        setError(error.message || "Ett oväntat fel uppstod");
       },
     });
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const citationPanelRef = useRef<ImperativePanelHandle>(null);
 
@@ -53,40 +53,8 @@ export default function ChatInterface() {
     }
   }, [currentCitation]);
 
-  const extractAndMapDocuments = (messages: Array<any>) => {
-    const newDocumentMap: Record<string, string> = {};
-
-    messages.forEach(
-      (message: {
-        role: string;
-        toolInvocations?: Array<{
-          result?: Array<{ id: string; text: string }>;
-        }>;
-      }) => {
-        if (message.role === "assistant" && message.toolInvocations) {
-          message.toolInvocations.forEach(
-            (invocation: { result?: Array<{ id: string; text: string }> }) => {
-              if (invocation.result) {
-                invocation.result.forEach(
-                  (item: { id: string; text: string }) => {
-                    if (typeof item === "object" && item.id) {
-                      newDocumentMap[item.id] = item.text;
-                    }
-                  }
-                );
-              }
-            }
-          );
-        }
-      }
-    );
-
-    setDocumentMap((prevMap) => ({ ...prevMap, ...newDocumentMap }));
-  };
-
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    extractAndMapDocuments(messages);
   }, [messages]);
 
   const handleSubmitWithErrorReset = (event: React.FormEvent) => {
@@ -94,9 +62,8 @@ export default function ChatInterface() {
     handleSubmit(event);
   };
 
-  const showCitation = (id: string) => {
-    const citationText = documentMap[id] || null;
-    setCurrentCitation(citationText);
+  const showCitation = (url: string) => {
+    setCurrentCitation(url);
     setIsCitationShown(true);
   };
 
@@ -135,7 +102,6 @@ export default function ChatInterface() {
                   <MessageContainer
                     messages={messages}
                     error={error}
-                    toolCall={toolCall}
                     isLoading={isLoading}
                     showCitation={showCitation}
                     messagesEndRef={messagesEndRef}
