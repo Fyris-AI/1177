@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = await streamText({
-      model: openai(process.env.OPENAI_MODEL_NAME || 'gpt-4o'),
+      model: openai(process.env.OPENAI_MODEL || 'gpt-4o'),
       messages: convertToCoreMessages(messages),
       system: `Du är en expert på svensk sjukvård med tillgång till verifierade källor. Följ dessa regler exakt:
 
