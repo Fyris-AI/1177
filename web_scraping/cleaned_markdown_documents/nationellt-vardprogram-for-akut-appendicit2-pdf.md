@@ -1,3 +1,7 @@
+Title: Nationellt vårdprogram för akut appendicit
+
+URL Source: https://vardpersonal.1177.se/globalassets/nkk/nationell/media/dokument/kunskapsstod/vardprogram/nationellt-vardprogram-for-akut-appendicit2.pdf
+
 Nationellt vårdprogram för akut appendicit hos vuxna och barn  
 
 > Nationellt programområde mag- och tarmsjukdomar Nationellt vårdprogram för akut appendicit 240219

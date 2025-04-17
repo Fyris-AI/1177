@@ -1,3 +1,7 @@
+Title: Allergi vid bi- eller getingstick
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/allergi-vid-bi--eller-getingstick/
+
 Allergi vid bi- eller getingstick
 =================================
 

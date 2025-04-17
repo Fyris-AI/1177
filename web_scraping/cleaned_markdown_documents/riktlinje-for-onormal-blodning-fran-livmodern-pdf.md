@@ -1,3 +1,7 @@
+Title: Onormal blödning från livmodern
+
+URL Source: https://vardpersonal.1177.se/globalassets/nkk/nationell/media/dokument/kunskapsstod/vardriktlinjer/riktlinje-for-onormal-blodning-fran-livmodern.pdf
+
 Onormal blödning från livmodern 
 
 # Kartläggning och rekommendationer 

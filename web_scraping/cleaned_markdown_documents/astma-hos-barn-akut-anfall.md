@@ -1,3 +1,7 @@
+Title: Astma hos barn, akut anfall
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/astma-hos-barn-akut-anfall/
+
 Astma hos barn, akut anfall
 ===========================
 
