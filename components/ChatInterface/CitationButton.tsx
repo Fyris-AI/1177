@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 interface CitationButtonProps {
   link: string;
@@ -14,13 +15,25 @@ const CitationButton: React.FC<CitationButtonProps> = ({
   onClick,
 }) => {
   return (
+    // Variant 1: Using the BookOpen icon to open CitationPreview
+    // <Button
+    //   variant="link"
+    //   size="sm"
+    //   className="h-auto px-1 py-0.5 text-muted-foreground hover:text-primary"
+    //   onClick={() => onClick(link)}
+    // >
+    //   <BookOpen className="h-3 w-3 mr-1" /> {/* Add margin-right */}
+    //   {name}
+    // </Button>
+
+    // Variant 2: Using the ExternalLink icon to open the link directly
     <Button
       variant="link"
-      size="sm" // Use a smaller size for compactness
-      className="h-auto px-1 py-0.5 text-muted-foreground hover:text-primary" // Adjust padding and styling
-      onClick={() => onClick(link)}
+      size="sm"
+      className="h-auto px-1 py-0.5 text-muted-foreground hover:text-primary"
+      onClick={() => window.open(link, "_blank")}
     >
-      <BookOpen className="h-3 w-3 mr-1" /> {/* Add margin-right */}
+      <ExternalLink className="h-3 w-3 mr-1" />
       {name}
     </Button>
   );

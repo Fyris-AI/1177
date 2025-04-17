@@ -6,6 +6,7 @@ import MessageContainer from "./MessageContainer";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "@/components/ui/button";
 import ChatInput from "./ChatInput";
+import CitationPreview from "./CitationPreview";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -25,7 +26,7 @@ import {
 export default function ChatInterface() {
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
   const [error, setError] = useState<string | null>(null);
-  const [currentCitation, setCurrentCitation] = useState<string | null>(null);
+  const [citationUrl, setcitationUrl] = useState<string | null>(null);
   const [isCitationShown, setIsCitationShown] = useState(false);
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
@@ -46,12 +47,12 @@ export default function ChatInterface() {
   const citationPanelRef = useRef<ImperativePanelHandle>(null);
 
   useEffect(() => {
-    if (currentCitation) {
+    if (citationUrl) {
       citationPanelRef.current?.expand();
     } else {
       citationPanelRef.current?.collapse();
     }
-  }, [currentCitation]);
+  }, [citationUrl]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -63,13 +64,13 @@ export default function ChatInterface() {
   };
 
   const showCitation = (url: string) => {
-    setCurrentCitation(url);
+    setcitationUrl(url);
     setIsCitationShown(true);
   };
 
   const closeDrawer = () => {
     setIsCitationShown(false);
-    setCurrentCitation(null);
+    setcitationUrl(null);
   };
 
   return (
@@ -78,7 +79,7 @@ export default function ChatInterface() {
         direction="horizontal"
         className="h-[calc(100vh-4rem)]"
       >
-        <ResizablePanel id="chat-panel">
+        <ResizablePanel id="chat-panel" order={1}>
           <div className="flex flex-col h-full bg-background">
             {messages.length === 0 ? (
               <>
@@ -124,6 +125,7 @@ export default function ChatInterface() {
         {isLargeScreen && isCitationShown && (
           <ResizablePanel
             id="citation-panel"
+            order={2}
             collapsible
             collapsedSize={0}
             ref={citationPanelRef}
@@ -141,10 +143,8 @@ export default function ChatInterface() {
               </button>
             </div>
             <div className="p-4">
-              {currentCitation ? (
-                <div>
-                  <p>{currentCitation}</p>
-                </div>
+              {citationUrl ? (
+                <CitationPreview url={citationUrl} />
               ) : (
                 <p>Välj en källa för att se detaljer</p>
               )}
@@ -161,7 +161,11 @@ export default function ChatInterface() {
           <DrawerHeader>
             <DrawerTitle>Källinformation:</DrawerTitle>
             <DrawerDescription className="h-[75vh] overflow-y-auto">
-              {currentCitation || "Ingen källa vald."}
+              {citationUrl ? (
+                <CitationPreview url={citationUrl} />
+              ) : (
+                "Ingen källa vald."
+              )}
             </DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
