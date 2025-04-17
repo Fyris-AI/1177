@@ -1,3 +1,7 @@
+Title: Degenerativ meniskskada i knäled - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/degenerativ-meniskskada-i-knaled/
+
 Degenerativ meniskskada i knäled
 ================================
 

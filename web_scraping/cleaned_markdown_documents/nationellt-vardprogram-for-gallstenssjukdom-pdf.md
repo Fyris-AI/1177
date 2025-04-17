@@ -1,3 +1,7 @@
+Title: Nationellt vårdprogram för gallstenssjukdom
+
+URL Source: https://vardpersonal.1177.se/globalassets/nkk/nationell/media/dokument/kunskapsstod/vardprogram/nationellt-vardprogram-for-gallstenssjukdom.pdf
+
 Nationellt vårdprogram för 
 
 # gallstenssjukdom 

@@ -1,3 +1,7 @@
+Title: Diabetes – glukossänkande läkemedelsbehandling vid typ 2-diabetes
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/diabetes--glukossankande-lakemedelsbehandling-vid-typ-2-diabetes/
+
 Den här delen av 1177 riktar sig till vårdpersonal
 
 Vill du fortsätta läsa information riktad till vårdpersonal tryck på Fortsätt.

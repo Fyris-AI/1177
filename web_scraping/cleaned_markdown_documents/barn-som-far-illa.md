@@ -1,3 +1,7 @@
+Title: Barn som far illa - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/barn-som-far-illa/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

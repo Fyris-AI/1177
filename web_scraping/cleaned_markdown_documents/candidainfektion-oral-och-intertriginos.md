@@ -1,3 +1,7 @@
+Title: Candidainfektion, oral och intertriginös - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/candidainfektion-oral-och-intertriginos/
+
 Candidainfektion, oral och intertriginös
 ========================================
 

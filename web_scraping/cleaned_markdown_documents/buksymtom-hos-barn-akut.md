@@ -1,3 +1,7 @@
+Title: Buksymtom hos barn, akut - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/buksymtom-hos-barn-akut/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

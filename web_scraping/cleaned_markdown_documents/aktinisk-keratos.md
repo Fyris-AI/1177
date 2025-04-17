@@ -1,3 +1,7 @@
+Title: Aktinisk keratos - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/aktinisk-keratos/
+
 Aktinisk keratos
 ================
 
