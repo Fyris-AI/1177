@@ -10,41 +10,43 @@ from pydantic import ValidationError, BaseModel
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from .models import ChatbotResponse
+from models import ChatbotResponse
 
 # Load environment variables from .env file in the current directory (backend/)
 # Note: GOOGLE_APPLICATION_CREDENTIALS environment variable should be set for authentication
 load_dotenv()
 
 # --- Configuration ---
-DATA_DIR = "data" # Relative path to the data directory FROM main.py's location (backend/)
-BATCH_SIZE = 5   # Number of documents to process in each batch for LLM 1
-DEBUG = True      # Set to True for verbose output
+DATA_DIR = "data"  # Relative path to the data directory FROM main.py's location (backend/)
+BATCH_SIZE = 5  # Number of documents to process in each batch for LLM 1
+DEBUG = True  # Set to True for verbose output
 MAX_WORKERS = 20  # Max concurrent workers for LLM 1 batches (Added)
 
 # --- API Key Handling & Model Setup ---
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
     # Keep error message in English for developer clarity
-    raise ValueError("GOOGLE_API_KEY not found in environment variables. Make sure it's set in backend/.env")
+    raise ValueError(
+        "GOOGLE_API_KEY not found in environment variables. Make sure it's set in backend/.env"
+    )
 genai.configure(api_key=api_key)
 
-GEMINI_MODEL_NAME = "gemini-1.5-flash-latest" 
+GEMINI_MODEL_NAME = "gemini-1.5-flash-latest"
 
 # Initialize the generative model clients (can be reused)
 try:
     llm1_model = genai.GenerativeModel(GEMINI_MODEL_NAME)
     llm2_model = genai.GenerativeModel(GEMINI_MODEL_NAME)
 except Exception as e:
-     raise RuntimeError(f"Failed to initialize Gemini model '{GEMINI_MODEL_NAME}': {e}")
-
+    raise RuntimeError(
+        f"Failed to initialize Gemini model '{GEMINI_MODEL_NAME}': {e}")
 
 # --- FastAPI App Initialization ---
-app = FastAPI() # <<< DEFINE THE APP OBJECT HERE
+app = FastAPI()  # <<< DEFINE THE APP OBJECT HERE
 
 # --- CORS Middleware ---
 origins = [
-    "http://localhost:3000",  
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
 
@@ -52,28 +54,35 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"], 
-    allow_headers=["*"], 
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # --- Helper Functions ---
+
 
 def get_document_filenames(data_dir: str) -> List[str]:
     """Gets a list of .md filenames from the specified directory."""
     script_dir = os.path.dirname(__file__)
     full_data_dir = os.path.join(script_dir, data_dir)
     if not os.path.isdir(full_data_dir):
-        print(f"Error: Data directory not found at '{full_data_dir}'") # Log in English
+        print(f"Error: Data directory not found at '{full_data_dir}'"
+              )  # Log in English
         return []
     try:
-        all_files = [f for f in os.listdir(full_data_dir) if os.path.isfile(os.path.join(full_data_dir, f))]
-        md_files = sorted([f for f in all_files if f.endswith('.md')]) # Sort for consistent batching
+        all_files = [
+            f for f in os.listdir(full_data_dir)
+            if os.path.isfile(os.path.join(full_data_dir, f))
+        ]
+        md_files = sorted([f for f in all_files if f.endswith('.md')
+                           ])  # Sort for consistent batching
         if DEBUG:
             print(f"Found {len(md_files)} markdown files in {full_data_dir}.")
         return md_files
     except Exception as e:
-        print(f"Error listing files in {full_data_dir}: {e}") # Log in English
+        print(f"Error listing files in {full_data_dir}: {e}")  # Log in English
         return []
+
 
 def read_file_content(filepath: str) -> str:
     """Reads the entire content of a file."""
@@ -82,19 +91,24 @@ def read_file_content(filepath: str) -> str:
             # Prepend filename to content - assuming this is desired preprocessing
             # If filenames are already in the files, this might duplicate them. Adjust if needed.
             # filename = os.path.basename(filepath)
-            # return f"{filename}\n{f.read()}" 
-            return f.read() # Assuming files already have filename prepended as per user's previous message
+            # return f"{filename}\n{f.read()}"
+            return f.read(
+            )  # Assuming files already have filename prepended as per user's previous message
     except Exception as e:
-        print(f"Error reading file {filepath}: {e}") # Log in English
-        return "" # Return empty string on error
+        print(f"Error reading file {filepath}: {e}")  # Log in English
+        return ""  # Return empty string on error
 
-def format_llm1_batch_prompt(user_query: str, batch_content: List[Tuple[str, str]]) -> str:
+
+def format_llm1_batch_prompt(user_query: str,
+                             batch_content: List[Tuple[str, str]]) -> str:
     """Formats the prompt for the first LLM (relevance check) for a batch."""
     doc_separator = "\n\n---\n\n"
     formatted_docs = []
     for filename, content in batch_content:
         # Add clear separators including the filename
-        formatted_docs.append(f"--- Start Document: {filename} ---\n{content}\n--- End Document: {filename} ---")
+        formatted_docs.append(
+            f"--- Start Document: {filename} ---\n{content}\n--- End Document: {filename} ---"
+        )
 
     docs_string = doc_separator.join(formatted_docs)
 
@@ -111,7 +125,9 @@ Om inga dokument i bunten är relevanta, svara endast 'Inga'. Svara inte med nå
 Relevanta filnamn:"""
     return prompt
 
-def parse_llm1_response(response_text: str, batch_filenames: List[str]) -> List[str]:
+
+def parse_llm1_response(response_text: str,
+                        batch_filenames: List[str]) -> List[str]:
     """Parses the comma-separated or newline-separated filename list from LLM 1's response text."""
     response_text = response_text.strip()
     if response_text.lower() == 'inga' or not response_text:
@@ -119,14 +135,23 @@ def parse_llm1_response(response_text: str, batch_filenames: List[str]) -> List[
 
     # Replace newlines with commas, then split by comma
     processed_text = response_text.replace('\n', ',')
-    potential_filenames = [fname.strip() for fname in processed_text.split(',') if fname.strip()] # Ensure no empty strings
+    potential_filenames = [
+        fname.strip() for fname in processed_text.split(',') if fname.strip()
+    ]  # Ensure no empty strings
 
     # Validate filenames against the batch list to prevent hallucinations
-    valid_filenames = [fname for fname in potential_filenames if fname in batch_filenames]
+    valid_filenames = [
+        fname for fname in potential_filenames if fname in batch_filenames
+    ]
 
     if DEBUG and len(potential_filenames) != len(valid_filenames):
-        invalid_found = [fname for fname in potential_filenames if fname not in batch_filenames]
-        print(f"Warning: LLM 1 parsing found potential filenames not in the current batch: {invalid_found}") # Log in English
+        invalid_found = [
+            fname for fname in potential_filenames
+            if fname not in batch_filenames
+        ]
+        print(
+            f"Warning: LLM 1 parsing found potential filenames not in the current batch: {invalid_found}"
+        )  # Log in English
 
     # Further clean up potential empty strings resulting from parsing (redundant due to list comprehension filter, but safe)
     valid_filenames = [fname for fname in valid_filenames if fname]
@@ -134,13 +159,14 @@ def parse_llm1_response(response_text: str, batch_filenames: List[str]) -> List[
     return valid_filenames
 
 
-def call_llm_1_relevance_batch(model: genai.GenerativeModel, prompt: str) -> str:
+def call_llm_1_relevance_batch(model: genai.GenerativeModel,
+                               prompt: str) -> str:
     """Calls the first LLM (Gemini) for relevance check and returns the raw text response."""
     if DEBUG:
         print("-" * 20 + " LLM 1 (Relevance Check) - START " + "-" * 20)
         # Print first/last 500 chars of prompt if too long
         if len(prompt) > 1000:
-             print(f"Prompt preview:\n{prompt[:500]}...\n...{prompt[-500:]}")
+            print(f"Prompt preview:\n{prompt[:500]}...\n...{prompt[-500:]}")
         else:
             print(f"Prompt:\n{prompt}")
 
@@ -152,11 +178,12 @@ def call_llm_1_relevance_batch(model: genai.GenerativeModel, prompt: str) -> str
             print("-" * 20 + " LLM 1 (Relevance Check) - END " + "-" * 20)
         return response_text
     except Exception as e:
-        print(f"Error during LLM 1 call: {e}") # Log in English
+        print(f"Error during LLM 1 call: {e}")  # Log in English
         # Consider how to handle API errors (e.g., retry, return empty)
         if DEBUG:
-             print("-" * 20 + " LLM 1 (Relevance Check) - FAILED " + "-" * 20)
-        return "Inga" # Default to 'Inga' on error
+            print("-" * 20 + " LLM 1 (Relevance Check) - FAILED " + "-" * 20)
+        return "Inga"  # Default to 'Inga' on error
+
 
 def format_llm2_prompt(user_query: str, relevant_context: str) -> str:
     """
@@ -194,7 +221,10 @@ JSON Svar:
 """
     return prompt
 
-def generate_answer(model: genai.GenerativeModel, user_query: str, relevant_filenames: List[str], data_dir: str) -> ChatbotResponse:
+
+def generate_answer(model: genai.GenerativeModel, user_query: str,
+                    relevant_filenames: List[str],
+                    data_dir: str) -> ChatbotResponse:
     """
     Reads content for relevant filenames, calls the second LLM (Gemini) to generate
     a JSON response containing the answer and sources, parses and validates it, 
@@ -206,11 +236,11 @@ def generate_answer(model: genai.GenerativeModel, user_query: str, relevant_file
 
     # Handle case where LLM 1 found no relevant files
     if not relevant_filenames:
-         return ChatbotResponse(
-             message="Jag kunde inte hitta några relevanta dokument för att svara på din fråga.",
-             source_links=[], 
-             source_names=[]
-        )
+        return ChatbotResponse(
+            message=
+            "Jag kunde inte hitta några relevanta dokument för att svara på din fråga.",
+            source_links=[],
+            source_names=[])
 
     print("\n--- Preparing Context for LLM 2 ---")
     final_context_parts = []
@@ -221,16 +251,20 @@ def generate_answer(model: genai.GenerativeModel, user_query: str, relevant_file
         if content:
             # Just append the content for the LLM context
             # Ensure title/link info is present within the content itself for LLM 2
-            final_context_parts.append(f"--- Dokument: {filename} ---\n{content}") 
+            final_context_parts.append(
+                f"--- Dokument: {filename} ---\n{content}")
         else:
-             print(f"Warning: Could not read relevant file {filename} for final context.") 
+            print(
+                f"Warning: Could not read relevant file {filename} for final context."
+            )
 
     # If no context could be built (e.g., all files failed to read)
     if not final_context_parts:
-          return ChatbotResponse(
-             message="Ett fel uppstod: Kunde inte läsa innehållet i de relevanta dokumenten.",
-             source_links=[], 
-             source_names=[], 
+        return ChatbotResponse(
+            message=
+            "Ett fel uppstod: Kunde inte läsa innehållet i de relevanta dokumenten.",
+            source_links=[],
+            source_names=[],
         )
 
     final_context = "\n\n".join(final_context_parts)
@@ -241,73 +275,84 @@ def generate_answer(model: genai.GenerativeModel, user_query: str, relevant_file
     if DEBUG:
         print("-" * 20 + " LLM 2 (JSON Generation) - START " + "-" * 20)
         if len(llm2_prompt) > 1000:
-             print(f"Prompt preview:\n{llm2_prompt[:500]}...\n...{llm2_prompt[-500:]}")
+            print(
+                f"Prompt preview:\n{llm2_prompt[:500]}...\n...{llm2_prompt[-500:]}"
+            )
         else:
             print(f"Prompt:\n{llm2_prompt}")
 
-    llm_response_text = "" # Initialize to ensure it exists for error logging
+    llm_response_text = ""  # Initialize to ensure it exists for error logging
     try:
         # Call LLM 2, expecting JSON in response.text
         response = model.generate_content(llm2_prompt)
         llm_response_text = response.text.strip()
 
         if DEBUG:
-            print(f"LLM 2 Raw Response Text (Expecting JSON):\n{llm_response_text}")
+            print(
+                f"LLM 2 Raw Response Text (Expecting JSON):\n{llm_response_text}"
+            )
 
         # Attempt to find JSON block (handling potential markdown backticks)
-        json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", llm_response_text, re.DOTALL | re.IGNORECASE)
+        json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```",
+                               llm_response_text, re.DOTALL | re.IGNORECASE)
         if json_match:
-             json_string = json_match.group(1)
-             if DEBUG: print("Extracted JSON from markdown block.")
-        elif llm_response_text.startswith("{") and llm_response_text.endswith("}"):
-             json_string = llm_response_text
-             if DEBUG: print("Assuming raw response is JSON.")
+            json_string = json_match.group(1)
+            if DEBUG: print("Extracted JSON from markdown block.")
+        elif llm_response_text.startswith("{") and llm_response_text.endswith(
+                "}"):
+            json_string = llm_response_text
+            if DEBUG: print("Assuming raw response is JSON.")
         else:
-             raise ValidationError("Could not find valid JSON object in LLM 2 response.")
-
+            raise ValidationError(
+                "Could not find valid JSON object in LLM 2 response.")
 
         # Parse and validate the JSON string using the Pydantic model
         response_data = ChatbotResponse.model_validate_json(json_string)
-        
+
         if DEBUG:
             print("-" * 20 + " LLM 2 (JSON Generation) - SUCCESS " + "-" * 20)
-        return response_data # Return the validated Pydantic object
+        return response_data  # Return the validated Pydantic object
 
     except (ValidationError, json.JSONDecodeError) as json_val_error:
-        print(f"Error parsing/validating JSON from LLM 2: {json_val_error}") # Log in English
+        print(f"Error parsing/validating JSON from LLM 2: {json_val_error}"
+              )  # Log in English
         print(f"LLM 2 Raw Response Text was:\n{llm_response_text}")
         if DEBUG:
-            print("-" * 20 + " LLM 2 (JSON Generation) - PARSE/VALIDATE FAILED " + "-" * 20)
+            print("-" * 20 +
+                  " LLM 2 (JSON Generation) - PARSE/VALIDATE FAILED " +
+                  "-" * 20)
         # Return a standard error response object
         return ChatbotResponse(
-            message="Jag är ledsen, ett internt fel uppstod när svaret skulle bearbetas.",
-            source_links=[],
-            source_names=[],
-        )
-        
-    except Exception as e:
-        print(f"Error during LLM 2 call or processing: {e}") # Log in English
-        print(f"LLM 2 Raw Response Text was:\n{llm_response_text}") # Log response text if available
-        if DEBUG:
-            print("-" * 20 + " LLM 2 (JSON Generation) - GENERAL FAILED " + "-" * 20)
-        # Return a standard error response object
-        return ChatbotResponse(
-            message="Jag är ledsen, ett oväntat fel inträffade när svaret genererades.",
+            message=
+            "Jag är ledsen, ett internt fel uppstod när svaret skulle bearbetas.",
             source_links=[],
             source_names=[],
         )
 
+    except Exception as e:
+        print(f"Error during LLM 2 call or processing: {e}")  # Log in English
+        print(f"LLM 2 Raw Response Text was:\n{llm_response_text}"
+              )  # Log response text if available
+        if DEBUG:
+            print("-" * 20 + " LLM 2 (JSON Generation) - GENERAL FAILED " +
+                  "-" * 20)
+        # Return a standard error response object
+        return ChatbotResponse(
+            message=
+            "Jag är ledsen, ett oväntat fel inträffade när svaret genererades.",
+            source_links=[],
+            source_names=[],
+        )
+
+
 # --- Helper function for parallel batch processing ---
-def process_single_batch(
-    batch_filenames: List[str],
-    user_query: str,
-    full_data_dir: str,
-    model: genai.GenerativeModel,
-    batch_num: int,
-    total_batches: int
-) -> List[str]:
+def process_single_batch(batch_filenames: List[str], user_query: str,
+                         full_data_dir: str, model: genai.GenerativeModel,
+                         batch_num: int, total_batches: int) -> List[str]:
     """Processes a single batch: reads files, calls LLM 1, parses results."""
-    print(f"\n>>> Starting Batch {batch_num}/{total_batches} ({len(batch_filenames)} files) [Threaded] <<<") # Added log indication
+    print(
+        f"\n>>> Starting Batch {batch_num}/{total_batches} ({len(batch_filenames)} files) [Threaded] <<<"
+    )  # Added log indication
 
     # Read content for the current batch
     batch_content: List[Tuple[str, str]] = []
@@ -316,15 +361,19 @@ def process_single_batch(
         filepath = os.path.join(full_data_dir, filename)
         content = read_file_content(filepath)
         if content:
-             batch_content.append((filename, content))
+            batch_content.append((filename, content))
         else:
-             # Log in English
-             print(f"Warning: Skipping file {filename} in batch {batch_num} due to read error.")
+            # Log in English
+            print(
+                f"Warning: Skipping file {filename} in batch {batch_num} due to read error."
+            )
 
     if not batch_content:
-         # Log in English
-         print(f"Warning: Skipping batch {batch_num} as no content could be read.")
-         return []
+        # Log in English
+        print(
+            f"Warning: Skipping batch {batch_num} as no content could be read."
+        )
+        return []
 
     print(f"Content read for batch {batch_num}. Sending to LLM 1...")
 
@@ -334,15 +383,20 @@ def process_single_batch(
 
     # Parse response
     batch_actual_filenames = [fn for fn, _ in batch_content]
-    relevant_in_batch = parse_llm1_response(llm1_response_text, batch_actual_filenames)
+    relevant_in_batch = parse_llm1_response(llm1_response_text,
+                                            batch_actual_filenames)
 
-    print(f"<<< Finished Batch {batch_num}/{total_batches}. Found {len(relevant_in_batch)} relevant files. [Threaded] >>>")
+    print(
+        f"<<< Finished Batch {batch_num}/{total_batches}. Found {len(relevant_in_batch)} relevant files. [Threaded] >>>"
+    )
     if DEBUG and relevant_in_batch:
         print(f"Relevant files in batch {batch_num}: {relevant_in_batch}")
 
     return relevant_in_batch
 
+
 # --- Main Pipeline Function ---
+
 
 def run_new_cag_pipeline(user_query: str) -> str:
     """
@@ -356,14 +410,13 @@ def run_new_cag_pipeline(user_query: str) -> str:
     if not all_filenames:
         # Create the response object and return its JSON representation
         error_response = ChatbotResponse(
-            message="Kunde inte hitta några dokument att bearbeta.", 
-            source_links=[], 
-            source_names=[]
-        )
-        return error_response.model_dump_json(indent=2) # Return JSON string
+            message="Kunde inte hitta några dokument att bearbeta.",
+            source_links=[],
+            source_names=[])
+        return error_response.model_dump_json(indent=2)  # Return JSON string
 
     total_files = len(all_filenames)
-    print(f"Found {total_files} documents to process.") # Added log
+    print(f"Found {total_files} documents to process.")  # Added log
 
     # 2. Process in batches with LLM 1
     aggregated_relevant_filenames: Set[str] = set()
@@ -375,13 +428,17 @@ def run_new_cag_pipeline(user_query: str) -> str:
     batches = []
     for i in range(num_batches):
         start_index = i * BATCH_SIZE
-        end_index = min(start_index + BATCH_SIZE, total_files) # Use min to avoid index out of bounds
+        end_index = min(start_index + BATCH_SIZE,
+                        total_files)  # Use min to avoid index out of bounds
         batches.append(all_filenames[start_index:end_index])
 
-    print(f"Processing documents in {num_batches} batches of up to {BATCH_SIZE} files each using up to {MAX_WORKERS} parallel workers.") # Updated log
+    print(
+        f"Processing documents in {num_batches} batches of up to {BATCH_SIZE} files each using up to {MAX_WORKERS} parallel workers."
+    )  # Updated log
 
     # Process batches in parallel
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+    with concurrent.futures.ThreadPoolExecutor(
+            max_workers=MAX_WORKERS) as executor:
         # Prepare future submissions
         future_to_batch_num = {
             executor.submit(
@@ -389,10 +446,10 @@ def run_new_cag_pipeline(user_query: str) -> str:
                 batch_filenames,
                 user_query,
                 full_data_dir,
-                llm1_model, # Pass the initialized model
-                i + 1, # Batch number (1-based)
-                num_batches
-            ): i + 1
+                llm1_model,  # Pass the initialized model
+                i + 1,  # Batch number (1-based)
+                num_batches):
+            i + 1
             for i, batch_filenames in enumerate(batches)
         }
 
@@ -412,24 +469,31 @@ def run_new_cag_pipeline(user_query: str) -> str:
 
     print(f"\n--- Aggregation Complete ---")
     # Clarified log
-    print(f"Total relevant files identified by LLM 1 across all batches: {len(aggregated_relevant_filenames)}")
+    print(
+        f"Total relevant files identified by LLM 1 across all batches: {len(aggregated_relevant_filenames)}"
+    )
 
     # 3. Call LLM 2 with relevant filenames
     # Use the initialized model client and pass DATA_DIR relative path
-    final_response_object: ChatbotResponse = generate_answer(llm2_model, user_query, sorted(list(aggregated_relevant_filenames)), DATA_DIR)
+    final_response_object: ChatbotResponse = generate_answer(
+        llm2_model, user_query, sorted(list(aggregated_relevant_filenames)),
+        DATA_DIR)
 
     print("\n--- New CAG Pipeline Complete ---")
-    
+
     # Convert the Pydantic model to a JSON string for output
-    return final_response_object.model_dump_json(indent=2) # <-- Added .model_dump_json()
+    return final_response_object.model_dump_json(
+        indent=2)  # <-- Added .model_dump_json()
 
 
 # --- Request Body Model ---
 class ChatRequest(BaseModel):
     query: str
 
+
 # --- API Endpoint ---
-@app.post("/api/chat") # Don't define response_model here if returning plain JSON string
+@app.post("/api/chat"
+          )  # Don't define response_model here if returning plain JSON string
 async def chat_endpoint(chat_request: ChatRequest):
     """
     API endpoint to handle chat requests.
@@ -438,16 +502,16 @@ async def chat_endpoint(chat_request: ChatRequest):
     user_query = chat_request.query
     if not user_query:
         raise HTTPException(status_code=400, detail="Query cannot be empty")
-        
+
     print(f"\n--- Received API Request for Query: '{user_query}' ---")
-    
+
     try:
         # Run the pipeline function which returns a JSON string
         response_json_str = run_new_cag_pipeline(user_query)
-        
+
         # Parse the JSON string back into a Python dict to return as JSON response
-        response_data = json.loads(response_json_str) 
-        
+        response_data = json.loads(response_json_str)
+
         print("\n--- API Request Processing Complete ---")
         # Return the data as a JSON response
         return JSONResponse(content=response_data)
@@ -456,8 +520,10 @@ async def chat_endpoint(chat_request: ChatRequest):
         print(f"Error processing API request in endpoint: {e}")
         # Log the traceback for detailed debugging if needed
         import traceback
-        traceback.print_exc() 
-        raise HTTPException(status_code=500, detail=f"Internal server error processing chat request.")
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal server error processing chat request.")
 
 
 # Remove the old __main__ block if it exists
