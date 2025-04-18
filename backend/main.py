@@ -2,6 +2,7 @@ import os
 import json
 import math
 import re
+import concurrent.futures
 from typing import List, Dict, Tuple, Set, Optional
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -17,8 +18,9 @@ load_dotenv()
 
 # --- Configuration ---
 DATA_DIR = "data" # Relative path to the data directory FROM main.py's location (backend/)
-BATCH_SIZE = 10   # Number of documents to process in each batch for LLM 1
+BATCH_SIZE = 5   # Number of documents to process in each batch for LLM 1
 DEBUG = True      # Set to True for verbose output
+MAX_WORKERS = 20  # Max concurrent workers for LLM 1 batches (Added)
 
 # --- API Key Handling & Model Setup ---
 api_key = os.getenv("GOOGLE_API_KEY")
@@ -295,12 +297,56 @@ def generate_answer(model: genai.GenerativeModel, user_query: str, relevant_file
             source_names=[],
         )
 
+# --- Helper function for parallel batch processing ---
+def process_single_batch(
+    batch_filenames: List[str],
+    user_query: str,
+    full_data_dir: str,
+    model: genai.GenerativeModel,
+    batch_num: int,
+    total_batches: int
+) -> List[str]:
+    """Processes a single batch: reads files, calls LLM 1, parses results."""
+    print(f"\n>>> Starting Batch {batch_num}/{total_batches} ({len(batch_filenames)} files) [Threaded] <<<") # Added log indication
+
+    # Read content for the current batch
+    batch_content: List[Tuple[str, str]] = []
+    print(f"Reading content for batch {batch_num}...")
+    for filename in batch_filenames:
+        filepath = os.path.join(full_data_dir, filename)
+        content = read_file_content(filepath)
+        if content:
+             batch_content.append((filename, content))
+        else:
+             # Log in English
+             print(f"Warning: Skipping file {filename} in batch {batch_num} due to read error.")
+
+    if not batch_content:
+         # Log in English
+         print(f"Warning: Skipping batch {batch_num} as no content could be read.")
+         return []
+
+    print(f"Content read for batch {batch_num}. Sending to LLM 1...")
+
+    # Format prompt and call LLM 1
+    llm1_prompt = format_llm1_batch_prompt(user_query, batch_content)
+    llm1_response_text = call_llm_1_relevance_batch(model, llm1_prompt)
+
+    # Parse response
+    batch_actual_filenames = [fn for fn, _ in batch_content]
+    relevant_in_batch = parse_llm1_response(llm1_response_text, batch_actual_filenames)
+
+    print(f"<<< Finished Batch {batch_num}/{total_batches}. Found {len(relevant_in_batch)} relevant files. [Threaded] >>>")
+    if DEBUG and relevant_in_batch:
+        print(f"Relevant files in batch {batch_num}: {relevant_in_batch}")
+
+    return relevant_in_batch
 
 # --- Main Pipeline Function ---
 
 def run_new_cag_pipeline(user_query: str) -> str:
     """
-    Runs the new Context-Augmented Generation pipeline using batch processing.
+    Runs the new Context-Augmented Generation pipeline using **parallel** batch processing.
     Returns a JSON string matching the frontend format.
     """
     print(f"\n--- Starting New CAG Pipeline for Query: '{user_query}' ---")
@@ -324,66 +370,53 @@ def run_new_cag_pipeline(user_query: str) -> str:
     num_batches = math.ceil(total_files / BATCH_SIZE)
     script_dir = os.path.dirname(__file__)
     full_data_dir = os.path.join(script_dir, DATA_DIR)
-    
-    print(f"Processing documents in {num_batches} batches of up to {BATCH_SIZE} files each.") # Added log
 
+    # Prepare batches list
+    batches = []
     for i in range(num_batches):
         start_index = i * BATCH_SIZE
         end_index = min(start_index + BATCH_SIZE, total_files) # Use min to avoid index out of bounds
-        batch_filenames = all_filenames[start_index:end_index]
-        
-        current_batch_num = i + 1
-        print(f"\n>>> Starting Batch {current_batch_num}/{num_batches} ({len(batch_filenames)} files) <<<") # Added log
+        batches.append(all_filenames[start_index:end_index])
 
-        # Read content for the current batch
-        batch_content: List[Tuple[str, str]] = []
-        # Log added within the loop for clarity on file reading start
-        print(f"Reading content for batch {current_batch_num}...") 
-        for filename in batch_filenames:
-            filepath = os.path.join(full_data_dir, filename)
-            content = read_file_content(filepath)
-            if content: # Only include files that were read successfully
-                 batch_content.append((filename, content))
-            else:
-                 print(f"Warning: Skipping file {filename} due to read error.") # Log in English
+    print(f"Processing documents in {num_batches} batches of up to {BATCH_SIZE} files each using up to {MAX_WORKERS} parallel workers.") # Updated log
 
-        if not batch_content:
-             print(f"Warning: Skipping batch {current_batch_num} as no content could be read.") # Log in English
-             continue
+    # Process batches in parallel
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        # Prepare future submissions
+        future_to_batch_num = {
+            executor.submit(
+                process_single_batch,
+                batch_filenames,
+                user_query,
+                full_data_dir,
+                llm1_model, # Pass the initialized model
+                i + 1, # Batch number (1-based)
+                num_batches
+            ): i + 1
+            for i, batch_filenames in enumerate(batches)
+        }
 
-        print(f"Content read for batch {current_batch_num}. Sending to LLM 1...") # Added log
+        # Process completed futures
+        for future in concurrent.futures.as_completed(future_to_batch_num):
+            batch_num = future_to_batch_num[future]
+            try:
+                relevant_in_batch = future.result()
+                aggregated_relevant_filenames.update(relevant_in_batch)
+                # Optional: Log completion if needed, although process_single_batch already logs
+                # print(f"Batch {batch_num} completed successfully.")
+            except Exception as exc:
+                # Log in English
+                print(f'Batch {batch_num} generated an exception: {exc}')
+                # Decide how to handle batch failures (e.g., log, skip, retry?)
+                # For now, just log and continue.
 
-        # Format prompt and call LLM 1
-        llm1_prompt = format_llm1_batch_prompt(user_query, batch_content)
-        # Use the initialized model client
-        llm1_response_text = call_llm_1_relevance_batch(llm1_model, llm1_prompt) 
-
-        # Parse response and aggregate filenames
-        # Pass the original batch_filenames list for validation within parse_llm1_response
-        batch_actual_filenames = [fn for fn, _ in batch_content] # Filenames actually read
-        relevant_in_batch = parse_llm1_response(llm1_response_text, batch_actual_filenames)
-        if DEBUG:
-            print(f"Relevant files identified by LLM 1 in batch {current_batch_num}: {relevant_in_batch}")
-        aggregated_relevant_filenames.update(relevant_in_batch)
-
-        # Log added after LLM 1 call and parsing
-        print(f"<<< Finished Batch {current_batch_num}/{num_batches}. Found {len(relevant_in_batch)} relevant files in this batch. >>>") 
-        if DEBUG and relevant_in_batch: # Only print filenames if DEBUG is on and files were found
-            print(f"Relevant files in batch {current_batch_num}: {relevant_in_batch}")
-            
     print(f"\n--- Aggregation Complete ---")
     # Clarified log
-    print(f"Total relevant files identified by LLM 1 across all batches: {len(aggregated_relevant_filenames)}") 
-    # Sort for consistent order before passing to LLM 2
-    sorted_relevant_filenames = sorted(list(aggregated_relevant_filenames))
-    if DEBUG:
-        # Renamed log variable for clarity
-        print(f"All relevant filenames (sorted): {sorted_relevant_filenames}") 
-
+    print(f"Total relevant files identified by LLM 1 across all batches: {len(aggregated_relevant_filenames)}")
 
     # 3. Call LLM 2 with relevant filenames
     # Use the initialized model client and pass DATA_DIR relative path
-    final_response_object: ChatbotResponse = generate_answer(llm2_model, user_query, sorted_relevant_filenames, DATA_DIR)
+    final_response_object: ChatbotResponse = generate_answer(llm2_model, user_query, sorted(list(aggregated_relevant_filenames)), DATA_DIR)
 
     print("\n--- New CAG Pipeline Complete ---")
     
