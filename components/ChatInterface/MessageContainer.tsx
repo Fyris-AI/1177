@@ -2,38 +2,21 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import CitationButton from "./CitationButton";
 import { Loader2 } from "lucide-react";
-import { Message } from "ai";
+import { AppMessage } from "@/lib/types";
 
 interface MessageContainerProps {
-  messages: Message[];
+  messages: AppMessage[];
   error: string | null;
   isLoading: boolean;
   showCitation: (url: string) => void;
   messagesEndRef: React.RefObject<HTMLDivElement>;
 }
 
-interface AssistantMessageContent {
-  message: string;
-  source_links?: string[];
-  source_names?: string[];
-}
-
 const MessageItem: React.FC<{
-  message: Message;
+  message: AppMessage;
   showCitation: (url: string) => void;
 }> = React.memo(
   ({ message, showCitation }) => {
-    let content: AssistantMessageContent = { message: message.content };
-
-    try {
-      if (message.role === "assistant") {
-        content = JSON.parse(message.content) as AssistantMessageContent;
-      }
-    } catch (e) {
-      // If parsing fails, use the original content as message
-      content = { message: "Kunde inte hämta meddelandet." };
-    }
-
     return (
       <motion.div
         key={message.id}
@@ -52,18 +35,18 @@ const MessageItem: React.FC<{
           }`}
         >
           <div className="whitespace-pre-wrap overflow-wrap-break-word">
-            {content.message}
+            {message.content}
           </div>
 
           {message.role === "assistant" &&
-            content.source_links &&
-            content.source_names && (
+            message.source_links &&
+            message.source_names && (
               <div className="mt-2 flex flex-wrap gap-2">
-                {content.source_links.map((link, index) => (
+                {message.source_links.map((link, index) => (
                   <CitationButton
                     key={index}
                     link={link}
-                    name={content.source_names?.[index] || `Källa ${index + 1}`}
+                    name={message.source_names?.[index] || `Källa ${index + 1}`}
                     onClick={showCitation}
                   />
                 ))}
@@ -73,7 +56,7 @@ const MessageItem: React.FC<{
       </motion.div>
     );
   },
-  (prev, next) => prev.message == next.message
+  (prev, next) => prev.message.id === next.message.id && prev.message.content === next.message.content
 );
 
 MessageItem.displayName = "MessageItem";
@@ -84,7 +67,7 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
       <div className="flex-1 overflow-y-auto space-y-4 w-full pt-4">
         <AnimatePresence initial={false}>
           {messages.map(
-            (message: Message) =>
+            (message: AppMessage) =>
               message.content && (
                 <MessageItem
                   key={message.id}
