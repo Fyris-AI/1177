@@ -19,7 +19,7 @@ Follow these steps to set up and run the project on your local machine.
 1.  **Clone the Repository:**
     ```bash
     git clone <repository_url> # Replace <repository_url> with the actual URL
-    cd poc-1177 # Or your repository's directory name
+    cd 1177 # Or your repository's directory name
     ```
 
 2.  **Backend Setup (FastAPI):**
