@@ -1,49 +1,73 @@
-export const maxDuration = 30;
+// app/api/chat/route.ts
+// Remove Vercel AI SDK imports if not needed
+// import { StreamingTextResponse, streamText, LangChainStream } from 'ai'; 
+
+export const maxDuration = 60; // Keep or adjust timeout
 
 export async function POST(req: Request) {
   try {
-    // Create the response data
-    const responseData = {
-      message: "Lungcancer innebär att det har bildats en cancertumör i en av lungorna. Sjukdomen kan sprida sig till andra delar av kroppen och bilda dottertumörer, som också kallas metastaser. Operation, strålbehandling och behandling med olika läkemedel är vanligt vid lungcancer. Läkemedlen delas in efter hur de verkar och det finns flera olika läkemedel inom varje grupp. Vill du veta mer om symptomen eller vilka läkemedel som används?",
-      source_links: [
-        "https://www.1177.se/Uppsala-lan/sjukdomar--besvar/cancer/cancerformer/lungcancer/#section-16917", 
-        "https://www.1177.se/Uppsala-lan/sjukdomar--besvar/cancer/cancerformer/lungcancer/#section-16920"
-      ],
-      source_names: [
-        "Lungcancer behandling", 
-        "Vad är lungcancer?"
-      ]
-    };
+    // Extract the user query from the request body
+    const { messages } = await req.json();
+    // Get the last message from the user
+    const userQuery = messages[messages.length - 1]?.content;
 
-    // Create a stream that the Vercel AI SDK expects
-    const stream = new ReadableStream({
-      async start(controller) {
-        const encoder = new TextEncoder();
-        
-        // First send the text part (required)
-        const textContent = JSON.stringify(responseData);
-        controller.enqueue(encoder.encode(`0:"${textContent.replace(/"/g, '\\"')}"\n`));
-        
-        // Then send the data message (must be an array)
-        controller.enqueue(encoder.encode(`2:[{"status":"complete"}]\n`));
-        
-        controller.close();
+    if (!userQuery) {
+      return new Response(JSON.stringify({ error: 'No query provided in messages' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    console.log('Frontend API route received query:', userQuery);
+
+    // --- Call the FastAPI Backend ---
+    const backendUrl = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000'; 
+    console.log(`Calling backend: ${backendUrl}/api/chat`);
+
+    const backendResponse = await fetch(`${backendUrl}/api/chat`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ query: userQuery }),
     });
 
-    return new Response(stream, {
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    console.log('Backend status:', backendResponse.status);
+
+    if (!backendResponse.ok) {
+      const errorBody = await backendResponse.text();
+      console.error('Backend Error:', errorBody);
+      let detail = errorBody;
+      try {
+        const errorJson = JSON.parse(errorBody);
+        detail = errorJson.detail || errorBody;
+      } catch(e) { /* ignore parsing error */ }
+
+      return new Response(JSON.stringify({ 
+        error: `Backend request failed: ${detail}` 
+      }), {
+        status: backendResponse.status, 
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Get the JSON response from the backend
+    const responseData = await backendResponse.json();
+    console.log('Backend response data:', responseData);
+
+    // --- Return the JSON response directly ---
+    return new Response(JSON.stringify(responseData), {
+        headers: { 'Content-Type': 'application/json' },
+        status: 200 
     });
+
   } catch (error: unknown) {
-    console.error("API Route Error:", error);
-    return new Response(
-      JSON.stringify({ 
-        error: error instanceof Error ? error.message : "Ett oväntat fel uppstod" 
-      }), 
-      { 
-        status: 500, 
-        headers: { 'Content-Type': 'application/json' } 
-      }
-    );
+    console.error("Frontend API Route Error:", error);
+    const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred processing the chat request.";
+    // Return a standard error response in JSON format
+     return new Response(
+       JSON.stringify({ error: "Failed to process chat request" }), 
+       { status: 500, headers: { 'Content-Type': 'application/json' } }
+     );
   }
 } 

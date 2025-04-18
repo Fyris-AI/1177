@@ -1,3 +1,7 @@
+Title: Nationellt vårdprogram för behandling av distala radiusfrakturer
+
+URL Source: https://vardpersonal.1177.se/globalassets/nkk/nationell/media/dokument/kunskapsstod/vardprogram/nationellt-vardprogram-for-behandling-av-distala-radiusfrakturer.pdf
+
 Nationellt vårdprogram för behandling av distala radiusfrakturer   
 
 > Nationellt programområde för rörelseorganens sjukdomar Nationellt system för kunskapsstyrning 2021-04-21 Hälso- och sjukvård Sveriges regioner i samverkan

@@ -1,3 +1,7 @@
+Title: Fimosis hos barn - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/fimosis-hos-barn/
+
 Fimosis hos barn
 ================
 

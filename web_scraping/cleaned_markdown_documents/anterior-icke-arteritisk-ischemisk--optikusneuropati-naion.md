@@ -1,3 +1,7 @@
+Title: Anterior icke-arteritisk ischemisk optikusneuropati (NAION)
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/anterior-icke-arteritisk-ischemisk--optikusneuropati-naion/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

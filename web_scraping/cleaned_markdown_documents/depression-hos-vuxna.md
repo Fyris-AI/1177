@@ -1,3 +1,7 @@
+Title: Depression hos vuxna - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/vardforlopp/depression-hos-vuxna/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

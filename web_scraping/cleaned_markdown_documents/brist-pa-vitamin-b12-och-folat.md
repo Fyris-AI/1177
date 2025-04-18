@@ -1,3 +1,7 @@
+Title: Brist på vitamin B12 och folat
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/brist-pa-vitamin-b12-och-folat/
+
 Brist på vitamin B12 och folat
 ==============================
 
