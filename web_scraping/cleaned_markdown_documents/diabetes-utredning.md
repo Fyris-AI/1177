@@ -1,3 +1,7 @@
+Title: Diabetes, utredning - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/diabetes-utredning/
+
 Diabetes, utredning
 ===================
 

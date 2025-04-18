@@ -1,3 +1,7 @@
+Title: Benartärsjukdom, sekundärprevention - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/benartarsjukdom-sekundarprevention/
+
 **\[1\]**: Sigvant B, Kragsterman B, Falkenberg M, Hasvold P, Johansson S, Thuresson M, et al. Contemporary cardiovascular risk and secondary preventive drug treatment patterns in peripheral artery disease patients undergoing revascularization. J Vasc Surg. 2016;64(4):1009-17 e3.
 
 **\[2\]**: Sartipy F, Lundin F, Wahlberg E, Sigvant B. Cardiovascular Long-term Outcome and Prophylactic Treatment Patterns in Peripheral Arterial Disease in a Population-based Cohort. Eur Heart J Qual Care Clin Outcomes. 2019

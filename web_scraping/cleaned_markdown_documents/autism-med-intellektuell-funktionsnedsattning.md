@@ -1,3 +1,7 @@
+Title: Autism med intellektuell funktionsnedsättning - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/autism-med-intellektuell-funktionsnedsattning/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

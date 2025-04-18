@@ -1,3 +1,7 @@
+Title: Diabetes, transitionsvård för unga personer med typ 1-diabetes
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/diabetes-transitionsvard-for-unga-personer-med-typ-1-diabetes/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

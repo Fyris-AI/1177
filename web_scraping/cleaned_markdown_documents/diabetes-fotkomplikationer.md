@@ -1,3 +1,7 @@
+Title: Diabetes, fotkomplikationer - 1177 för vårdpersonal
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/diabetes-fotkomplikationer/
+
 Vårdnivå, samverkan och remissrutiner
 -------------------------------------
 

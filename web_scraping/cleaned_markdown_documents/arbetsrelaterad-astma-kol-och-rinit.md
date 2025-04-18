@@ -1,3 +1,7 @@
+Title: Arbetsrelaterad astma, KOL och rinit
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/arbetsrelaterad-astma-kol-och-rinit/
+
 Arbetsrelaterad astma, KOL och rinit
 ====================================
 

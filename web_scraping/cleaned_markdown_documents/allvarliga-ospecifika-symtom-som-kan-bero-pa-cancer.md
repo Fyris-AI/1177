@@ -1,3 +1,7 @@
+Title: Allvarliga ospecifika symtom som kan bero på cancer
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/kliniska-kunskapsstod/allvarliga-ospecifika-symtom-som-kan-bero-pa-cancer/
+
 Allvarliga ospecifika symtom som kan bero på cancer
 ===================================================
 

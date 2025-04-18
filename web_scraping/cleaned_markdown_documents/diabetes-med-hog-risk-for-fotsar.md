@@ -1,3 +1,7 @@
+Title: Diabetes med hög risk för fotsår
+
+URL Source: https://vardpersonal.1177.se/kunskapsstod/vardforlopp/diabetes-med-hog-risk-for-fotsar/
+
 Omfattning av kunskapsstödet
 ----------------------------
 

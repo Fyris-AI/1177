@@ -14,7 +14,6 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { useChat } from "ai/react";
 import { X } from "lucide-react";
 import {
   Drawer,
@@ -24,29 +23,76 @@ import {
   DrawerDescription,
   DrawerFooter,
 } from "@/components/ui/drawer";
+import { AppMessage } from "@/lib/types";
+import { nanoid } from 'nanoid';
 
 export default function ChatInterface() {
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
+
+  const [messages, setMessages] = useState<AppMessage[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const [citationUrl, setcitationUrl] = useState<string | null>(null);
   const [isCitationShown, setIsCitationShown] = useState(false);
-
-  const { messages, input, handleInputChange, handleSubmit, isLoading } =
-    useChat({
-      api: "/api/chat",
-      onResponse: (response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-      },
-      onError: (error: Error) => {
-        console.error("API Error:", error);
-        setError(error.message || "Ett oväntat fel uppstod");
-      },
-    });
-
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const citationPanelRef = useRef<ImperativePanelHandle>(null);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(event.target.value);
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!input.trim() || isLoading) return;
+
+    setError(null);
+    setIsLoading(true);
+
+    const newUserMessage: AppMessage = { 
+      id: nanoid(), 
+      role: 'user', 
+      content: input 
+    };
+
+    setMessages(prev => [...prev, newUserMessage]); 
+    const currentMessages = [...messages, newUserMessage];
+    setInput('');
+
+    try {
+      const apiPayload = { messages: currentMessages }; 
+
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(apiPayload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `API request failed with status ${response.status}`);
+      }
+
+      const assistantResponseData = await response.json();
+      
+      const newAssistantMessage: AppMessage = {
+        id: nanoid(),
+        role: 'assistant',
+        content: assistantResponseData.message || "No message content received.",
+        source_names: assistantResponseData.source_names || [],
+        source_links: assistantResponseData.source_links || [],
+      };
+
+      setMessages(prev => [...prev, newAssistantMessage]); 
+
+    } catch (err: unknown) {
+      console.error("Error fetching chat response:", err);
+      setError(err instanceof Error ? err.message : "Ett oväntat fel uppstod vid hämtning av svar.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (citationUrl) {
@@ -59,11 +105,6 @@ export default function ChatInterface() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
-  const handleSubmitWithErrorReset = (event: React.FormEvent) => {
-    setError(null);
-    handleSubmit(event);
-  };
 
   const showCitation = (url: string) => {
     setcitationUrl(url);
@@ -83,7 +124,7 @@ export default function ChatInterface() {
       >
         <ResizablePanel id="chat-panel" order={1}>
           <div className="flex flex-col h-full bg-background">
-            {messages.length === 0 ? (
+            {messages.length === 0 && !isLoading ? (
               <>
                 <div className="text-center py-10 sm:py-14 md:py-22">
                   <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-[30vh] text-center text-title">
@@ -94,7 +135,7 @@ export default function ChatInterface() {
                   <ChatInput
                     input={input}
                     onInputChange={handleInputChange}
-                    onSubmit={handleSubmitWithErrorReset}
+                    onSubmit={handleSubmit}
                     isLoading={isLoading}
                   />
                 </div>
@@ -115,7 +156,7 @@ export default function ChatInterface() {
                   <ChatInput
                     input={input}
                     onInputChange={handleInputChange}
-                    onSubmit={handleSubmitWithErrorReset}
+                    onSubmit={handleSubmit}
                     isLoading={isLoading}
                   />
                 </div>
