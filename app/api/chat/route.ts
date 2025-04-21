@@ -6,8 +6,8 @@ export const maxDuration = 60; // Keep or adjust timeout
 
 export async function POST(req: Request) {
   try {
-    // Extract the user query from the request body
-    const { messages } = await req.json();
+    // Extract the user query and audience from the request body
+    const { messages, audience } = await req.json();
     // Get the last message from the user
     const userQuery = messages[messages.length - 1]?.content;
 
@@ -18,7 +18,15 @@ export async function POST(req: Request) {
       });
     }
 
-    console.log('Frontend API route received query:', userQuery);
+    // Validate audience
+    if (!audience || (audience !== 'invanare' && audience !== 'personal')) {
+      return new Response(JSON.stringify({ error: 'Invalid or missing audience' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    console.log('Frontend API route received query:', userQuery, 'Audience:', audience);
 
     // --- Call the FastAPI Backend ---
     const backendUrl = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000'; 
@@ -29,7 +37,7 @@ export async function POST(req: Request) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query: userQuery }),
+      body: JSON.stringify({ query: userQuery, audience: audience }),
     });
 
     console.log('Backend status:', backendResponse.status);

@@ -25,9 +25,11 @@ import {
 } from "@/components/ui/drawer";
 import { AppMessage } from "@/lib/types";
 import { nanoid } from 'nanoid';
+import { useTheme } from "next-themes";
 
 export default function ChatInterface() {
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
+  const { theme } = useTheme();
 
   const [messages, setMessages] = useState<AppMessage[]>([]);
   const [input, setInput] = useState('');
@@ -60,8 +62,16 @@ export default function ChatInterface() {
     const currentMessages = [...messages, newUserMessage];
     setInput('');
 
+    const [mode, audience] = (theme || "light-invanare").split("-") as [
+      "light" | "dark",
+      "invanare" | "personal"
+    ];
+
     try {
-      const apiPayload = { messages: currentMessages }; 
+      const apiPayload = { 
+        messages: currentMessages,
+        audience: audience
+      }; 
 
       const response = await fetch('/api/chat', {
         method: 'POST',

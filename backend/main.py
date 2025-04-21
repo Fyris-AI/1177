@@ -17,7 +17,7 @@ from models import ChatbotResponse
 load_dotenv()
 
 # --- Configuration ---
-DATA_DIR = "data"  # Relative path to the data directory FROM main.py's location (backend/)
+DATA_DIR = "data"  # Base data directory
 BATCH_SIZE = 5  # Number of documents to process in each batch for LLM 1
 DEBUG = True  # Set to True for verbose output
 MAX_WORKERS = 20  # Max concurrent workers for LLM 1 batches (Added)
@@ -61,53 +61,57 @@ app.add_middleware(
 # --- Helper Functions ---
 
 
-def get_document_filenames(data_dir: str) -> List[str]:
-    """Gets a list of .md filenames from the specified directory."""
+def get_document_filenames(base_data_dir: str, audience: str) -> List[str]:
+    """Gets a list of .md filenames from the audience-specific subdirectory."""
     script_dir = os.path.dirname(__file__)
-    full_data_dir = os.path.join(script_dir, data_dir)
-    if not os.path.isdir(full_data_dir):
-        print(f"Error: Data directory not found at '{full_data_dir}'"
-              )  # Log in English
+    # Construct path: backend/data/{audience}
+    audience_data_dir = os.path.join(script_dir, base_data_dir, audience)
+    print(f"LOG: [get_document_filenames] Attempting to list files in: {audience_data_dir}") # ADDED LOG
+
+    is_dir = os.path.isdir(audience_data_dir)
+    print(f"LOG: [get_document_filenames] Is directory? ({audience_data_dir}): {is_dir}") # ADDED LOG
+    if not is_dir:
+        print(f"Error: Audience data directory not found or not a directory at '{audience_data_dir}'")
         return []
+
     try:
         all_files = [
-            f for f in os.listdir(full_data_dir)
-            if os.path.isfile(os.path.join(full_data_dir, f))
+            f for f in os.listdir(audience_data_dir)
+            if os.path.isfile(os.path.join(audience_data_dir, f))
         ]
-        md_files = sorted([f for f in all_files if f.endswith('.md')
-                           ])  # Sort for consistent batching
-        if DEBUG:
-            print(f"Found {len(md_files)} markdown files in {full_data_dir}.")
+        print(f"LOG: [get_document_filenames] Found {len(all_files)} files/items before filtering: {all_files[:10]}...") # ADDED LOG
+        md_files = sorted([f for f in all_files if f.endswith('.md')])
+        print(f"LOG: [get_document_filenames] Found {len(md_files)} markdown files in {audience_data_dir}.") # UPDATED LOG
         return md_files
     except Exception as e:
-        print(f"Error listing files in {full_data_dir}: {e}")  # Log in English
+        print(f"Error listing files in {audience_data_dir}: {e}")
         return []
 
 
 def read_file_content(filepath: str) -> str:
     """Reads the entire content of a file."""
+    # ADDED LOG
+    print(f"LOG: [read_file_content] Attempting to read file: {filepath}")
+    if not os.path.isfile(filepath):
+        print(f"Error: [read_file_content] File not found at path: {filepath}")
+        return ""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
-            # Prepend filename to content - assuming this is desired preprocessing
-            # If filenames are already in the files, this might duplicate them. Adjust if needed.
-            # filename = os.path.basename(filepath)
-            # return f"{filename}\n{f.read()}"
-            return f.read(
-            )  # Assuming files already have filename prepended as per user's previous message
+            return f.read()
     except Exception as e:
-        print(f"Error reading file {filepath}: {e}")  # Log in English
-        return ""  # Return empty string on error
+        print(f"Error reading file {filepath}: {e}")
+        return ""
 
 
 def format_llm1_batch_prompt(user_query: str,
                              batch_content: List[Tuple[str, str]]) -> str:
     """Formats the prompt for the first LLM (relevance check) for a batch."""
-    doc_separator = "\n\n---\n\n"
+    doc_separator = "\\n\\n---\\n\\n"
     formatted_docs = []
     for filename, content in batch_content:
         # Add clear separators including the filename
         formatted_docs.append(
-            f"--- Start Document: {filename} ---\n{content}\n--- End Document: {filename} ---"
+            f"--- Start Document: {filename} ---\\n{content}\\n--- End Document: {filename} ---"
         )
 
     docs_string = doc_separator.join(formatted_docs)
@@ -130,31 +134,37 @@ def parse_llm1_response(response_text: str,
                         batch_filenames: List[str]) -> List[str]:
     """Parses the comma-separated or newline-separated filename list from LLM 1's response text."""
     response_text = response_text.strip()
+    print(f"LOG: [parse_llm1_response] Raw response to parse: '{response_text}'") # ADDED LOG
     if response_text.lower() == 'inga' or not response_text:
+        print("LOG: [parse_llm1_response] Parsed as no relevant files ('Inga' or empty).") # ADDED LOG
         return []
 
     # Replace newlines with commas, then split by comma
-    processed_text = response_text.replace('\n', ',')
+    processed_text = response_text.replace('\\n', ',')
     potential_filenames = [
         fname.strip() for fname in processed_text.split(',') if fname.strip()
-    ]  # Ensure no empty strings
+    ]
+
+    print(f"LOG: [parse_llm1_response] Potential filenames after split: {potential_filenames}") # ADDED LOG
 
     # Validate filenames against the batch list to prevent hallucinations
     valid_filenames = [
         fname for fname in potential_filenames if fname in batch_filenames
     ]
 
-    if DEBUG and len(potential_filenames) != len(valid_filenames):
+    if len(potential_filenames) != len(valid_filenames):
         invalid_found = [
             fname for fname in potential_filenames
             if fname not in batch_filenames
         ]
+        # Log in English
         print(
             f"Warning: LLM 1 parsing found potential filenames not in the current batch: {invalid_found}"
-        )  # Log in English
+        )
 
-    # Further clean up potential empty strings resulting from parsing (redundant due to list comprehension filter, but safe)
+    # Further clean up potential empty strings resulting from parsing
     valid_filenames = [fname for fname in valid_filenames if fname]
+    print(f"LOG: [parse_llm1_response] Validated filenames: {valid_filenames}") # ADDED LOG
 
     return valid_filenames
 
@@ -164,11 +174,10 @@ def call_llm_1_relevance_batch(model: genai.GenerativeModel,
     """Calls the first LLM (Gemini) for relevance check and returns the raw text response."""
     if DEBUG:
         print("-" * 20 + " LLM 1 (Relevance Check) - START " + "-" * 20)
-        # Print first/last 500 chars of prompt if too long
         if len(prompt) > 1000:
-            print(f"Prompt preview:\n{prompt[:500]}...\n...{prompt[-500:]}")
+            print(f"Prompt preview:\\n{prompt[:500]}...\\n...{prompt[-500:]}")
         else:
-            print(f"Prompt:\n{prompt}")
+            print(f"Prompt:\\n{prompt}")
 
     try:
         response = model.generate_content(prompt)
@@ -178,8 +187,7 @@ def call_llm_1_relevance_batch(model: genai.GenerativeModel,
             print("-" * 20 + " LLM 1 (Relevance Check) - END " + "-" * 20)
         return response_text
     except Exception as e:
-        print(f"Error during LLM 1 call: {e}")  # Log in English
-        # Consider how to handle API errors (e.g., retry, return empty)
+        print(f"Error during LLM 1 call: {e}")
         if DEBUG:
             print("-" * 20 + " LLM 1 (Relevance Check) - FAILED " + "-" * 20)
         return "Inga"  # Default to 'Inga' on error
@@ -224,42 +232,43 @@ JSON Svar:
 
 def generate_answer(model: genai.GenerativeModel, user_query: str,
                     relevant_filenames: List[str],
-                    data_dir: str) -> ChatbotResponse:
+                    base_data_dir: str, audience: str) -> ChatbotResponse: # Added audience
     """
-    Reads content for relevant filenames, calls the second LLM (Gemini) to generate
-    a JSON response containing the answer and sources, parses and validates it, 
-    and returns a ChatbotResponse object.
+    Reads content for relevant filenames (using audience), calls the second LLM,
+    parses and validates JSON response, and returns a ChatbotResponse object.
     """
     # Path relative to main.py location
     script_dir = os.path.dirname(__file__)
-    full_data_dir = os.path.join(script_dir, data_dir)
+    # Construct path: backend/data/{audience}
+    audience_data_dir = os.path.join(script_dir, base_data_dir, audience)
+    print(f"LOG: [generate_answer] Using audience data directory: {audience_data_dir}") # ADDED LOG
 
-    # Handle case where LLM 1 found no relevant files
     if not relevant_filenames:
+        print("LOG: [generate_answer] No relevant filenames provided by LLM 1.") # ADDED LOG
         return ChatbotResponse(
             message=
             "Jag kunde inte hitta några relevanta dokument för att svara på din fråga.",
             source_links=[],
             source_names=[])
 
-    print("\n--- Preparing Context for LLM 2 ---")
+    print("\\n--- Preparing Context for LLM 2 ---")
     final_context_parts = []
 
     for filename in relevant_filenames:
-        filepath = os.path.join(full_data_dir, filename)
+        # Construct full path to file within the specific audience directory
+        filepath = os.path.join(audience_data_dir, filename)
+        print(f"LOG: [generate_answer] Reading relevant file: {filepath}") # ADDED LOG
         content = read_file_content(filepath)
         if content:
-            # Just append the content for the LLM context
-            # Ensure title/link info is present within the content itself for LLM 2
             final_context_parts.append(
-                f"--- Dokument: {filename} ---\n{content}")
+                f"--- Dokument: {filename} ---\\n{content}")
         else:
             print(
-                f"Warning: Could not read relevant file {filename} for final context."
+                f"Warning: Could not read relevant file {filename} from {audience_data_dir} for final context."
             )
 
-    # If no context could be built (e.g., all files failed to read)
     if not final_context_parts:
+        print("Error: [generate_answer] Could not build final context (all relevant files failed to read).") # ADDED LOG
         return ChatbotResponse(
             message=
             "Ett fel uppstod: Kunde inte läsa innehållet i de relevanta dokumenten.",
@@ -267,61 +276,71 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
             source_names=[],
         )
 
-    final_context = "\n\n".join(final_context_parts)
+    final_context = "\\n\\n".join(final_context_parts)
 
-    print("\n--- Calling LLM 2 for Final Answer JSON ---")
+    print("\\n--- Calling LLM 2 for Final Answer JSON ---")
     llm2_prompt = format_llm2_prompt(user_query, final_context)
 
     if DEBUG:
         print("-" * 20 + " LLM 2 (JSON Generation) - START " + "-" * 20)
         if len(llm2_prompt) > 1000:
             print(
-                f"Prompt preview:\n{llm2_prompt[:500]}...\n...{llm2_prompt[-500:]}"
+                f"Prompt preview:\\n{llm2_prompt[:500]}...\\n...{llm2_prompt[-500:]}"
             )
         else:
-            print(f"Prompt:\n{llm2_prompt}")
+            print(f"Prompt:\\n{llm2_prompt}")
 
-    llm_response_text = ""  # Initialize to ensure it exists for error logging
+    llm_response_text = ""
     try:
-        # Call LLM 2, expecting JSON in response.text
         response = model.generate_content(llm2_prompt)
         llm_response_text = response.text.strip()
 
         if DEBUG:
             print(
-                f"LLM 2 Raw Response Text (Expecting JSON):\n{llm_response_text}"
+                f"LLM 2 Raw Response Text (Expecting JSON):\\n{llm_response_text}"
             )
 
-        # Attempt to find JSON block (handling potential markdown backticks)
-        json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```",
+        # Attempt to find JSON block
+        json_string = None
+        json_match = re.search(r"```(?:json)?\\s*(\\{.*?\\})\\s*```",
                                llm_response_text, re.DOTALL | re.IGNORECASE)
         if json_match:
             json_string = json_match.group(1)
-            if DEBUG: print("Extracted JSON from markdown block.")
-        elif llm_response_text.startswith("{") and llm_response_text.endswith(
-                "}"):
-            json_string = llm_response_text
-            if DEBUG: print("Assuming raw response is JSON.")
+            if DEBUG: print("LOG: Extracted JSON using regex from markdown block.") # UPDATED LOG
         else:
-            raise ValidationError(
-                "Could not find valid JSON object in LLM 2 response.")
+            # If regex fails, try finding first '{' and last '}'
+            try:
+                start_index = llm_response_text.index('{')
+                end_index = llm_response_text.rindex('}')
+                json_string = llm_response_text[start_index:end_index + 1]
+                if DEBUG: print("LOG: Extracted JSON using first '{' and last '}'.") # ADDED LOG
+            except ValueError: # Handle cases where '{' or '}' are not found
+                pass # json_string remains None
 
-        # Parse and validate the JSON string using the Pydantic model
+        # Check if we successfully extracted a string
+        if json_string is None:
+            print(f"Error: [generate_answer] Failed to extract JSON block from raw response. Raw response:\\n{llm_response_text}")
+            raise ValueError("Could not extract a potential JSON object from LLM 2 response.")
+
+        # Log the exact string before parsing
+        if DEBUG:
+            print(f"LOG: Attempting to parse JSON string:\n{json_string}")
+
+        # Parse and validate
         response_data = ChatbotResponse.model_validate_json(json_string)
+        print("LOG: [generate_answer] Successfully parsed JSON from LLM 2.")
 
         if DEBUG:
             print("-" * 20 + " LLM 2 (JSON Generation) - SUCCESS " + "-" * 20)
-        return response_data  # Return the validated Pydantic object
+        return response_data
 
     except (ValidationError, json.JSONDecodeError) as json_val_error:
-        print(f"Error parsing/validating JSON from LLM 2: {json_val_error}"
-              )  # Log in English
-        print(f"LLM 2 Raw Response Text was:\n{llm_response_text}")
+        print(f"Error parsing/validating JSON from LLM 2: {json_val_error}")
+        print(f"LLM 2 Raw Response Text was:\\n{llm_response_text}")
         if DEBUG:
             print("-" * 20 +
                   " LLM 2 (JSON Generation) - PARSE/VALIDATE FAILED " +
                   "-" * 20)
-        # Return a standard error response object
         return ChatbotResponse(
             message=
             "Jag är ledsen, ett internt fel uppstod när svaret skulle bearbetas.",
@@ -330,13 +349,11 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
         )
 
     except Exception as e:
-        print(f"Error during LLM 2 call or processing: {e}")  # Log in English
-        print(f"LLM 2 Raw Response Text was:\n{llm_response_text}"
-              )  # Log response text if available
+        print(f"Error during LLM 2 call or processing: {e}")
+        print(f"LLM 2 Raw Response Text was:\\n{llm_response_text}")
         if DEBUG:
             print("-" * 20 + " LLM 2 (JSON Generation) - GENERAL FAILED " +
                   "-" * 20)
-        # Return a standard error response object
         return ChatbotResponse(
             message=
             "Jag är ledsen, ett oväntat fel inträffade när svaret genererades.",
@@ -347,31 +364,37 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
 
 # --- Helper function for parallel batch processing ---
 def process_single_batch(batch_filenames: List[str], user_query: str,
-                         full_data_dir: str, model: genai.GenerativeModel,
+                         base_data_dir: str, audience: str, # Added audience
+                         model: genai.GenerativeModel,
                          batch_num: int, total_batches: int) -> List[str]:
     """Processes a single batch: reads files, calls LLM 1, parses results."""
+    script_dir = os.path.dirname(__file__)
+    # Construct audience-specific path: backend/data/{audience}
+    audience_data_dir = os.path.join(script_dir, base_data_dir, audience)
     print(
-        f"\n>>> Starting Batch {batch_num}/{total_batches} ({len(batch_filenames)} files) [Threaded] <<<"
-    )  # Added log indication
+        f"LOG: [process_single_batch {batch_num}/{total_batches}] Using audience data directory: {audience_data_dir}" # ADDED LOG
+    )
+    print(
+        f"\\n>>> Starting Batch {batch_num}/{total_batches} ({len(batch_filenames)} files) [Threaded] <<<"
+    )
 
-    # Read content for the current batch
+    # Read content for the current batch from the audience directory
     batch_content: List[Tuple[str, str]] = []
-    print(f"Reading content for batch {batch_num}...")
+    print(f"Reading content for batch {batch_num} from {audience_data_dir}...")
     for filename in batch_filenames:
-        filepath = os.path.join(full_data_dir, filename)
-        content = read_file_content(filepath)
+        # Construct full path to file within the specific audience directory
+        filepath = os.path.join(audience_data_dir, filename)
+        content = read_file_content(filepath) # read_file_content already logs path
         if content:
             batch_content.append((filename, content))
         else:
-            # Log in English
             print(
-                f"Warning: Skipping file {filename} in batch {batch_num} due to read error."
+                f"Warning: Skipping file {filename} in batch {batch_num} from {audience_data_dir} due to read error."
             )
 
     if not batch_content:
-        # Log in English
         print(
-            f"Warning: Skipping batch {batch_num} as no content could be read."
+            f"Warning: Skipping batch {batch_num} as no content could be read from {audience_data_dir}."
         )
         return []
 
@@ -382,7 +405,7 @@ def process_single_batch(batch_filenames: List[str], user_query: str,
     llm1_response_text = call_llm_1_relevance_batch(model, llm1_prompt)
 
     # Parse response
-    batch_actual_filenames = [fn for fn, _ in batch_content]
+    batch_actual_filenames = [fn for fn, _ in batch_content] # Filenames only, without path
     relevant_in_batch = parse_llm1_response(llm1_response_text,
                                             batch_actual_filenames)
 
@@ -398,134 +421,125 @@ def process_single_batch(batch_filenames: List[str], user_query: str,
 # --- Main Pipeline Function ---
 
 
-def run_new_cag_pipeline(user_query: str) -> str:
+def run_new_cag_pipeline(user_query: str, audience: str) -> str: # Added audience
     """
-    Runs the new Context-Augmented Generation pipeline using **parallel** batch processing.
+    Runs the new CAG pipeline using parallel batch processing for a specific audience.
     Returns a JSON string matching the frontend format.
     """
-    print(f"\n--- Starting New CAG Pipeline for Query: '{user_query}' ---")
+    print(f"\\n--- Starting New CAG Pipeline for Query: '{user_query}', Audience: '{audience}' ---") # UPDATED LOG
 
-    # 1. List documents
-    all_filenames = get_document_filenames(DATA_DIR)
+    # 1. List documents from the specific audience directory
+    # Pass base DATA_DIR and the specific audience
+    all_filenames = get_document_filenames(DATA_DIR, audience)
     if not all_filenames:
-        # Create the response object and return its JSON representation
+        # Log already happened in get_document_filenames
         error_response = ChatbotResponse(
-            message="Kunde inte hitta några dokument att bearbeta.",
+            message=f"Kunde inte hitta några dokument att bearbeta för målgruppen '{audience}'.", # More specific error
             source_links=[],
             source_names=[])
-        return error_response.model_dump_json(indent=2)  # Return JSON string
+        return error_response.model_dump_json(indent=2)
 
     total_files = len(all_filenames)
-    print(f"Found {total_files} documents to process.")  # Added log
+    print(f"Found {total_files} documents to process for audience '{audience}'.")
 
     # 2. Process in batches with LLM 1
     aggregated_relevant_filenames: Set[str] = set()
     num_batches = math.ceil(total_files / BATCH_SIZE)
-    script_dir = os.path.dirname(__file__)
-    full_data_dir = os.path.join(script_dir, DATA_DIR)
+    # No need for full_data_dir here, it's constructed in process_single_batch
 
-    # Prepare batches list
     batches = []
     for i in range(num_batches):
         start_index = i * BATCH_SIZE
-        end_index = min(start_index + BATCH_SIZE,
-                        total_files)  # Use min to avoid index out of bounds
+        end_index = min(start_index + BATCH_SIZE, total_files)
         batches.append(all_filenames[start_index:end_index])
 
     print(
         f"Processing documents in {num_batches} batches of up to {BATCH_SIZE} files each using up to {MAX_WORKERS} parallel workers."
-    )  # Updated log
+    )
 
-    # Process batches in parallel
     with concurrent.futures.ThreadPoolExecutor(
             max_workers=MAX_WORKERS) as executor:
-        # Prepare future submissions
         future_to_batch_num = {
             executor.submit(
                 process_single_batch,
                 batch_filenames,
                 user_query,
-                full_data_dir,
-                llm1_model,  # Pass the initialized model
-                i + 1,  # Batch number (1-based)
+                DATA_DIR,       # Pass base data dir
+                audience,       # Pass audience
+                llm1_model,
+                i + 1,
                 num_batches):
             i + 1
             for i, batch_filenames in enumerate(batches)
         }
 
-        # Process completed futures
         for future in concurrent.futures.as_completed(future_to_batch_num):
             batch_num = future_to_batch_num[future]
             try:
                 relevant_in_batch = future.result()
                 aggregated_relevant_filenames.update(relevant_in_batch)
-                # Optional: Log completion if needed, although process_single_batch already logs
-                # print(f"Batch {batch_num} completed successfully.")
             except Exception as exc:
-                # Log in English
                 print(f'Batch {batch_num} generated an exception: {exc}')
-                # Decide how to handle batch failures (e.g., log, skip, retry?)
-                # For now, just log and continue.
 
-    print(f"\n--- Aggregation Complete ---")
-    # Clarified log
+    print(f"\\n--- Aggregation Complete ---")
     print(
         f"Total relevant files identified by LLM 1 across all batches: {len(aggregated_relevant_filenames)}"
     )
+    if DEBUG and aggregated_relevant_filenames:
+        print(f"Aggregated relevant filenames: {sorted(list(aggregated_relevant_filenames))}") # ADDED LOG
 
-    # 3. Call LLM 2 with relevant filenames
-    # Use the initialized model client and pass DATA_DIR relative path
+    # 3. Call LLM 2 with relevant filenames and audience
     final_response_object: ChatbotResponse = generate_answer(
         llm2_model, user_query, sorted(list(aggregated_relevant_filenames)),
-        DATA_DIR)
+        DATA_DIR, audience) # Pass audience
 
-    print("\n--- New CAG Pipeline Complete ---")
+    print("\\n--- New CAG Pipeline Complete ---")
 
-    # Convert the Pydantic model to a JSON string for output
-    return final_response_object.model_dump_json(
-        indent=2)  # <-- Added .model_dump_json()
+    return final_response_object.model_dump_json(indent=2)
 
 
 # --- Request Body Model ---
 class ChatRequest(BaseModel):
     query: str
+    audience: str # Added audience field
 
 
 # --- API Endpoint ---
-@app.post("/api/chat"
-          )  # Don't define response_model here if returning plain JSON string
+@app.post("/api/chat")
 async def chat_endpoint(chat_request: ChatRequest):
     """
     API endpoint to handle chat requests.
-    Takes a user query, runs the pipeline, and returns the pipeline's JSON string.
+    Takes a user query and audience, runs the pipeline, and returns the JSON string.
     """
     user_query = chat_request.query
+    audience = chat_request.audience # Get audience from request
+
+    # Basic validation
     if not user_query:
         raise HTTPException(status_code=400, detail="Query cannot be empty")
+    if not audience or audience not in ["invanare", "personal"]:
+        print(f"Error: Invalid audience received: {audience}") # ADDED LOG
+        raise HTTPException(status_code=400, detail=f"Invalid audience specified: {audience}")
 
-    print(f"\n--- Received API Request for Query: '{user_query}' ---")
+    print(f"\\n--- Received API Request --- Query: '{user_query}', Audience: '{audience}' ---") # UPDATED LOG
 
     try:
-        # Run the pipeline function which returns a JSON string
-        response_json_str = run_new_cag_pipeline(user_query)
+        # Run the pipeline function with query and audience
+        response_json_str = run_new_cag_pipeline(user_query, audience)
 
-        # Parse the JSON string back into a Python dict to return as JSON response
+        # Parse the JSON string back to return as JSON response
         response_data = json.loads(response_json_str)
 
-        print("\n--- API Request Processing Complete ---")
-        # Return the data as a JSON response
+        print("\\n--- API Request Processing Complete ---")
         return JSONResponse(content=response_data)
 
     except Exception as e:
         print(f"Error processing API request in endpoint: {e}")
-        # Log the traceback for detailed debugging if needed
         import traceback
         traceback.print_exc()
+        # Log specific audience for context
         raise HTTPException(
             status_code=500,
-            detail=f"Internal server error processing chat request.")
-
+            detail=f"Internal server error processing chat request for audience '{audience}'.")
 
 # Remove the old __main__ block if it exists
-# if __name__ == "__main__":
-#     ...
