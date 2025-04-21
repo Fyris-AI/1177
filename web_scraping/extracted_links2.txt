@@ -1,0 +1,618 @@
+Total unique relevant links found: 616
+
+1. [Addisons sjukdom]: https://www.1177.se/sjukdomar--besvar/hormoner/addisons-sjukdom/
+2. [Akupunktur]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/akupunktur/
+3. [Akuta råd – första hjälpen]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/
+4. [Algförgiftning]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/algforgiftning/
+5. [Alkohol]: https://www.1177.se/liv--halsa/tobak-och-alkohol/alkohol/
+6. [Alkoholberoende]: https://www.1177.se/sjukdomar--besvar/beroende-och-skadligt-bruk/alkoholberoende/
+7. [Allergi och överkänslighet]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/allergi-och-overkanslighet/
+8. [Allergier och överkänslighet]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/
+9. [Allergisk chock – anafylaxi]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/allergisk-chock--anafylaxi/
+10. [Allmänna reseråd]: https://www.1177.se/liv--halsa/reserad-och-vaccinationer/allmanna-reserad/
+11. [Allmäntillstånd - vad menas med det?]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/allmantillstand/
+12. [Alternativa behandlingar]: https://www.1177.se/undersokning-behandling/fler-behandlingar/alternativa-behandlingar/
+13. [Amning och flaskmatning]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/amning-och-flaskmatning/
+14. [Anabola androgena steroider]: https://www.1177.se/sjukdomar--besvar/beroende-och-skadligt-bruk/anabola-androgena-steroider/
+15. [Andningssvårigheter och andningsuppehåll]: https://www.1177.se/sjukdomar--besvar/lungor-och-luftvagar/andningssvarigheter-och-andningsuppehall/
+16. [Anhörig – närstående]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/
+17. [Anhörigstöd – stöd för dig som vårdar eller stödjer en närstående]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/anhorigstod---stod-for-dig-som-vardar-eller-stodjer-en-narstaende/
+18. [Anmälan om vårdskada – lex Maria]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/anmalan-om-vardskada--lex-maria/
+19. [Armar och händer]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/armar-och-hander/
+20. [Att behandla tänderna med fluorid]: https://www.1177.se/undersokning-behandling/tandvard/fluoridbehandling/
+21. [Att bleka tänderna]: https://www.1177.se/undersokning-behandling/tandvard/tandblekning/
+22. [Att bli gipsad]: https://www.1177.se/undersokning-behandling/fler-behandlingar/att-bli-gipsad/
+23. [Att bli utsatt för våld i nära relationer]: https://www.1177.se/liv--halsa/vald-overgrepp-och-sexuella-trakasserier/att-bli-utsatt-for-vald-i-nara-relationer/
+24. [Att donera en njure]: https://www.1177.se/sa-fungerar-varden/donation/att-donera-en-njure/
+25. [Att donera ägg eller spermier]: https://www.1177.se/sa-fungerar-varden/donation/att-donera-agg-eller-spermier/
+26. [Att få hjälpmedel]: https://www.1177.se/undersokning-behandling/hjalpmedel/sa-far-du-ett-hjalpmedel/
+27. [Att få recept och att köpa läkemedel]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/att-fa-recept-och-att-kopa-lakemedel/
+28. [Att få vård enligt ett vårdförlopp]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/att-fa-vard-enligt-ett-vardforlopp/
+29. [Att förändra ett våldsamt eller kränkande beteende]: https://www.1177.se/liv--halsa/vald-overgrepp-och-sexuella-trakasserier/att-forandra-ett-valdsamt-eller-krankande-beteende/
+30. [Att hamna i kris]: https://www.1177.se/liv--halsa/psykisk-halsa/att-hamna-i-kris/
+31. [Att känna oro inför ett vårdbesök]: https://www.1177.se/undersokning-behandling/forbered-ditt-vardbesok/att-kanna-oro-infor-ett-vardbesok/
+32. [Att leva med cancer]: https://www.1177.se/sjukdomar--besvar/cancer/att-leva-med-cancer/
+33. [Att leva med en transplanterad njure]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/att-leva-med-en-transplanterad-njure/
+34. [Att leva med oro för klimatet]: https://www.1177.se/liv--halsa/psykisk-halsa/att-leva-med-oro-for-klimatet/
+35. [Att må dåligt]: https://www.1177.se/liv--halsa/psykisk-halsa/att-ma-daligt/
+36. [Att må dåligt när en relation tar slut]: https://www.1177.se/liv--halsa/psykisk-halsa/att-ma-daligt-nar-en-relation-tar-slut/
+37. [Att må dåligt som förälder]: https://www.1177.se/barn--gravid/nar-familjelivet-ar-svart/att-ma-daligt-som-foralder/
+38. [Att ramla när du blir äldre]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/fallskador/
+39. [Att skada sig själv]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/att-skada-sig-sjalv/
+40. [Att sköta ett nyfött barn]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/
+41. [Att söka stöd och hjälp]: https://www.1177.se/liv--halsa/psykisk-halsa/att-soka-stod-och-hjalp/
+42. [Att ta hand om barn]: https://www.1177.se/barn--gravid/att-ta-hand-om-barn/
+43. [Att vara ansvarig för ett barn]: https://www.1177.se/barn--gravid/att-vara-foralder/att-vara-ansvarig-for-ett-barn/
+44. [Att vara förälder]: https://www.1177.se/barn--gravid/att-vara-foralder/
+45. [Att vara orolig]: https://www.1177.se/liv--halsa/psykisk-halsa/att-vara-orolig/
+46. [Att välja vårdmottagning]: https://www.1177.se/sa-fungerar-varden/att-valja-vardmottagning/
+47. [Att äta vegetariskt]: https://www.1177.se/liv--halsa/ata-for-att-ma-bra/att-ata-vegetariskt/
+48. [Avbruten graviditet]: https://www.1177.se/barn--gravid/graviditet/avbruten-graviditet/
+49. [Avslappning för axlarna]: https://www.1177.se/liv--halsa/stresshantering-och-somn/avslappning-for-axlarna/
+50. [Avslappning för hela kroppen]: https://www.1177.se/liv--halsa/stresshantering-och-somn/avslappning-for-hela-kroppen/
+51. [Avslappning för nacken]: https://www.1177.se/liv--halsa/stresshantering-och-somn/avslappning-for-nacken/
+52. [Avslappning genom andning]: https://www.1177.se/liv--halsa/stresshantering-och-somn/avslappning-genom-andning/
+53. [Avslappning genom andning]: https://www.1177.se/liv--halsa/psykisk-halsa/avslappning-genom-andning/
+54. [Axeln ur led]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/axeln-ur-led/
+55. [Barn som kissar på sig på dagen eller kissar ofta]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/barn-som-kissar-pa-sig-pa-dagen-eller-kissar-ofta/
+56. [Barncancer]: https://www.1177.se/sjukdomar--besvar/cancer/barncancer/
+57. [Barnets utveckling]: https://www.1177.se/barn--gravid/sa-vaxer-och-utvecklas-barn/barnets-utveckling/
+58. [Barnlöshet]: https://www.1177.se/barn--gravid/barnloshet/
+59. [Barns och vårdnadshavares rättigheter i vården]: https://www.1177.se/sa-fungerar-varden/var-med-och-bestam-om-din-vard/barns-och-vardnadshavares-rattigheter-i-varden/
+60. [Barns sömn]: https://www.1177.se/barn--gravid/att-ta-hand-om-barn/barns-somn/
+61. [Barnsäkerhet]: https://www.1177.se/barn--gravid/att-ta-hand-om-barn/barnsakerhet/
+62. [Bedövning och smärtlindring vid tandvård]: https://www.1177.se/undersokning-behandling/tandvard/bedovning-och-smartlindring-vid-tandvard/
+63. [Behandling av små sår]: https://www.1177.se/olyckor--skador/sar-och-blamarken/behandling-av-sma-sar/
+64. [Behandling av stora sår]: https://www.1177.se/olyckor--skador/sar-och-blamarken/behandling-av-stora-sar/
+65. [Behandling i tryckkammare]: https://www.1177.se/undersokning-behandling/fler-behandlingar/behandling-i-tryckkammare/
+66. [Behandling med läkemedel]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/
+67. [Behandling med syrgas]: https://www.1177.se/undersokning-behandling/fler-behandlingar/syrgasbehandling/
+68. [Behandling och stöd vid alkoholproblem]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/behandling-och-stod-vid-alkoholproblem/
+69. [Behandling och stöd vid beroende av opioider]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/behandling-och-stod-vid-beroende-av-opioider/
+70. [Behandling vid diabetes typ 1]: https://www.1177.se/sjukdomar--besvar/diabetes/behandling-vid-diabetes-typ-1/
+71. [Behandlingar med läkemedel]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/behandlingar-med-lakemedel/
+72. [Behandlingar vid psykiska sjukdomar och besvär]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/
+73. [Ben och fötter]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/ben-och-fotter/
+74. [Benamputation]: https://www.1177.se/undersokning-behandling/operationer/benamputation2/
+75. [Benbrott i armbågen och överarmen]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/benbrott-i-armbagen-och-overarmen/
+76. [Benbrott i axeln]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/benbrott-i-axeln/
+77. [Benbrott i fot och tår]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/benbrott-i-fot-och-tar/
+78. [Benbrott i hand och fingrar]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/Benbrott-i-hand-och-fingrar/
+79. [Benbrott i handled och underarm]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/benbrott-i-handled-och-underarm/
+80. [Benskörhet - osteoporos]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/benskorhet---osteoporos/
+81. [Beroende av droger eller läkemedel]: https://www.1177.se/sjukdomar--besvar/beroende-och-skadligt-bruk/beroende-av-droger/
+82. [Beroende och skadligt bruk]: https://www.1177.se/sjukdomar--besvar/beroende-och-skadligt-bruk/
+83. [Besvär vid sex]: https://www.1177.se/sjukdomar--besvar/konsorgan/besvar-vid-sex/
+84. [Besök på barnavårdscentralen, BVC]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/besok-pa-barnavardscentralen-bvc/
+85. [Bett, stick och växter]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/
+86. [Bleka och kalla fingrar - Raynauds syndrom]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/bleka-och-kalla-fingrar---raynauds-syndrom/
+87. [Blod i urinen]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/blod-i-urinen/
+88. [Bloddialys – hemodialys]: https://www.1177.se/undersokning-behandling/fler-behandlingar/bloddialys--hemodialys/
+89. [Blodgivning]: https://www.1177.se/sa-fungerar-varden/donation/blodgivning/
+90. [Blodgrupper]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/blodgrupper/
+91. [Blodkärl]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/blodkarl/
+92. [Blodsjukdomar]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/blodsjukdomar/
+93. [Blodtransfusion]: https://www.1177.se/undersokning-behandling/fler-behandlingar/blodtransfusion/
+94. [Blodtryck]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/blodtryck/
+95. [Blåmärken]: https://www.1177.se/olyckor--skador/sar-och-blamarken/blamarken/
+96. [Blåssten]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/blassten/
+97. [Blödning under skallbenet – subduralblödning]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/blodning-under-skallbenet--subduralblodning/
+98. [Blödningar]: https://www.1177.se/olyckor--skador/sar-och-blamarken/blodningar/
+99. [Blöjutslag]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/blojutslag/
+100. [Borttagning av födelsemärken]: https://www.1177.se/undersokning-behandling/fler-behandlingar/borttagning-av-fodelsemarken/
+101. [Bra att veta om näring]: https://www.1177.se/liv--halsa/ata-for-att-ma-bra/bra-att-veta-om-naring/
+102. [Bra mat och dryck för tänderna]: https://www.1177.se/liv--halsa/tandhalsa/bra-mat-och-dryck-for-tanderna/
+103. [Brist på testosteron]: https://www.1177.se/sjukdomar--besvar/hormoner/brist-pa-testosteron/
+104. [Brutet lårben hos barn]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/brutet-larben-hos-barn/
+105. [Brutet nyckelben]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/brutet-nyckelben/
+106. [Brutet näsben]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/brutet-nasben/
+107. [Brutet underben]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/brutet-underben/
+108. [Bränd av björnloka eller jätteloka]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/brand-av-bjornloka-eller-jatteloka/
+109. [Bränd av brännässla]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/brand-av-brannassla/
+110. [Bränd av manet]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/brand-av-manet/
+111. [Brännskador]: https://www.1177.se/olyckor--skador/brannskador-och-koldskador/brannskador/
+112. [Brännskador och köldskador]: https://www.1177.se/olyckor--skador/brannskador-och-koldskador/
+113. [Bukhinnedialys – peritonealdialys]: https://www.1177.se/undersokning-behandling/fler-behandlingar/bukhinnedialys--peritonealdialys/
+114. [Bup, barn- och ungdomspsykiatrin]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/bup--barn--och-ungdomspsykiatrin/
+115. [Bäckenbottenträning]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/backenbottentraning/
+116. [Bäckenbrott]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/backenbrott/
+117. [Båtbensbrott]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/batbensbrott/
+118. [Bölder, knölar och akne]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/bolder-knolar-och-akne/
+119. [Börja träna]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/borja-trana/
+120. [Börja träna styrka]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/borja-trana-styrka/
+121. [Cancer]: https://www.1177.se/sjukdomar--besvar/cancer/
+122. [Cancerformer]: https://www.1177.se/sjukdomar--besvar/cancer/cancerformer/
+123. [Celiaki]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/celiaki/
+124. [Central venkateter]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/central-venkateter/
+125. [Chock]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/chock/
+126. [Depression]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/depression/
+127. [Det nyfödda barnets kropp – vanliga funderingar]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/det-nyfodda-barnets-kropp-vanliga-funderingar/
+128. [Diabetes]: https://www.1177.se/sjukdomar--besvar/diabetes/
+129. [Diabetes typ 1]: https://www.1177.se/sjukdomar--besvar/diabetes/diabetes-typ-1/
+130. [Diabetes typ 2]: https://www.1177.se/sjukdomar--besvar/diabetes/diabetes-typ-2/
+131. [Diarré hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/diarre-hos-barn/
+132. [Diarré, förstoppning och blod i avföringen]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/diarre-forstoppning-och-blod-i-avforingen/
+133. [Diatermi]: https://www.1177.se/undersokning-behandling/fler-behandlingar/diatermi/
+134. [Din journal]: https://www.1177.se/sa-fungerar-varden/sa-skyddas-och-hanteras-dina-uppgifter/din-journal/
+135. [Doftöverkänslighet]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/doftoverkanslighet/
+136. [Donation]: https://www.1177.se/sa-fungerar-varden/donation/
+137. [Drunkningsolyckor]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/drunkningsolyckor/
+138. [Du som kan ha en ökad risk för hudcancer]: https://www.1177.se/liv--halsa/sol-och-varme/du-som-kan-ha-en-okad-risk-for-hudcancer/
+139. [Du som är närstående i vården]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/att-vara-narstaende-i-varden/
+140. [Dövblindhet]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/dovblindhet/
+141. [ECT - elbehandling]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/ect---elbehandling/
+142. [Efter förlossningen]: https://www.1177.se/barn--gravid/forlossning/efter-forlossningen/
+143. [Ekonomiskt stöd när du är sjuk]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/ekonomiskt-stod-nar-du-ar-sjuk/
+144. [Elevhälsan]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/elevhalsan/
+145. [Elkonvertering]: https://www.1177.se/undersokning-behandling/fler-behandlingar/elkonvertering/
+146. [Elolyckor – när det går ström genom kroppen]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/elolyckor/
+147. [Ensamhet]: https://www.1177.se/liv--halsa/psykisk-halsa/ensamhet/
+148. [Ersättning vid patientskada]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/ersattning-vid-patientskada/
+149. [ESVL – stötvågsbehandling]: https://www.1177.se/undersokning-behandling/fler-behandlingar/esvl-stotvagsbehandling/
+150. [Fakta om cancer]: https://www.1177.se/sjukdomar--besvar/cancer/fakta-om-cancer/
+151. [FaR - fysisk aktivitet på recept]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/far--fysisk-aktivitet-pa-recept/
+152. [Fasta kontakter i vård och omsorg]: https://www.1177.se/sa-fungerar-varden/sa-samarbetar-vard-och-omsorg/fast-vardkontakt---din-hjalp-i-vard-och-omsorg/
+153. [Feber]: https://www.1177.se/sjukdomar--besvar/infektioner/feber/
+154. [Feber hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/feber-hos-barn/
+155. [Film: När man är rädd för det värsta]: https://www.1177.se/undersokning-behandling/vard-i-slutet-av-livet/film-nar-man-ar-radd-for-det-varsta/
+156. [Film: När tiden börjar rinna ut]: https://www.1177.se/undersokning-behandling/vard-i-slutet-av-livet/film-nar-tiden-borjar-rinna-ut/
+157. [Film: Stöd till dig som är närstående till någon som är obotligt sjuk eller vårdas i slutet av livet]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/film-stod-till-dig-som-ar-narstaende-till-nagon-som-ar-obotligt-sjuk-eller-vardas-i-slutet-av-livet/
+158. [Film: Tankar om meningen med livet]: https://www.1177.se/undersokning-behandling/vard-i-slutet-av-livet/film-tankar-om-meningen-med-livet/
+159. [Film: Träna hemma - kort version]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/film-trana-hemma-kort-version/
+160. [Film: Träna hemma - lång version]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/film-trana-hemma-lang-version/
+161. [Film: Träning i säng]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/film-traning-i-sang/
+162. [Finger som har stukats, brutits eller gått ur led]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/finger-som-har-stukats-brutits-eller-gatt-ur-led/
+163. [Fler behandlingar]: https://www.1177.se/undersokning-behandling/fler-behandlingar/
+164. [FN:s konvention om rättigheter för personer med funktionsnedsättning]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/fns-konvention-om-rattigheter-for-personer-med-funktionsnedsattning/
+165. [Frysbehandling]: https://www.1177.se/undersokning-behandling/fler-behandlingar/frysbehandling/
+166. [Frågor och svar om hur skogsbrand påverkar hälsan]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/fragor-och-svar-vid-skogsbrand/
+167. [Funktionsnedsättning hos barn]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/funktionsnedsattning-hos-barn/
+168. [Fysioterapi vid besvär i nacke, axlar och rygg]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/fysioterapi-vid-besvar-i-nacke-axlar-och-rygg/
+169. [Fysioterapi vid psykiska besvär]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/fysioterapi-vid-psykiska-besvar2/
+170. [Fysisk aktivitet och träning]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/
+171. [Fysisk aktivitet och träning som äldre]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/traning-som-aldre/
+172. [Färdtjänst]: https://www.1177.se/sa-fungerar-varden/sjukresor-och-fardtjanst/fardtjanst/
+173. [Fästingbett]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/fastingbett/
+174. [Födelsemärken och hudförändringar]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/fodelsemarken-och-hudforandringar/
+175. [För barn: Om covid-19 och corona]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/for-dig-som-ar-barn---om-coronavirus-och-covid--19/
+176. [För dig som är barn eller ung]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/for-dig-som-ar-barn-eller-ung/
+177. [För dig som är barn eller ung: Filmer om dina rättigheter i vården]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/for-dig-som-ar-barn-eller-ung-filmer-om-dina-rattigheter-i-varden/
+178. [Förbered ditt vårdbesök]: https://www.1177.se/undersokning-behandling/forbered-ditt-vardbesok/
+179. [Förbereda barn för besök i vården]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/forbereda-barn-for-besok-i-varden/
+180. [Förberedelser inför förlossningen]: https://www.1177.se/barn--gravid/forlossning/forberedelser-infor-forlossningen/
+181. [Före en behandling eller undersökning]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/
+182. [Före och efter operation]: https://www.1177.se/undersokning-behandling/operationer/fore-och-efter-operation/
+183. [Förgiftning]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/forgiftning/
+184. [Förhud]: https://www.1177.se/sjukdomar--besvar/konsorgan/forhud/
+185. [Förhårdnader och självsprickor]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/forhardnader-och-sjalvsprickor/
+186. [Förkylning hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/forkylning-hos-barn/
+187. [Förkylning och influensa]: https://www.1177.se/sjukdomar--besvar/infektioner/forkylning-och-influensa/
+188. [Förlossning]: https://www.1177.se/barn--gravid/forlossning/
+189. [Förstoppning hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/forstoppning-hos-barn/
+190. [Föräldraskap och relationen med barnet]: https://www.1177.se/barn--gravid/att-vara-foralder/foraldraskap-och-relationen-med-barnet/
+191. [Föräldrastöd och information till blivande föräldrar]: https://www.1177.se/barn--gravid/graviditet/foraldrastod-och-information-till-blivande-foraldrar/
+192. [Genetisk utredning]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/genetisk-utredning/
+193. [Getingstick, bistick och humlestick]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/getingstick-och-bistick/
+194. [Graviditet]: https://www.1177.se/barn--gravid/graviditet/
+195. [Graviditetsbesvär och sjukdomar]: https://www.1177.se/barn--gravid/graviditet/graviditetsbesvar-och-sjukdomar/
+196. [Gulsot hos nyfödda]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/gulsot-hos-nyfodda/
+197. [Gör hemmet tryggare]: https://www.1177.se/liv--halsa/trygg-och-saker-miljo/gor-hemmet-tryggare/
+198. [Habilitering]: https://www.1177.se/undersokning-behandling/habilitering/habilitering/
+199. [Habilitering]: https://www.1177.se/undersokning-behandling/habilitering/
+200. [Hals]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/hals/
+201. [Hicka, rapningar och kräkningar hos små barn]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/hicka-rapningar-och-krakningar-hos-sma-barn/
+202. [Hjälpmedel]: https://www.1177.se/undersokning-behandling/hjalpmedel/
+203. [Hjälpmedel för andningen]: https://www.1177.se/undersokning-behandling/hjalpmedel/hjalpmedel-for-andningen/
+204. [Hjälpmedel för förflyttning]: https://www.1177.se/undersokning-behandling/hjalpmedel/forflyttning/
+205. [Hjälpmedel för hörseln]: https://www.1177.se/undersokning-behandling/hjalpmedel/horsel/
+206. [Hjälpmedel för kognition och kommunikation]: https://www.1177.se/undersokning-behandling/hjalpmedel/hjalpmedel-for-kognition-och-kommunikation/
+207. [Hjälpmedel för synen]: https://www.1177.se/undersokning-behandling/hjalpmedel/syn/
+208. [Hjälpmedel vid inkontinens]: https://www.1177.se/undersokning-behandling/hjalpmedel/inkontinens/
+209. [Hjärna och nerver]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/
+210. [Hjärnskakning]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/hjarnskakning/
+211. [Hjärt-lungräddning (HLR)]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/hjart-lungraddning-hlr/
+212. [Hjärt-lungräddning (HLR) på barn]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/hjart-lungraddning-hlr-pa-barn/
+213. [Hjärta, blod och lymfkörtlar]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/
+214. [Hjärtbesvär och hjärtfel]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/hjartbesvar-och-hjartfel/
+215. [Hjärtrytm]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/hjartrytm/
+216. [Hormoner]: https://www.1177.se/sjukdomar--besvar/hormoner/
+217. [Hosta hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/hosta-hos-barn/
+218. [Hosta och slem i luftvägarna]: https://www.1177.se/sjukdomar--besvar/lungor-och-luftvagar/hosta-och-slem-i-luftvagarna/
+219. [Hud mot hud-kontakt med ett nyfött barn]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/hud-mot-hud-kontakt-med-ett-nyfott-barn/
+220. [Hud, hår och naglar]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/
+221. [Huggormsbett]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/huggormsbett/
+222. [Hundbett och kattbett]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/hund--och-kattbett/
+223. [Hur fungerar det med faderskapstest?]: https://www.1177.se/barn--gravid/att-vara-foralder/hur-fungerar-det-med-faderskapstest/
+224. [Hur mycket behöver barn röra på sig?]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/hur-mycket-behover-barn-rora-pa-sig/
+225. [Huvudvärk hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/huvudvark/
+226. [Huvudvärk och migrän]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/huvudvark-och-migran/
+227. [Hälsenebristning]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/halsenebristning/
+228. [Här kan du få hjälp mot alkoholproblem]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/har-kan-du-fa-hjalp-mot-alkoholproblem/
+229. [Hårbotten och hårsäckar]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/harbotten-och-harsackar/
+230. [Höfter]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/hofter/
+231. [Höftledsbrott]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/hoftledsbrott/
+232. [Högkostnadsskydd för öppenvård]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/hogkostnadsskydd-for-oppenvard/
+233. [Höjdsjuka]: https://www.1177.se/sjukdomar--besvar/lungor-och-luftvagar/hojdsjuka/
+234. [Hörsel]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/horsel/
+235. [Höstblåsor]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/hostblasor/
+236. [ICE – nödnummer till närstående i mobilen]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/ice--nodnummer-till-narstaende-i-mobilen/
+237. [Inandning av skadlig gas]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/inandning-av-farlig-gas/
+238. [Infektion och inflammation]: https://www.1177.se/sjukdomar--besvar/infektioner/infektion-och-inflammation/
+239. [Infektioner]: https://www.1177.se/sjukdomar--besvar/infektioner/
+240. [Infektioner hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/infektioner-hos-barn/
+241. [Infektioner hos barn – smittguide]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/infektioner-hos-barn--smittguide/
+242. [Infektioner i hjärna och nerver]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/infektioner-i-hjarna-och-nerver/
+243. [Infektioner i mage och tarmar]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/infektioner-i-mage-och-tarmar/
+244. [Infektioner i njurar och urinvägar]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/infektioner-i-njurar-och-urinvagar/
+245. [Infektioner i skelett, leder och muskler]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/infektioner-i-skelett-leder-och-muskler/
+246. [Infektioner i öron, näsa och hals]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/infektioner-i-ogon-oron-nasa-och-hals/
+247. [Infektioner på huden]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/infektioner-pa-huden/
+248. [Inflammation och infektion i hjärtat]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/inflammation-och-infektion-i-hjartat/
+249. [Inflammation och infektion i lungor och luftrör]: https://www.1177.se/sjukdomar--besvar/lungor-och-luftvagar/inflammation-och-infektion-ilungor-och-luftror/
+250. [Insektsallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/insektsallergi/
+251. [Insulinkänning vid diabetes]: https://www.1177.se/sjukdomar--besvar/diabetes/insulinkanning/
+252. [IVF, provrörsbefruktning]: https://www.1177.se/barn--gravid/barnloshet/ivf-provrorsbefruktning/
+253. [Kan jag få cancer av strålbehandling?]: https://www.1177.se/undersokning-behandling/fler-behandlingar/kan-jag-fa-cancer-av-stralbehandling/
+254. [Kan man träna fast man är lite sjuk?]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/kan-man-trana-fast-man-ar-lite-sjuk/
+255. [Kateter i urinblåsan]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/kateter-i-urinblasan/
+256. [Kateter i urinblåsan]: https://www.1177.se/undersokning-behandling/fler-behandlingar/kateter-i-urinblasan/
+257. [KBT, kognitiv beteendeterapi]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/kognitiv-beteendeterapi-kbt/
+258. [Ketoacidos vid diabetes]: https://www.1177.se/sjukdomar--besvar/diabetes/ketoacidos/
+259. [Kiropraktik och naprapati]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/kiropraktik-och-naprapati/
+260. [Klimakteriebesvär]: https://www.1177.se/sjukdomar--besvar/hormoner/klimakteriebesvar/
+261. [Klimakteriet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/klimakteriet/
+262. [Klämt finger]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/klamt-finger/
+263. [Klåda hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/klada-hos-barn/
+264. [Klåda och smärta i underlivet]: https://www.1177.se/sjukdomar--besvar/konsorgan/klada-och-smarta-i-underlivet/
+265. [Klåda, utslag och eksem]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/klada-utslag-och-eksem/
+266. [Knäskålen ur led]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/knaskalen-ur-led/
+267. [Knäskålsbrott]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/knaskalsbrott/
+268. [Komjölksallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/komjolksallergi/
+269. [Konstgjorda tänder - tandproteser]: https://www.1177.se/undersokning-behandling/tandvard/konstgjorda-tander/
+270. [Korsbandsskada och ledbandsskada i knät]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/korsbandsskada-och-ledbandsskada-i-knat/
+271. [Kostnader och ersättningar]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/
+272. [Kostnader och ersättningar inom tandvård]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/kostnader-och-ersattningar-inom-tandvard/
+273. [Kronisk prostatit – långvarig smärta i bäckenbotten hos män]: https://www.1177.se/sjukdomar--besvar/konsorgan/kronisk-prostatit--langvarig-smarta-i-backenbotten-hos-man/
+274. [Kroppen]: https://www.1177.se/barn--gravid/sa-vaxer-och-utvecklas-barn/kroppen/
+275. [Kroppstemperaturen]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/kroppstemperaturen/
+276. [Kroppsundersökningar och funktionstest]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/kroppsundersokningar/
+277. [Krupp]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/krupp/
+278. [Kräkningar hos barn 0-1 år]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/krakningar-hos-barn-0-1-ar/
+279. [Kräkningar hos barn över ett år]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/krakningar-hos-barn-over-ett-ar/
+280. [Kvalsterallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/kvalsterallergi/
+281. [Köldskador]: https://www.1177.se/olyckor--skador/brannskador-och-koldskador/koldskador/
+282. [Könsdysfori]: https://www.1177.se/liv--halsa/konsidentitet-och-sexuell-laggning/konsdysfori/
+283. [Könsidentitet och könsuttryck]: https://www.1177.se/liv--halsa/konsidentitet-och-sexuell-laggning/konsidentitet-och-konsuttryck/
+284. [Könsidentitet och sexuell läggning]: https://www.1177.se/liv--halsa/konsidentitet-och-sexuell-laggning/
+285. [Könsorgan]: https://www.1177.se/sjukdomar--besvar/konsorgan/
+286. [Könssjukdomar och sexuellt överförbara infektioner]: https://www.1177.se/sjukdomar--besvar/konsorgan/konssjukdomar/
+287. [Könsstympning – omskärelse av flickors underliv]: https://www.1177.se/sjukdomar--besvar/konsorgan/konsstympning--omskarelse-av-flickors-underliv/
+288. [Laga tänder]: https://www.1177.se/undersokning-behandling/tandvard/laga-tander/
+289. [Lagar i vården]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/lagar-i-varden/
+290. [Lagar och bestämmelser]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/
+291. [Laktosintolerans]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/laktosintolerans/
+292. [Leder]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/leder/
+293. [Lek]: https://www.1177.se/barn--gravid/sa-vaxer-och-utvecklas-barn/lek-och-sagor/
+294. [Lever, galla och bukspottkörtel]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/lever-galla-och-bukspottkortel/
+295. [Lex Sarah]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/lex-sarah/
+296. [Livmoder och äggstockar]: https://www.1177.se/sjukdomar--besvar/konsorgan/livmoder-och-aggstockar/
+297. [Livsstil och hälsa under graviditeten]: https://www.1177.se/barn--gravid/graviditet/livsstil-och-halsa-under-graviditeten/
+298. [Loppbett]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/loppbett/
+299. [Lungoperation]: https://www.1177.se/undersokning-behandling/operationer/lungoperation/
+300. [Lungor och luftvägar]: https://www.1177.se/sjukdomar--besvar/lungor-och-luftvagar/
+301. [Lymfkörtlar]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/lymfkortlar/
+302. [Läkemedel utifrån diagnos]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/
+303. [Läkemedel vid alkoholberoende]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/lakemedel-vid-alkoholberoende/
+304. [Läkemedel vid depression]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/lakemedel-vid-depression/
+305. [Läkemedel vid långvarig smärta]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/lakemedel-vid-langvarig-smarta/
+306. [Läkemedel vid schizofreni och andra psykossjukdomar]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/lakemedel-vid-psykossjukdomar/
+307. [Läkemedel vid sömnsvårigheter]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/lakemedel-vid-somnsvarigheter/
+308. [Lärande, förståelse och minne]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/larande-forstaelse-och-minne/
+309. [Långvarig trötthet och narkolepsi]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/langvarig-trotthet-och-narkolepsi/
+310. [Mage och tarm]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/
+311. [Magsjuka hos små barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/magsjuka-hos-sma-barn/
+312. [Magsjuka och kräkningar]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/magsjuka-och-krakningar/
+313. [Magsäck och matstrupe]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/magsack-och-matstrupe/
+314. [Mat och dryck för barn]: https://www.1177.se/barn--gravid/att-ta-hand-om-barn/mat-och-dryck-for-barn/
+315. [Mat och dryck i slutet av livet – till dig som är närstående]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/mat-och-dryck-i-slutet-av-livet--till-dig-som-ar-narstaende/
+316. [Matallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/matallergi/
+317. [Material för att laga och ersätta tänder]: https://www.1177.se/undersokning-behandling/tandvard/material-for-att-laga-och-ersatta-tander/
+318. [Meniskskada]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/meniskskada/
+319. [Mens, blödningar och flytningar]: https://www.1177.se/sjukdomar--besvar/konsorgan/mens-blodningar-och-flytningar/
+320. [Merkostnadsersättning]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/merkostnadsersattning/
+321. [Mindfulness – medveten närvaro]: https://www.1177.se/liv--halsa/stresshantering-och-somn/mindfulness/
+322. [Mun och tänder]: https://www.1177.se/sjukdomar--besvar/mun-och-tander/
+323. [Mun, läppar och tunga]: https://www.1177.se/sjukdomar--besvar/mun-och-tander/mun-lappar-och-tunga/
+324. [Muskelbristning]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/muskelbristning/
+325. [Muskler]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/muskler/
+326. [Myggbett och knottbett]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/myggbett-och-knottbett/
+327. [Människobett]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/manniskobett/
+328. [Mögelallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/mogelallergi/
+329. [Naglar]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/naglar/
+330. [Nationella kvalitetsregister]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/nationella-kvalitetsregister/
+331. [Nationella riktlinjer]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/nationella-riktlinjer/
+332. [Nedstämdhet]: https://www.1177.se/liv--halsa/psykisk-halsa/nedstamdhet/
+333. [Nerver]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/nerver/
+334. [Neuropsykiatriska funktionsnedsättningar – npf]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/neuropsykiatriska-funktionsnedsattningar/
+335. [Nickelallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/nickelallergi/
+336. [Njurar och urinvägar]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/
+337. [Njurinflammation]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/njurinflammation--glomerulonefrit/
+338. [Njursten]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/njursten/
+339. [Njursvikt]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/njursvikt/
+340. [Ny medicinsk bedömning]: https://www.1177.se/sa-fungerar-varden/om-du-inte-ar-nojd/ny-medicinsk-bedomning/
+341. [När barn föds för tidigt]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/for-tidigt-fodda-barn/
+342. [När barn mår dåligt]: https://www.1177.se/barn--gravid/nar-familjelivet-ar-svart/nar-barn-mar-daligt/
+343. [När barn mår dåligt]: https://www.1177.se/liv--halsa/psykisk-halsa/nar-barn-mar-daligt/
+344. [När barn och unga får diabetes typ 1]: https://www.1177.se/sjukdomar--besvar/diabetes/nar-barn-och-unga-far-diabetes-typ-1/
+345. [När barn slår i huvudet]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/nar-barn-slar-i-huvudet/
+346. [När en vuxen i din familj inte mår bra]: https://www.1177.se/liv--halsa/psykisk-halsa/nar-en-vuxen-i-din-familj-inte-mar-bra/
+347. [När familjelivet är svårt]: https://www.1177.se/barn--gravid/nar-familjelivet-ar-svart/
+348. [När någon har dött]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/nar-nagon-har-dott/
+349. [När små barn skriker]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/nar-sma-barn-skriker/
+350. [Närstående till någon som får en allvarlig sjukdom]: https://www.1177.se/sa-fungerar-varden/anhorig---narstaende/narstaende-till-nagon-som-far-en-allvarlig-sjukdom/
+351. [Närstående vid cancer]: https://www.1177.se/sjukdomar--besvar/cancer/narstaende-vid-cancer/
+352. [Näsa och luktsinne]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/nasa-och-luktsinne/
+353. [Nötallergi och jordnötsallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/Notallergi-och-jordnotsallergi/
+354. [Obesitas]: https://www.1177.se/sjukdomar--besvar/hormoner/obesitas--fetma-och-overvikt/
+355. [Ofrivillig barnlöshet]: https://www.1177.se/barn--gravid/barnloshet/ofrivillig-barnloshet/
+356. [Olika sätt att föda barn]: https://www.1177.se/barn--gravid/forlossning/olika-satt-att-foda-barn/
+357. [Olika sätt att ta läkemedel]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/olika-satt-att-ta-lakemedel/
+358. [Olika vårdformer]: https://www.1177.se/sa-fungerar-varden/olika-vardformer/
+359. [Om du inte är nöjd]: https://www.1177.se/sa-fungerar-varden/om-du-inte-ar-nojd/
+360. [Om du inte är nöjd med tandvården]: https://www.1177.se/sa-fungerar-varden/om-du-inte-ar-nojd/om-du-inte-ar-nojd-med-tandvarden/
+361. [Om du inte är nöjd med vården]: https://www.1177.se/sa-fungerar-varden/om-du-inte-ar-nojd/om-du-inte-ar-nojd-med-varden/
+362. [Om graviditeten]: https://www.1177.se/barn--gravid/graviditet/om-graviditeten/
+363. [Om läkemedel]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/om-lakemedel/
+364. [Om någon sätter i halsen]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/nar-nagon-satter-i-halsen/
+365. [Ont i bröstet]: https://www.1177.se/sjukdomar--besvar/hjarta-och-blodkarl/ont-i-brostet/
+366. [Ont i magen hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/ont-i-magen-hos-barn/
+367. [Ont i örat]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/ont-i-orat/
+368. [Operation av lymfkörtlar]: https://www.1177.se/undersokning-behandling/operationer/operation-av-lymfkortlar/
+369. [Operation av tungbandet]: https://www.1177.se/undersokning-behandling/operationer/operation-av-tungbandet/
+370. [Operation vid spasticitet i benen hos barn]: https://www.1177.se/undersokning-behandling/operationer/operation-vid-spasticitet-i-benen-hos-barn/
+371. [Operationer]: https://www.1177.se/undersokning-behandling/operationer/
+372. [Operationer av brösten]: https://www.1177.se/undersokning-behandling/operationer/operationer-av-brosten/
+373. [Operationer av knä och höfter]: https://www.1177.se/undersokning-behandling/operationer/operationer-av-kna-och-hofter/
+374. [Operationer av könsorgan och urinvägar]: https://www.1177.se/undersokning-behandling/operationer/operationer-av-konsorgan-och-urinvagar/
+375. [Operationer av mage och tarmar]: https://www.1177.se/undersokning-behandling/operationer/operationer-av-mage-och-tarmar/
+376. [Operationer av ögon, öron, näsa och hals]: https://www.1177.se/undersokning-behandling/operationer/operationer-av-ogon-oron-nasa-och-hals/
+377. [Operationer i hjärtat och kärlen]: https://www.1177.se/undersokning-behandling/operationer/operationer-i-hjartat-och-karlen/
+378. [Organdonation]: https://www.1177.se/sa-fungerar-varden/donation/organdonation/
+379. [Ovanliga infektioner och tillstånd]: https://www.1177.se/sjukdomar--besvar/infektioner/ovanliga-infektioner/
+380. [Palliativ vård – att förlänga livet och lindra symtom]: https://www.1177.se/undersokning-behandling/vard-i-slutet-av-livet/palliativ-vard--att-forlanga-livet-och-lindra-symtom/
+381. [Patientavgifter och högkostnadsskydd]: https://www.1177.se/sa-fungerar-varden/kostnader-och-ersattningar/patientavgifter/
+382. [Patientboende – patienthotell]: https://www.1177.se/sa-fungerar-varden/sjukresor-och-fardtjanst/patienthotell/
+383. [Patientlagen]: https://www.1177.se/sa-fungerar-varden/var-med-och-bestam-om-din-vard/patientlagen/
+384. [Perifert inlagd central venkateter - PICC-line]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/perifert-inlagd-central-venkateter---picc/
+385. [Personlig assistans]: https://www.1177.se/sa-fungerar-varden/olika-vardformer/personlig-assistans/
+386. [Personuppgifter i vården]: https://www.1177.se/sa-fungerar-varden/sa-skyddas-och-hanteras-dina-uppgifter/personuppgifter-i-varden/
+387. [PHPT – för mycket hormon från bisköldkörtlarna]: https://www.1177.se/sjukdomar--besvar/hormoner/phpt--for-mycket-hormon-fran-biskoldkortlarna/
+388. [Planerad vård hemma]: https://www.1177.se/sa-fungerar-varden/olika-vardformer/planerad-vard-hemma/
+389. [Plötslig spädbarnsdöd – förebyggande råd]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/plotslig-spadbarnsdod--forebyggande-rad/
+390. [PMS och PMDS]: https://www.1177.se/sjukdomar--besvar/hormoner/pms-och-pmds/
+391. [Pollenallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/pollenallergi/
+392. [Praktiska råd i vardagen]: https://www.1177.se/barn--gravid/att-ta-hand-om-barn/praktiska-rad-i-vardagen/
+393. [Praktiska råd med sjuka barn]: https://www.1177.se/barn--gravid/att-ta-hand-om-barn/praktiska-rad-med-sjuka-barn/
+394. [Prostata]: https://www.1177.se/sjukdomar--besvar/konsorgan/prostata/
+395. [Provtagning och mätningar]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/provtagning-och-matningar/
+396. [Psykiatriska utredningar]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/psykiatriska-utredningar/
+397. [Psykisk hälsa]: https://www.1177.se/liv--halsa/psykisk-halsa/
+398. [Psykiska sjukdomar och besvär]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/
+399. [Psykos och vanföreställningar]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/psykos-och-vanforestallningar/
+400. [Psykoterapi och psykologisk behandling]: https://www.1177.se/liv--halsa/psykisk-halsa/psykoterapi-och-psykologisk-behandling/
+401. [Psykoterapi och psykologisk behandling]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/psykoterapi-och-psykologisk-behandling/
+402. [Pung och testiklar]: https://www.1177.se/sjukdomar--besvar/konsorgan/pung-och-testiklar/
+403. [Pälsdjursallergi]: https://www.1177.se/sjukdomar--besvar/allergier-och-overkanslighet/palsdjursallergi/
+404. [På förlossningen och BB]: https://www.1177.se/barn--gravid/forlossning/pa-forlossningen-och-bb/
+405. [Receptfria läkemedel vid tillfällig smärta - vad ska jag välja?]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/lakemedel-utifran-diagnos/receptfria-lakemedel-vid-tillfallig-smarta---vad-ska-jag-valja/
+406. [Rehabilitering efter stroke]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/rehabilitering-efter-stroke/
+407. [Remiss och egen vårdbegäran]: https://www.1177.se/sa-fungerar-varden/att-valja-vardmottagning/remiss/
+408. [Reseråd och vaccinationer]: https://www.1177.se/liv--halsa/reserad-och-vaccinationer/
+409. [Respiratorbehandling]: https://www.1177.se/undersokning-behandling/fler-behandlingar/Respiratorbehandling/
+410. [Revbensbrott]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/revbensbrott/
+411. [Rotfyllning]: https://www.1177.se/undersokning-behandling/tandvard/rotfyllning/
+412. [Rygg och nacke]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/rygg-och-nacke/
+413. [Ryggbedövning]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/ryggbedovning/
+414. [Rättigheter inom tandvård]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/rattigheter-inom-tandvard/
+415. [Råd och stöd vid cancer]: https://www.1177.se/sjukdomar--besvar/cancer/rad-och-stod-vid-cancer/
+416. [Råd om läkemedel]: https://www.1177.se/undersokning-behandling/behandling-med-lakemedel/rad-om-lakemedel/
+417. [Råd till dig som påverkas av en allvarlig händelse]: https://www.1177.se/liv--halsa/psykisk-halsa/rad-till-personer-som-varit-med-om-allvarliga-handelser/
+418. [Råd vid mycket varmt väder]: https://www.1177.se/liv--halsa/sol-och-varme/rad-vid-mycket-varmt-vader/
+419. [Röntgen och bildundersökningar]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/bildundersokningar-och-rontgen/
+420. [Röst och tal]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/rost-och-tal/
+421. [Samordnad individuell plan - SIP]: https://www.1177.se/sa-fungerar-varden/sa-samarbetar-vard-och-omsorg/sip---samordnad-individuell-plan/
+422. [Sex efter att du har fått barn]: https://www.1177.se/barn--gravid/att-vara-foralder/sex-efter-att-du-har-fatt-barn/
+423. [Sexlust och kåthet]: https://www.1177.se/liv--halsa/sexuell-halsa/sexlust-och-kathet/
+424. [Sexuell hälsa]: https://www.1177.se/liv--halsa/sexuell-halsa/
+425. [Sexuell läggning]: https://www.1177.se/liv--halsa/konsidentitet-och-sexuell-laggning/sexuell-laggning/
+426. [Sexuella trakasserier]: https://www.1177.se/liv--halsa/vald-overgrepp-och-sexuella-trakasserier/sexuella-trakasserier/
+427. [Sjukresor]: https://www.1177.se/sa-fungerar-varden/sjukresor-och-fardtjanst/sjukresor/
+428. [Sjukresor och färdtjänst]: https://www.1177.se/sa-fungerar-varden/sjukresor-och-fardtjanst/
+429. [Sjukskrivning och rehabilitering]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/sjukskrivning-och-rehabilitering/
+430. [Självkänsla]: https://www.1177.se/liv--halsa/psykisk-halsa/sjalvkansla/
+431. [Självmordstankar]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/sjalvmordstankar/
+432. [Självvald inläggning vid psykiska besvär]: https://www.1177.se/undersokning-behandling/behandlingar-vid-psykiska-sjukdomar-och-besvar/sjalvvald-inlaggning-vid-psykiska-besvar/
+433. [Skadad tumme]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/skadad-tumme/
+434. [Skador på armar och ben]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/
+435. [Skador på fotleden]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/skador-pa-fotleden/
+436. [Skador på huvud och ögon]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/
+437. [Skador på händer och fötter]: https://www.1177.se/olyckor--skador/skador-pa-hander-och-fotter/
+438. [Skador på okbenet]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/skador-pa-okbenet/
+439. [Skador på tänder]: https://www.1177.se/olyckor--skador/skador-pa-tander/
+440. [Skador på överkropp och höfter]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/
+441. [Skavsår]: https://www.1177.se/olyckor--skador/sar-och-blamarken/skavsar/
+442. [Skelett, leder och muskler]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/
+443. [Skelettskador hos nyfödda]: https://www.1177.se/olyckor--skador/skador-pa-armar-och-ben/skelettskador-hos-nyfodda/
+444. [Skrubbsår]: https://www.1177.se/olyckor--skador/sar-och-blamarken/skrubbsar/
+445. [Skräp eller frätande ämne i ögat]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/skrap-eller-fratande-amne-i-ogat/
+446. [Skydd mot graviditet]: https://www.1177.se/liv--halsa/sexuell-halsa/skydd-mot-graviditet/
+447. [Skydd mot könssjukdomar]: https://www.1177.se/liv--halsa/sexuell-halsa/skydd-mot-konssjukdomar/
+448. [Sköldkörteln]: https://www.1177.se/sjukdomar--besvar/hormoner/skoldkorteln/
+449. [Slag mot magen hos barn]: https://www.1177.se/olyckor--skador/skador-pa-overkropp-och-hofter/slag-mot-magen-hos-barn/
+450. [Smärta]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/smarta/
+451. [Smärtbehandlingar och rehabilitering]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/
+452. [Smärtlindring under förlossningen]: https://www.1177.se/barn--gravid/forlossning/smartlindring-under-forlossningen/
+453. [Sol och värme]: https://www.1177.se/liv--halsa/sol-och-varme/
+454. [Solskador på huden]: https://www.1177.se/olyckor--skador/brannskador-och-koldskador/solskador-pa-huden/
+455. [Sorg när någon har dött]: https://www.1177.se/liv--halsa/psykisk-halsa/sorg-nar-nagon-har-dott/
+456. [Spel om pengar – spelberoende]: https://www.1177.se/sjukdomar--besvar/beroende-och-skadligt-bruk/hasardspelsyndrom--spelberoende/
+457. [Springmask]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/springmask/
+458. [Spädbarnskolik]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/spadbarnskolik/
+459. [Spädbarnsmassage]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/spadbarnsmassage-vid-kolik/
+460. [Stabilt sidoläge]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/stabilt-sidolage-pa-barn/
+461. [Stavgång]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/stavgang/
+462. [Stick av fjärsing]: https://www.1177.se/olyckor--skador/bett-stick-och-vaxter/stick-av-fjarsing/
+463. [Stimulerad ägglossning]: https://www.1177.se/barn--gravid/barnloshet/stimulerad-agglossning/
+464. [Stoppa blödning]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/stoppa-blodning/
+465. [Stress]: https://www.1177.se/liv--halsa/stresshantering-och-somn/stress/
+466. [Stresshantering och sömn]: https://www.1177.se/liv--halsa/psykisk-halsa/stresshantering-och-somn/
+467. [Stresshantering och sömn]: https://www.1177.se/liv--halsa/stresshantering-och-somn/
+468. [Stroke och blodkärl i hjärnan]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/stroke-och-blodkarl-i-hjarnan/
+469. [Strålbehandling]: https://www.1177.se/undersokning-behandling/fler-behandlingar/stralbehandling/
+470. [Stöd för skelett och leder]: https://www.1177.se/undersokning-behandling/hjalpmedel/stod-for-skelett-och-leder/
+471. [Subkutan venport]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/subkutan-venport/
+472. [Sunda vanor]: https://www.1177.se/liv--halsa/sunda-vanor/
+473. [Svårläkta sår]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/svarlakta-sar/
+474. [Syn]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/syn/
+475. [Sällsynta hälsotillstånd]: https://www.1177.se/sa-fungerar-varden/sa-samarbetar-vard-och-omsorg/sallsynta-halsotillstand/
+476. [Sängvätning hos barn]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/sangvatning-hos-barn/
+477. [Så använder du lokalbedövande kräm och plåster]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/sa-anvander-du-lokalbedovande-kram-och-plaster/
+478. [Så använder du munskydd]: https://www.1177.se/liv--halsa/sunda-vanor/sa-anvander-du-munskydd/
+479. [Så bedömer du din vikt]: https://www.1177.se/liv--halsa/sunda-vanor/sa-bedomer-du-din-vikt/
+480. [Så fungerar blodet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/blodet/
+481. [Så fungerar celler och vävnader]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/celler-och-vavnader/
+482. [Så fungerar hjärnan]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/sa-fungerar-hjarnan/
+483. [Så fungerar hjärtat och blodomloppet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/hjarta-och-blodomlopp/
+484. [Så fungerar hormonsystemet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/hormonsystemet/
+485. [Så fungerar hud, naglar och hår]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/huden/
+486. [Så fungerar immunförsvaret]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/immunforsvaret/
+487. [Så fungerar kroppen]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/
+488. [Så fungerar känseln]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/sa-fungerar-kanseln/
+489. [Så fungerar könsorganen]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/sa-fungerar-konsorganen/
+490. [Så fungerar luftvägar och lungor]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/luftvagar-och-lungor/
+491. [Så fungerar lymfsystemet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/lymfsystemet/
+492. [Så fungerar matsmältningsorganen]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/matsmaltningsorganen/
+493. [Så fungerar mens]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/mens/
+494. [Så fungerar muskler och senor]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/muskler-och-senor/
+495. [Så fungerar nervsystemet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/hjarna-ryggmarg-och-nerver/
+496. [Så fungerar njurar och urinvägar]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/njurar-och-urinvagar/
+497. [Så fungerar skelett och leder]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/skelett-och-leder/
+498. [Så fungerar smaksinnet och luktsinnet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/sa-fungerar-smaksinnet-och-luktsinnet/
+499. [Så fungerar vaccin]: https://www.1177.se/undersokning-behandling/vaccinationer/sa-fungerar-vaccin/
+500. [Så fungerar vården i Sverige – Lättläst]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/sa-fungerar-varden-i-sverige/
+501. [Så fungerar ägglossning]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/sa-fungerar-agglossning/
+502. [Så fungerar ögat och synen]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/ogat-och-synen/
+503. [Så fungerar örat, hörseln och balanssinnet]: https://www.1177.se/liv--halsa/sa-fungerar-kroppen/sa-fungerar-orat-horseln-och-balanssinnet/
+504. [Så håller du tänderna rena]: https://www.1177.se/liv--halsa/tandhalsa/sa-haller-du-tanderna-rena/
+505. [Så kan du må bättre vid diabetes typ 1]: https://www.1177.se/sjukdomar--besvar/diabetes/sa-kan-du-ma-battre-vid-diabetes-typ-1/
+506. [Så samarbetar vård och omsorg]: https://www.1177.se/sa-fungerar-varden/sa-samarbetar-vard-och-omsorg/
+507. [Så skyddar du dig mot solen]: https://www.1177.se/liv--halsa/sol-och-varme/sa-skyddar-du-dig-mot-solen/
+508. [Så skyddas och hanteras dina uppgifter]: https://www.1177.se/sa-fungerar-varden/sa-skyddas-och-hanteras-dina-uppgifter/
+509. [Så tvättar du händerna]: https://www.1177.se/liv--halsa/sunda-vanor/sa-har-tvattar-du-handerna/
+510. [Så växer och utvecklas barn]: https://www.1177.se/barn--gravid/sa-vaxer-och-utvecklas-barn/
+511. [Så äter du hälsosamt]: https://www.1177.se/liv--halsa/sunda-vanor/sa-ater-du-halsosamt/
+512. [Så äter du hälsosamt]: https://www.1177.se/liv--halsa/ata-for-att-ma-bra/sa-ater-du-halsosamt/
+513. [Sår och blåmärken]: https://www.1177.se/olyckor--skador/sar-och-blamarken/
+514. [Sök vård på rätt mottagning]: https://www.1177.se/sa-fungerar-varden/att-valja-vardmottagning/sok-vard-pa-ratt-mottagning/
+515. [Sömnen är viktig för hälsan]: https://www.1177.se/liv--halsa/stresshantering-och-somn/somnen-ar-viktig-for-din-halsa/
+516. [Sömnsvårigheter]: https://www.1177.se/liv--halsa/stresshantering-och-somn/somnsvarigheter/
+517. [Ta hand om ett nyfött barn]: https://www.1177.se/barn--gravid/att-skota-ett-nyfott-barn/ta-hand-om-ett-nyfott-barn/
+518. [Tandhälsa]: https://www.1177.se/liv--halsa/tandhalsa/
+519. [Tandställning - tandreglering]: https://www.1177.se/undersokning-behandling/tandvard/tandstallning---tandreglering/
+520. [Tandvård]: https://www.1177.se/undersokning-behandling/tandvard/
+521. [Tandvård i Sverige om du kommer från annat land]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/tandvard-i-sverige-om-du-kommer-fran-annat-land/
+522. [Tandvård utomlands]: https://www.1177.se/sa-fungerar-varden/vard-vid-resa-utomlands/tandvard-utomlands/
+523. [Tarmbesvär]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/tarmbesvar/
+524. [Tarmsjukdomar]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/tarmsjukdomar/
+525. [Tens]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/tens/
+526. [Tips för att få barn att röra sig]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/tips-for-att-fa-ditt-barn-att-rora-sig/
+527. [Tips för att öka aptiten hos äldre]: https://www.1177.se/liv--halsa/ata-for-att-ma-bra/tips-for-att-oka-aptiten-hos-aldre/
+528. [Tips inför ditt besök i vården]: https://www.1177.se/sa-fungerar-varden/var-med-och-bestam-om-din-vard/tips-infor-ditt-besok-i-varden/
+529. [TIPS – behandling mot högt blodtryck genom levern]: https://www.1177.se/undersokning-behandling/operationer/tips--behandling-mot-hogt-blodtryck-genom-levern/
+530. [Tobak]: https://www.1177.se/liv--halsa/tobak-och-alkohol/tobak/
+531. [Tobak och alkohol]: https://www.1177.se/liv--halsa/tobak-och-alkohol/
+532. [Tolkning till ditt språk]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/tolkning-till-mitt-sprak/
+533. [Transplantationer]: https://www.1177.se/undersokning-behandling/operationer/transplantationer/
+534. [Trycksår]: https://www.1177.se/olyckor--skador/sar-och-blamarken/trycksar/
+535. [Trygg och säker miljö]: https://www.1177.se/liv--halsa/trygg-och-saker-miljo/
+536. [Träning efter en höftledsoperation]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/traning-efter-hoftledsoperation/
+537. [Trötthet]: https://www.1177.se/liv--halsa/stresshantering-och-somn/trotthet/
+538. [Tystnadsplikt och sekretess]: https://www.1177.se/sa-fungerar-varden/sa-skyddas-och-hanteras-dina-uppgifter/tystnadsplikt-och-sekretess/
+539. [Tänder]: https://www.1177.se/sjukdomar--besvar/mun-och-tander/tander/
+540. [Undersökning och behandling med endoskopi]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/undersokning-och-behandling-med-endoskopi/
+541. [Undersökning och behandling med titthålsteknik]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/undersokning-och-behandling-med-titthalsteknik/
+542. [Undersökningar du kan göra själv]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/undersokningar-du-kan-gora-sjalv/
+543. [Undersökningar och provtagning]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/
+544. [Undersökningar under graviditeten]: https://www.1177.se/barn--gravid/graviditet/undersokningar-under-graviditeten/
+545. [Upptäck och förebygg cancer]: https://www.1177.se/undersokning-behandling/undersokningar-och-provtagning/upptack-och-forebygg-cancer/
+546. [Uretrit]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/uretrit/
+547. [Urininkontinens]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/urininkontinens/
+548. [Urinrörsförträngning]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/urinrorsfortrangning/
+549. [Utmattningssyndrom]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/utmattningssyndrom/
+550. [Utslag och hudförändringar hos barn – bildguide]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/bildguide-utslag/
+551. [Vaccination mot denguefeber]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-denguefeber/
+552. [Vaccination mot difteri]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-difteri/
+553. [Vaccination mot epidemisk hjärnhinneinflammation]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-epidemisk-hjarnhinneinflammation/
+554. [Vaccination mot gula febern]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-gula-febern/
+555. [Vaccination mot hepatit A]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-hepatit-a/
+556. [Vaccination mot hepatit B]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-hepatit-b/
+557. [Vaccination mot HPV]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-hpv/
+558. [Vaccination mot influensa]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-influensa/
+559. [Vaccination mot japansk hjärninflammation]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-japansk-hjarninflammation/
+560. [Vaccination mot kolera]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-kolera/
+561. [Vaccination mot mässling]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-massling/
+562. [Vaccination mot pneumokocker]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-pneumokocker4/
+563. [Vaccination mot polio]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-polio/
+564. [Vaccination mot rabies]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-rabies/
+565. [Vaccination mot rotavirus]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-rotavirus/
+566. [Vaccination mot RS-virus]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-rs-virus/
+567. [Vaccination mot stelkramp]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-stelkramp/
+568. [Vaccination mot TBE]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-tbe/
+569. [Vaccination mot tuberkulos – tbc]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-tuberkulos/
+570. [Vaccination mot tyfoidfeber]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccination-mot-tyfoidfeber/
+571. [Vaccinationer]: https://www.1177.se/undersokning-behandling/vaccinationer/
+572. [Vaccinationer för dig som är gravid]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccinationer-for-dig-som-ar-gravid/
+573. [Vaccinationer inför resan]: https://www.1177.se/liv--halsa/reserad-och-vaccinationer/vaccinationer/
+574. [Vaccinationsprogram för barn]: https://www.1177.se/undersokning-behandling/vaccinationer/vaccinationsprogrammet-for-barn/
+575. [Vad innebär det att vara legitimerad inom vården?]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/vad-innebar-det-att-vara-legitimerad-inom-varden/
+576. [Vad kan jag göra för att minska stress?]: https://www.1177.se/liv--halsa/stresshantering-och-somn/vad-kan-jag-gora-for-att-minska-stress/
+577. [Vanliga besvär och sjukdomar hos barn]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/
+578. [Var med och bestäm om din vård]: https://www.1177.se/sa-fungerar-varden/var-med-och-bestam-om-din-vard/
+579. [Vardagsmotion – rörelse i vardagen]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/vardagsmotion/
+580. [Varför ska jag röra på mig?]: https://www.1177.se/liv--halsa/fysisk-aktivitet-och-traning/varfor-ska-jag-rora-pa-mig/
+581. [Venkateter i armen eller handen]: https://www.1177.se/undersokning-behandling/innan-en-behandling-eller-undersokning/venkateter-i-armen-eller-handen/
+582. [Vitiligo]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/vitiligo/
+583. [Välja vårdmottagning]: https://www.1177.se/sa-fungerar-varden/att-valja-vardmottagning/valja-vardmottagning/
+584. [Värmeslag]: https://www.1177.se/olyckor--skador/akuta-rad---forsta-hjalpen/varmeslag/
+585. [Växtvärk]: https://www.1177.se/sjukdomar--besvar/skelett-leder-och-muskler/vaxtvark/
+586. [Våld, övergrepp och sexuella trakasserier]: https://www.1177.se/liv--halsa/vald-overgrepp-och-sexuella-trakasserier/
+587. [Våldtäkt och andra sexualbrott]: https://www.1177.se/liv--halsa/vald-overgrepp-och-sexuella-trakasserier/valdtakt-sexuella-overgrepp-och-andra-sexualbrott/
+588. [Vård av barn i livets slutskede]: https://www.1177.se/undersokning-behandling/vard-i-slutet-av-livet/vard-av-barn-i-livets-slutskede/
+589. [Vård i en annan region]: https://www.1177.se/sa-fungerar-varden/att-valja-vardmottagning/vard-i-en-annan-region/
+590. [Vård i slutet av livet]: https://www.1177.se/undersokning-behandling/vard-i-slutet-av-livet/
+591. [Vård i Sverige om du kommer från ett annat land]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/vard-av-personer-fran-annat-land/
+592. [Vård i Sverige om du är utlandssvensk]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/vard-i-sverige-om-du-ar-utlandssvensk/
+593. [Vård och stöd för barn]: https://www.1177.se/barn--gravid/vard-och-stod-for-barn/
+594. [Vård om du kommer från ett annat land]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/
+595. [Vård om du är asylsökande eller inte har tillstånd att vara i Sverige]: https://www.1177.se/sa-fungerar-varden/vard-om-du-kommer-fran-ett-annat-land/vard-om-du-ar-asylsokande-eller-saknar-tillstand-for-att-vistas-i-sverige/
+596. [Vård utomlands]: https://www.1177.se/sa-fungerar-varden/vard-vid-resa-utomlands/vard-utomlands/
+597. [Vård vid resa utomlands]: https://www.1177.se/sa-fungerar-varden/vard-vid-resa-utomlands/
+598. [Vårdgaranti]: https://www.1177.se/sa-fungerar-varden/lagar-och-bestammelser/vardgaranti/
+599. [Vårtor och svamp]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/vartor-och-svamp/
+600. [Yrsel, svimning och kramper]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/yrsel-svimning-och-kramper/
+601. [Äldreomsorg]: https://www.1177.se/sa-fungerar-varden/olika-vardformer/aldreomsorg/
+602. [Ändtarmsöppning]: https://www.1177.se/sjukdomar--besvar/mage-och-tarm/andtarmsoppning/
+603. [Är det farligt att använda lustgas för att bli berusad?]: https://www.1177.se/sjukdomar--besvar/beroende-och-skadligt-bruk/ar-det-farligt-att-anvanda-lustgas-for-att-bli-berusad/
+604. [Ärftlig transtyretinamyloidos – Skelleftesjukan]: https://www.1177.se/sjukdomar--besvar/hjarna-och-nerver/arftlig-transtyretinamyloidos-eller-skelleftesjukan/
+605. [Äta för att må bra]: https://www.1177.se/liv--halsa/ata-for-att-ma-bra/
+606. [Ätstörningar]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/atstorningar/
+607. [Ångest]: https://www.1177.se/sjukdomar--besvar/psykiska-sjukdomar-och-besvar/angest/
+608. [Ögon, öron, näsa och hals]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/
+609. [Ögonbesvär]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/ogonbesvar/
+610. [Ögoninflammation]: https://www.1177.se/barn--gravid/vanliga-besvar-och-sjukdomar-hos-barn/ogoninflammation-hos-barn/
+611. [Ögonskador]: https://www.1177.se/olyckor--skador/skador-pa-huvud-och-ogon/ogonskador/
+612. [Öron och balans]: https://www.1177.se/sjukdomar--besvar/ogon-oron-nasa-och-hals/oron-och-balans/
+613. [Överaktiv blåsa]: https://www.1177.se/sjukdomar--besvar/njurar-och-urinvagar/overaktiv-blasa/
+614. [Överdriven svettning]: https://www.1177.se/sjukdomar--besvar/hud-har-och-naglar/overdriven-svettning/
+615. [Övningar för att minska svullnad i handen när du har gips eller förband]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/ovningar-for-att-minska-svullnaden-i-handen-nar-du-har-gips-eller-forband/
+616. [Övningar för handleden när gipset har tagits bort]: https://www.1177.se/undersokning-behandling/smartbehandlingar-och-rehabilitering/ovningar-for-handleden-nar-gipset-har-tagits-bort/
