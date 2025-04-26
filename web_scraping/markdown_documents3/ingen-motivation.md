@@ -1,0 +1,14 @@
+Fråga: Jag har svårt att hitta motivation till att göra saker. Det kan vara allt från att ta ut disken till att hitta på saker med vänner eller utveckla mig själv i mitt yrke. Varför jag jag ingen motivation och hur kan jag finna motivation?
+
+Psykologens svar:
+-----------------
+
+Motivation betyder att sätta i rörelse, ett tillstånd som får oss människor att vilja göra saker. När jag läser din fråga förstår jag det som att viljan har minskat, både för saker som är betydande och energigivande som socialt umgänge. Men även för det vi kallar pliktaktiviteter i form av arbete och hushållssysslor.
+
+Det är fullt normalt att motivationen varierar i grad genom livet, den kan också variera från en dag till en annan. Bristande motivation kan ha flera orsaker. Dels kan det ske saker i livet som riktar om vår uppmärksamhet, exempel på detta är konflikter, sjukdom, dödsfall samt separationer. I perioder i livet kan vi ha extra mycket att göra där tid för återhämtning går förlorad. När något händer i livet som avviker från det normala tar det mer ork och energi vilket kan leda till att viljan för saker som annars sker per automatik minskar. Det viktiga är att man arbetar för att återfå motivationen på nytt då frånvaron av den kan få oss att sluta göra saker som tidigare haft betydelse och gett oss energi. Risken finns då att man utvecklar nedstämdhet och i förlängningen [depression](https://www.kry.se/fakta/depression-och-nedstamdhet/ "depression").
+
+Oavsett orsaken till att du saknar motivation är det också viktigt att fråga sig själv varför man ska göra något. Finns det en tydlig, gärna betydande anledning att göra något är det lättare att känna motivation än om denna saknas. Du nämner avsaknad av motivation inom ett flertal livsområden, däribland på arbetet, socialt och i hemmet.
+
+Fundera på hur du önskar att det var inom respektive livsområde, gärna så konkret och specifikt som möjligt. Jämför sedan din önskvärda bild med nuläget. Jag misstänker att ditt nuläge skiljer sig åt i jämförelse med den önskvärda situationen. Genom att synliggöra din önskvärda situation har du skapat en meningsfull riktning att sträva mot. Hindret många upplever i processen att röra sig mot den önskvärda livssituationen är orkeslöshet och frånvaro av glädje. Dessa känslor är fullt normala att känna, särskilt om bristande motivation har upplevts en tid. Det viktiga är att du trots känslan börjar utföra beteenden som tar dig närmare din önskvärda situation. Gör små ansträngningar initialt, om önskvärd situation är att umgås en gång per vecka med en kompis kan du börja med att ringa kompisen. Veckan efter kanske du planerar in en träff för att därefter boka in ytterligare en träff.
+
+All förändring behöver inte ske på en och samma gång. Fundera över om det är något livsområde som är mer betydelsefullt och börja fokusera på det. När du upplever att du skapat en önskvärd situation inom ett livsområde kan du gå vidare till nästa och så vidare.

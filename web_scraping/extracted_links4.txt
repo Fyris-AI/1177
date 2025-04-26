@@ -1,0 +1,222 @@
+Total unique links found: 220
+
+1. [Add]: https://www.kry.se/fakta/psykiatri-och-psykologi/add/
+2. [Adhd]: https://www.kry.se/fakta/psykiatri-och-psykologi/adhd/
+3. [Afte]: https://www.kry.se/fakta/oron-nasa-hals/afte/
+4. [Akne]: https://www.kry.se/fakta/hudsjukdomar/akne/
+5. [Alkoholproblem]: https://www.kry.se/fakta/psykiatri-och-psykologi/alkoholproblem/
+6. [Allergi]: https://www.kry.se/fakta/allergier/allergi/
+7. [Amning]: https://www.kry.se/fakta/fertilitet-och-graviditet/amning/
+8. [Anafylaktisk chock]: https://www.kry.se/fakta/allergier/anafylaxi/
+9. [Anemi]: https://www.kry.se/fakta/ovrigt/anemi/
+10. [Artros]: https://www.kry.se/fakta/leder-muskler-och-skelett/artros/
+11. [Astma]: https://www.kry.se/fakta/lungsjukdomar/astma/
+12. [Atopiskt eksem]: https://www.kry.se/fakta/hudsjukdomar/atopiskt-eksem/
+13. [Autism]: https://www.kry.se/fakta/psykiatri-och-psykologi/autism/
+14. [Avföringsinkontinens]: https://www.kry.se/fakta/avforingsinkontinens/
+15. [Badklåda]: https://www.kry.se/fakta/hudsjukdomar/badklada/
+16. [Bakteriell vaginos]: https://www.kry.se/fakta/gynekologi/bakteriell-vaginos/
+17. [Benskörhet]: https://www.kry.se/fakta/leder-muskler-och-skelett/osteoporos/
+18. [Bihåleinflammation]: https://www.kry.se/fakta/oron-nasa-hals/bihaleinflammation/
+19. [Bihåleinflammation hos barn]: https://www.kry.se/fakta/barnsjukdomar/bihaleinflammation-hos-barn/
+20. [Bipolär sjukdom]: https://www.kry.se/fakta/psykiatri-och-psykologi/bipolar-sjukdom/
+21. [Blindtarmsinflammation]: https://www.kry.se/fakta/mage-och-tarm/blindtarmsinflammation/
+22. [Blodpropp]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/blodpropp/
+23. [BMI]: https://www.kry.se/fakta/bmi/
+24. [Borderline]: https://www.kry.se/fakta/psykiatri-och-psykologi/borderline/
+25. [Borrelia]: https://www.kry.se/fakta/djur-och-insektsbett/borrelia/
+26. [Bronkit]: https://www.kry.se/fakta/lungsjukdomar/bronkit/
+27. [Bröstsmärtor]: https://www.kry.se/fakta/smarta-och-vark/ont-i-brostet/
+28. [Bältros]: https://www.kry.se/fakta/infektioner/baltros/
+29. [Celiaki]: https://www.kry.se/fakta/mage-och-tarm/celiaki/
+30. [Coronavirus]: https://www.kry.se/fakta/infektioner/coronavirus/
+31. [D-vitamin]: https://www.kry.se/fakta/ovrigt/d-vitamin/
+32. [Demenssjukdomar]: https://www.kry.se/fakta/psykiatri-och-psykologi/demenssjukdomar/
+33. [Depression och nedstämdhet]: https://www.kry.se/fakta/psykiatri-och-psykologi/depression-och-nedstamdhet/
+34. [Diabetes mellitus]: https://www.kry.se/fakta/hormonella-sjukdomar/diabetes/
+35. [Diabetes typ 1]: https://www.kry.se/fakta/hormonella-sjukdomar/diabetes-typ-1/
+36. [Diabetes typ 2]: https://www.kry.se/fakta/hormonella-sjukdomar/diabetes-typ-2/
+37. [Diarré]: https://www.kry.se/fakta/mage-och-tarm/diarre/
+38. [Diskbråck]: https://www.kry.se/fakta/leder-muskler-och-skelett/diskbrack/
+39. [Dyshidrotiskt eksem]: https://www.kry.se/fakta/hudsjukdomar/dyshidrotiskt-eksem/
+40. [Eksem]: https://www.kry.se/fakta/hudsjukdomar/eksem/
+41. [Endometrios]: https://www.kry.se/fakta/gynekologi/endometrios/
+42. [Erektil dysfunktion/impotens]: https://www.kry.se/fakta/urologi/erektil-dysfunktion/
+43. [Feber]: https://www.kry.se/fakta/infektioner/feber/
+44. [Feber hos barn]: https://www.kry.se/fakta/barnsjukdomar/feber-hos-barn/
+45. [Feberkramp]: https://www.kry.se/fakta/infektioner/feberkramp/
+46. [Femte sjukan]: https://www.kry.se/fakta/barnsjukdomar/femte-sjukan/
+47. [Fetma]: https://www.kry.se/fakta/ovrigt/overvikt-och-fetma/
+48. [Fibromyalgi]: https://www.kry.se/fakta/fibromyalgi/
+49. [Flatlöss]: https://www.kry.se/fakta/hudsjukdomar/flatloss/
+50. [Fobier]: https://www.kry.se/fakta/psykiatri-och-psykologi/fobier/
+51. [Foglossning]: https://www.kry.se/fakta/fertilitet-och-graviditet/foglossning/
+52. [Fotsvamp]: https://www.kry.se/fakta/hudsjukdomar/fotsvamp/
+53. [Födelsemärken]: https://www.kry.se/fakta/hudsjukdomar/fodelsemarken/
+54. [Födoämnesallergi]: https://www.kry.se/fakta/allergier/fodoamnesallergi/
+55. [För tidig utlösning]: https://www.kry.se/fakta/urologi/for-tidig-utlosning/
+56. [Förhudsförträngning]: https://www.kry.se/fakta/urologi/forhudsfortrangning/
+57. [Förkylning]: https://www.kry.se/fakta/infektioner/forkylning/
+58. [Förkylning hos barn]: https://www.kry.se/fakta/barnsjukdomar/forkylning-hos-barn/
+59. [Förkylningsastma]: https://www.kry.se/fakta/lungsjukdomar/forkylningsastma/
+60. [Förlossningsdepression]: https://www.kry.se/fakta/fertilitet-och-graviditet/forlossningsdepression/
+61. [Förmaksflimmer]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/formaksflimmer/
+62. [Förnya recept]: https://www.kry.se/fakta/recept-och-intyg/fornya-recept/
+63. [Förstoppning]: https://www.kry.se/fakta/mage-och-tarm/forstoppning/
+64. [Förstoppning hos barn]: https://www.kry.se/fakta/barnsjukdomar/forstoppning-hos-barn/
+65. [Gallsten]: https://www.kry.se/fakta/mage-och-tarm/gallsten/
+66. [Generaliserat ångestsyndrom]: https://www.kry.se/fakta/psykiatri-och-psykologi/generaliserat-angestsyndrom/
+67. [Genitala hudproblem hos kvinnor]: https://www.kry.se/fakta/gynekologi/genitala-hudproblem-hos-kvinnor/
+68. [Gikt]: https://www.kry.se/fakta/leder-muskler-och-skelett/gikt/
+69. [Gonorré]: https://www.kry.se/fakta/konssjukdomar/gonorre/
+70. [Halsbränna]: https://www.kry.se/fakta/mage-och-tarm/halsbranna/
+71. [Halsböld]: https://www.kry.se/fakta/infektioner/halsbold/
+72. [Halsfluss]: https://www.kry.se/fakta/infektioner/halsfluss/
+73. [Halsfluss hos barn]: https://www.kry.se/fakta/barnsjukdomar/halsfluss-hos-barn/
+74. [Halsont]: https://www.kry.se/fakta/oron-nasa-hals/halsont/
+75. [Hemorrojder]: https://www.kry.se/fakta/mage-och-tarm/hemorrojder/
+76. [Herpes i underlivet]: https://www.kry.se/fakta/konssjukdomar/herpes-i-underlivet/
+77. [Herpes i ögat]: https://www.kry.se/fakta/ogonsjukdomar/herpes-i-ogat/
+78. [Hjärnskakning]: https://www.kry.se/fakta/smarta-och-vark/hjarnskakning/
+79. [Hjärtinfarkt]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/hjartinfarkt/
+80. [Hjärtklappning]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/hjartklappning/
+81. [Hjärtsvikt]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/hjartsvikt/
+82. [Hosta]: https://www.kry.se/fakta/hosta/
+83. [Hosta hos barn]: https://www.kry.se/fakta/barnsjukdomar/hosta-hos-barn/
+84. [Hudcancer]: https://www.kry.se/fakta/hudsjukdomar/hudcancer/
+85. [Hudutslag]: https://www.kry.se/fakta/hudsjukdomar/hudutslag/
+86. [Hudutslag hos barn]: https://www.kry.se/fakta/barnsjukdomar/utslag-hos-barn/
+87. [Huvudlöss]: https://www.kry.se/fakta/djur-och-insektsbett/loss/
+88. [Huvudvärk]: https://www.kry.se/fakta/smarta-och-vark/huvudvark/
+89. [Huvudvärk hos barn]: https://www.kry.se/fakta/barnsjukdomar/huvudvark-hos-barn/
+90. [Hypertyreos]: https://www.kry.se/fakta/hormonella-sjukdomar/hypertyreos/
+91. [Hypokondri]: https://www.kry.se/fakta/psykiatri-och-psykologi/hypokondri/
+92. [Hypotyreos]: https://www.kry.se/fakta/hormonella-sjukdomar/hypotyreos/
+93. [Hälsporre]: https://www.kry.se/fakta/leder-muskler-och-skelett/halsporre/
+94. [Håravfall]: https://www.kry.se/fakta/ovrigt/haravfall/
+95. [Högt blodtryck]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/hogt-blodtryck/
+96. [Höstblåsor]: https://www.kry.se/fakta/hudsjukdomar/hostblasor/
+97. [IBS]: https://www.kry.se/fakta/mage-och-tarm/ibs/
+98. [Illamående och kräkningar]: https://www.kry.se/fakta/mage-och-tarm/illamaende/
+99. [Infekterat sår]: https://www.kry.se/fakta/infektioner/infekterat-sar/
+100. [Influensa]: https://www.kry.se/fakta/infektioner/influensa/
+101. [Influensa hos barn]: https://www.kry.se/fakta/barnsjukdomar/influensa-hos-barn/
+102. [Inkontinens]: https://www.kry.se/fakta/urologi/inkontinens
+103. [Insektsbett]: https://www.kry.se/fakta/djur-och-insektsbett/insektsbett/
+104. [Keratosis pilaris]: https://www.kry.se/fakta/keratosis-pilaris/
+105. [Klamydia]: https://www.kry.se/fakta/konssjukdomar/klamydia/
+106. [Klimakteriet]: https://www.kry.se/fakta/gynekologi/klimakteriet/
+107. [Klåda]: https://www.kry.se/fakta/hudsjukdomar/klada/
+108. [KOL]: https://www.kry.se/fakta/lungsjukdomar/kol/
+109. [Kolik]: https://www.kry.se/fakta/barnsjukdomar/kolik/
+110. [Kondylom]: https://www.kry.se/fakta/konssjukdomar/kondylom/
+111. [Kontakteksem]: https://www.kry.se/fakta/hudsjukdomar/kontakteksem/
+112. [Korsallergi]: https://www.kry.se/fakta/allergier/korsallergi/
+113. [Kris]: https://www.kry.se/fakta/psykiatri-och-psykologi/kris/
+114. [Kristallsjuka]: https://www.kry.se/fakta/oron-nasa-hals/kristallsjuka/
+115. [Krupp]: https://www.kry.se/fakta/barnsjukdomar/krupp/
+116. [Kvinnohälsa]: https://www.kry.se/fakta/ovrigt/kvinnohalsa/
+117. [Kärlkramp]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/karlkramp/
+118. [Körtelfeber]: https://www.kry.se/fakta/oron-nasa-hals/kortelfeber/
+119. [Laktosintolerans]: https://www.kry.se/fakta/mage-och-tarm/laktosintolerans/
+120. [Ledgångsreumatism (RA)]: https://www.kry.se/fakta/leder-muskler-och-skelett/reumatism/
+121. [Lunginflammation]: https://www.kry.se/fakta/lungsjukdomar/lunginflammation/
+122. [Läkarintyg och sjukintyg]: https://www.kry.se/fakta/recept-och-intyg/lakarintyg-och-sjukintyg/
+123. [Lågt blodtryck]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/lagt-blodtryck/
+124. [Magkatarr]: https://www.kry.se/fakta/mage-och-tarm/magkatarr/
+125. [Magsjuka]: https://www.kry.se/fakta/mage-och-tarm/magsjuka-maginfluensa/
+126. [Magsmärtor]: https://www.kry.se/fakta/mage-och-tarm/ont-i-magen/
+127. [Magsår]: https://www.kry.se/fakta/mage-och-tarm/magsar/
+128. [Matförgiftning]: https://www.kry.se/fakta/mage-och-tarm/matforgiftning/
+129. [Migrän]: https://www.kry.se/fakta/smarta-och-vark/migran/
+130. [Missfall]: https://www.kry.se/fakta/fertilitet-och-graviditet/missfall/
+131. [Mjälleksem]: https://www.kry.se/fakta/hudsjukdomar/mjalleksem/
+132. [Mollusker]: https://www.kry.se/fakta/hudsjukdomar/mollusker/
+133. [Munsår]: https://www.kry.se/fakta/hudsjukdomar/munsar/
+134. [Muskelbristning]: https://www.kry.se/fakta/leder-muskler-och-skelett/muskelbristning/
+135. [Mässling]: https://www.kry.se/fakta/infektioner/massling/
+136. [Nackspärr]: https://www.kry.se/fakta/leder-muskler-och-skelett/nacksparr/
+137. [Nagelsvamp]: https://www.kry.se/fakta/ovrigt/nagelsvamp/
+138. [Nageltrång]: https://www.kry.se/fakta/ovrigt/nageltrang/
+139. [Naturliga preventivmetoder]: https://www.kry.se/fakta/fertilitet-och-graviditet/naturliga-preventivmetoder/
+140. [Njurbäckeninflammation]: https://www.kry.se/fakta/njurbackeninflammation/
+141. [Njursten]: https://www.kry.se/fakta/urologi/njursten/
+142. [Nässelutslag]: https://www.kry.se/fakta/hudsjukdomar/nasselutslag/
+143. [Nässelutslag hos barn]: https://www.kry.se/fakta/barnsjukdomar/nasselutslag-hos-barn/
+144. [OCD – Tvångssyndrom]: https://www.kry.se/fakta/psykiatri-och-psykologi/tvangssyndrom/
+145. [Ont i magen hos barn]: https://www.kry.se/fakta/barnsjukdomar/ont-i-magen-barn/
+146. [Panikångest]: https://www.kry.se/fakta/psykiatri-och-psykologi/paniksyndrom/
+147. [PCOS]: https://www.kry.se/fakta/gynekologi/pcos/
+148. [Perioral dermatit]: https://www.kry.se/fakta/hudsjukdomar/perioral-dermatit/
+149. [PMS/PMDS]: https://www.kry.se/fakta/gynekologi/pms-pmds/
+150. [Pollenallergi]: https://www.kry.se/fakta/allergier/pollenallergi/
+151. [Preventivmedel och preventivmetoder]: https://www.kry.se/fakta/fertilitet-och-graviditet/preventivmedel-och-preventivmetoder/
+152. [Prostatacancer]: https://www.kry.se/fakta/urologi/prostatacancer/
+153. [Provtagningsmetoder]: https://www.kry.se/fakta/ovrigt/provtagningsmetoder/
+154. [Psoriasis]: https://www.kry.se/fakta/hudsjukdomar/psoriasis/
+155. [Psoriasis i underlivet]: https://www.kry.se/fakta/hudsjukdomar/psoriasis-i-underlivet/
+156. [Relationsproblem]: https://www.kry.se/fakta/psykiatri-och-psykologi/relationsproblem/
+157. [Reumatiska sjukdomar]: https://www.kry.se/fakta/smarta-och-vark/reumatiska-sjukdomar/
+158. [Ringorm]: https://www.kry.se/fakta/hudsjukdomar/ringorm/
+159. [Rosacea]: https://www.kry.se/fakta/hudsjukdomar/rosacea/
+160. [Rosfeber]: https://www.kry.se/fakta/hudsjukdomar/rosfeber/
+161. [RS-Virus]: https://www.kry.se/fakta/infektioner/rs-virus/
+162. [Ryggskott]: https://www.kry.se/fakta/smarta-och-vark/ryggskott/
+163. [Röda hund]: https://www.kry.se/fakta/infektioner/rodahund/
+164. [Rökning]: https://www.kry.se/fakta/ovrigt/rokning/
+165. [Salmonella]: https://www.kry.se/fakta/mage-och-tarm/salmonella/
+166. [Scenskräck]: https://www.kry.se/fakta/psykiatri-och-psykologi/scenskrack/
+167. [Schizofreni]: https://www.kry.se/fakta/psykiatri-och-psykologi/schizofreni/
+168. [Sepsis]: https://www.kry.se/fakta/infektioner/sepsis/
+169. [Självtest vid depression]: https://www.kry.se/fakta/depression-och-nedstamdhet/sjalvtest/
+170. [Självtest vid hypokondri]: https://www.kry.se/fakta/hypokondri/sjalvtest/
+171. [Självtest vid spelproblem]: https://www.kry.se/fakta/sluta-spela/sjalvtest/
+172. [Självtest vid stress]: https://www.kry.se/fakta/stress/sjalvtest/
+173. [Självtest vid ångest och oro]: https://www.kry.se/fakta/angest-och-oro/sjalvtest/
+174. [Skabb]: https://www.kry.se/fakta/djur-och-insektsbett/skabb/
+175. [Sluta röka]: https://www.kry.se/fakta/fragor-och-svar/sluta-roka/
+176. [Social ångest]: https://www.kry.se/fakta/psykiatri-och-psykologi/social-angest/
+177. [Solskador]: https://www.kry.se/fakta/hudsjukdomar/solskador/
+178. [Sorg]: https://www.kry.se/fakta/psykiatri-och-psykologi/sorg-och-sorjande/
+179. [Spelberoende]: https://www.kry.se/fakta/psykiatri-och-psykologi/sluta-spela/
+180. [Springmask]: https://www.kry.se/fakta/mage-och-tarm/springmask/
+181. [Spänningshuvudvärk]: https://www.kry.se/fakta/smarta-och-vark/spanningshuvudvark/
+182. [Stjärtfluss]: https://www.kry.se/fakta/barnsjukdomar/stjartfluss/
+183. [Stress]: https://www.kry.se/fakta/psykiatri-och-psykologi/stress/
+184. [Stroke]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/stroke/
+185. [Struma]: https://www.kry.se/fakta/hormonella-sjukdomar/struma/
+186. [Svamp i underlivet]: https://www.kry.se/fakta/gynekologi/svamp-i-underlivet/
+187. [Svampinfektioner]: https://www.kry.se/fakta/infektioner/svampinfektioner/
+188. [Svettningar]: https://www.kry.se/fakta/ovrigt/svettningar-hyperhidros/
+189. [Svinkoppor]: https://www.kry.se/fakta/hudsjukdomar/svinkoppor/
+190. [Svår mensvärk]: https://www.kry.se/fakta/gynekologi/svar-mensvark/
+191. [Sömnapné]: https://www.kry.se/fakta/oron-nasa-hals/somnapne/
+192. [Sömnproblem]: https://www.kry.se/fakta/psykiatri-och-psykologi/somnproblem/
+193. [TBE]: https://www.kry.se/fakta/djur-och-insektsbett/tbe/
+194. [Tinnitus]: https://www.kry.se/fakta/oron-nasa-hals/tinnitus/
+195. [Torr hud]: https://www.kry.se/fakta/hudsjukdomar/torr-hud/
+196. [Torra slemhinnor]: https://www.kry.se/fakta/gynekologi/torra-slemhinnor/
+197. [Trauma och posttraumatisk stress]: https://www.kry.se/fakta/psykiatri-och-psykologi/trauma/
+198. [Tredagarsfeber]: https://www.kry.se/fakta/barnsjukdomar/tredagarsfeber/
+199. [Trötthet]: https://www.kry.se/fakta/ovrigt/trotthet/
+200. [Urininkontinens]: https://www.kry.se/fakta/urologi/urininkontinens/
+201. [Urinvägsinfektion]: https://www.kry.se/fakta/infektioner/urinvagsinfektion/
+202. [Urinvägsinfektion hos barn]: https://www.kry.se/fakta/barnsjukdomar/urinvagsinfektion-hos-barn/
+203. [Utmattningssyndrom]: https://www.kry.se/fakta/psykiatri-och-psykologi/utmattningssyndrom/
+204. [Vab-intyg]: https://www.kry.se/fakta/recept-och-intyg/vab/
+205. [Vagel]: https://www.kry.se/fakta/ogonsjukdomar/vagel/
+206. [Vattkoppor]: https://www.kry.se/fakta/infektioner/vattkoppor/
+207. [Vestibulit]: https://www.kry.se/fakta/gynekologi/vestibulit/
+208. [Vinterkräksjuka]: https://www.kry.se/fakta/mage-och-tarm/vinterkraksjuka/
+209. [Virusutslag]: https://www.kry.se/fakta/hudsjukdomar/virusutslag/
+210. [Värmeutslag]: https://www.kry.se/fakta/hudsjukdomar/varmeutslag/
+211. [Vårtor]: https://www.kry.se/fakta/hudsjukdomar/vartor/
+212. [Åderbråck]: https://www.kry.se/fakta/hjart-och-karlsjukdomar/aderbrack/
+213. [Åksjuka]: https://www.kry.se/fakta/oron-nasa-hals/aksjuka/
+214. [Ångest och oro]: https://www.kry.se/fakta/psykiatri-och-psykologi/angest-och-oro/
+215. [Ögonbesvär]: https://www.kry.se/fakta/ogonsjukdomar/ogonbesvar/
+216. [Ögoninflammation]: https://www.kry.se/fakta/ogonsjukdomar/ogoninflammation/
+217. [Ögoninflammation hos barn]: https://www.kry.se/fakta/barnsjukdomar/ogoninflammation-hos-barn/
+218. [Ögonlocksinflammation]: https://www.kry.se/fakta/ogonsjukdomar/ogonlocksinflammation/
+219. [Öroninflammation]: https://www.kry.se/fakta/oron-nasa-hals/oroninflammation/
+220. [Öroninflammation hos barn]: https://www.kry.se/fakta/barnsjukdomar/oroninflammation-hos-barn/

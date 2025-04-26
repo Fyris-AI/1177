@@ -1,0 +1,132 @@
+Total unique links found: 130
+
+1. [Alltid trött]: https://www.kry.se/fakta/fragor-och-svar/alltid-trott/
+2. [Blod i avföringen]: https://www.kry.se/fakta/fragor-och-svar/blod-i-avforingen/
+3. [Blöjeksem]: https://www.kry.se/fakta/fragor-och-svar/blojeksem/
+4. [Coronautslag]: https://www.kry.se/fakta/fragor-och-svar/corona-utslag/
+5. [Får lätt blåmärken]: https://www.kry.se/fakta/fragor-och-svar/far-latt-blamarken/
+6. [Födelsemärken och leverfläckar hos barn]: https://www.kry.se/fakta/fragor-och-svar/fodelsemarken-och-leverflackar/
+7. [Fönstertittarsjukan]: https://www.kry.se/fakta/fragor-och-svar/fonstertittarsjukan/
+8. [Golfarmbåge]: https://www.kry.se/fakta/fragor-och-svar/golfarmbage/
+9. [Höftsnuva]: https://www.kry.se/fakta/fragor-och-svar/hoftsnuva/
+10. [Hörselgånginflammation]: https://www.kry.se/fakta//fragor-och-svar/horselgangsinflammation/
+11. [Illamående vid graviditet]: https://www.kry.se/fakta/fragor-och-svar/illamaende-vid-graviditet/
+12. [Ingen motivation]: https://www.kry.se/fakta/fragor-och-svar/ingen-motivation/
+13. [Kalla händer och fötter]: https://www.kry.se/fakta/fragor-och-svar/kalla-hander-och-fotter/
+14. [Kliar i ansiktet]: https://www.kry.se/fakta/fragor-och-svar/kliar-i-ansiktet/
+15. [Kliar i huden]: https://www.kry.se/fakta/fragor-och-svar/kliar-i-huden/
+16. [Kliar i underlivet]: https://www.kry.se/fakta/fragor-och-svar/kliar-i-underlivet/
+17. [Kliar i ögat]: https://www.kry.se/fakta/fragor-och-svar/kliar-i-ogat/
+18. [Kliar i ögonen]: https://www.kry.se/fakta/fragor-och-svar/kliar-i-ogonen/
+19. [Knuta i handen]: https://www.kry.se/fakta/fragor-och-svar/knuta-i-handen/
+20. [Knuta i huden]: https://www.kry.se/fakta/fragor-och-svar/knuta-i-huden/
+21. [Knuta i naveln]: https://www.kry.se/fakta/fragor-och-svar/knuta-i-naveln/
+22. [Knuta i rumpan]: https://www.kry.se/fakta/fragor-och-svar/knuta-i-rumpan/
+23. [Knuta i ändtarmen]: https://www.kry.se/fakta/fragor-och-svar/knuta-i-andtarmen/
+24. [Kommunikationsproblem i relationen]: https://www.kry.se/fakta/fragor-och-svar/kommunikationsproblem-i-relationen/
+25. [Mask i magen]: https://www.kry.se/fakta/fragor-och-svar/mask-i-magen/
+26. [Medaljongsjuka eller annat]: https://www.kry.se/fakta/fragor-och-svar/medaljongsjuka-eller-annat/
+27. [Mortons neurom]: https://www.kry.se/fakta/fragor-och-svar/mortons-neurom/
+28. [Musarm]: https://www.kry.se/fakta/fragor-och-svar/musarm/
+29. [Nervryckningar]: https://www.kry.se/fakta/fragor-och-svar/nervryckningar/
+30. [Normal puls]: https://www.kry.se/fakta/fragor-och-svar/normal-puls/
+31. [Ont bakom pannan]: https://www.kry.se/fakta/fragor-och-svar/ont-bakom-pannan/
+32. [Ont bakom ögat]: https://www.kry.se/fakta/fragor-och-svar/ont-bakom-ogat/
+33. [Ont bakom örat]: https://www.kry.se/fakta/fragor-och-svar/ont-bakom-orat/
+34. [Ont i armen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-armen/
+35. [Ont i armhålan]: https://www.kry.se/fakta/fragor-och-svar/ont-i-armhalan/
+36. [Ont i axlarna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-axlarna/
+37. [Ont i bakhuvudet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-bakhuvudet/
+38. [Ont i benet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-benet/
+39. [Ont i benhinnorna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-benhinnorna/
+40. [Ont i bröstbenet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-brostbenet/
+41. [Ont i bröstkorgen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-brostkorgen/
+42. [Ont i bröstryggen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-brostryggen/
+43. [Ont i bröstvårtorna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-brostvartorna/
+44. [Ont i ena bröstet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-ena-brostet/
+45. [Ont i fingrarna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-fingrarna/
+46. [Ont i fotleden]: https://www.kry.se/fakta/fragor-och-svar/ont-i-fotleden/
+47. [Ont i gallan]: https://www.kry.se/fakta/fragor-och-svar/ont-i-gallan/
+48. [Ont i gommen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-gommen/
+49. [Ont i handleden]: https://www.kry.se/fakta/fragor-och-svar/ont-i-handleden/
+50. [Ont i hela kroppen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-hela-kroppen/
+51. [Ont i hjärtat]: https://www.kry.se/fakta/fragor-och-svar/ont-i-hjartat/
+52. [Ont i huden]: https://www.kry.se/fakta/fragor-och-svar/ont-i-huden/
+53. [Ont i huvudet på en speciell punkt]: https://www.kry.se/fakta/fragor-och-svar/ont-i-huvudet-pa-en-speciell-punkt/
+54. [Ont i hälen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-halen/
+55. [Ont i händerna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-handerna/
+56. [Ont i hålfoten]: https://www.kry.se/fakta/fragor-och-svar/ont-i-halfoten/
+57. [Ont i hårbotten]: https://www.kry.se/fakta/fragor-och-svar/ont-i-harbotten/
+58. [Ont i höften]: https://www.kry.se/fakta/fragor-och-svar/ont-i-hoften/
+59. [Ont i höger sida av magen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-hoger-sida-av-magen/
+60. [Ont i knät eller knäskålen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-knat/
+61. [Ont i knävecket]: https://www.kry.se/fakta/fragor-och-svar/ont-i-knavecket/
+62. [Ont i korsryggen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-korsryggen/
+63. [Ont i kroppen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-kroppen/
+64. [Ont i käken]: https://www.kry.se/fakta/fragor-och-svar/ont-i-kaken/
+65. [Ont i leder]: https://www.kry.se/fakta/fragor-och-svar/ont-i-leder/
+66. [Ont i levern]: https://www.kry.se/fakta/fragor-och-svar/ont-i-levern/
+67. [Ont i livmodern]: https://www.kry.se/fakta/fragor-och-svar/ont-i-livmodern/
+68. [Ont i ljumsken]: https://www.kry.se/fakta/fragor-och-svar/ont-i-ljumsken/
+69. [Ont i ländrygg]: https://www.kry.se/fakta/fragor-och-svar/ont-i-landryggen/
+70. [Ont i magen gravid]: https://www.kry.se/fakta/fragor-och-svar/ont-i-magen-gravid/
+71. [Ont i magsäcken]: https://www.kry.se/fakta/fragor-och-svar/ont-i-magsacken/
+72. [Ont i mellangärdet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-mellangardet/
+73. [Ont i mjälten]: https://www.kry.se/fakta/fragor-och-svar/ont-i-mjalten/
+74. [Ont i musklerna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-musklerna/
+75. [Ont i nacken]: https://www.kry.se/fakta/fragor-och-svar/ont-i-nacken/
+76. [Ont i nedre delen av magen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-nedre-delen-av-magen/
+77. [Ont i njurarna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-njurarna/
+78. [Ont i näsan]: https://www.kry.se/fakta/fragor-och-svar/ont-i-nasan/
+79. [Ont i revbenen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-revbenen/
+80. [Ont i ryggen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-ryggen/
+81. [Ont i ryggslutet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-ryggslutet/
+82. [Ont i skelettet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-skelettet/
+83. [Ont i stortån]: https://www.kry.se/fakta/fragor-och-svar/ont-i-stortan/
+84. [Ont i tarmarna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-tarmarna/
+85. [Ont i testiklarna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-testiklarna/
+86. [Ont i tinningen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-tinningen/
+87. [Ont i trampdynan]: https://www.kry.se/fakta/fragor-och-svar/ont-i-trampdynan/
+88. [Ont i tummen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-tummen/
+89. [Ont i tungan]: https://www.kry.se/fakta/fragor-och-svar/ont-i-tungan/
+90. [Ont i underlivet]: https://www.kry.se/fakta/fragor-och-svar/ont-i-underlivet/
+91. [Ont i urinblåsan]: https://www.kry.se/fakta/fragor-och-svar/ont-i-urinblasan/
+92. [Ont i urinröret]: https://www.kry.se/fakta/fragor-och-svar/ont-i-urinroret/
+93. [Ont i vaden]: https://www.kry.se/fakta/fragor-och-svar/ont-i-vaden/
+94. [Ont i vänster sida av magen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-vanster-sida-av-magen/
+95. [Ont i äggstockarna]: https://www.kry.se/fakta/fragor-och-svar/ont-i-aggstockarna/
+96. [Ont i ändtarmen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-andtarmen/
+97. [Ont i örat vuxen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-orat-vuxen/
+98. [Ont i övre delen av magen]: https://www.kry.se/fakta/fragor-och-svar/ont-i-ovre-delen-av-magen/
+99. [Ont när jag bajsar]: https://www.kry.se/fakta/fragor-och-svar/ont-nar-man-bajsar/
+100. [Ont när jag kissar]: https://www.kry.se/fakta/fragor-och-svar/ont-nar-jag-kissar/
+101. [Ont när jag sitter]: https://www.kry.se/fakta/fragor-och-svar/ont-nar-jag-sitter/
+102. [Ont när man andas]: https://www.kry.se/fakta/fragor-och-svar/ont-nar-man-andas/
+103. [Ont när man står]: https://www.kry.se/fakta/fragor-och-svar/ont-nar-man-star/
+104. [Ont på ena sidan av halsen när jag sväljer]: https://www.kry.se/fakta/fragor-och-svar/ont-pa-ena-sidan-av-halsen-nar-jag-svaljer/
+105. [Pollenallergi eller annat?]: https://www.kry.se/fakta/fragor-och-svar/pollenallergi-eller-annat/
+106. [Prata inför grupp]: https://www.kry.se/fakta/fragor-och-svar/svart-att-prata-infor-grupp/
+107. [Skillnaden mellan borrelia och TBE]: https://www.kry.se/fakta/fragor-och-svar/skillnaden-mellan-borrelia-och-tbe/
+108. [Skjuta upp mens]: https://www.kry.se/fakta/fragor-och-svar/skjuta-upp-mens/
+109. [Skäggbesvär]: https://www.kry.se/fakta/fragor-och-svar/skaggbesvar/
+110. [Slem i halsen]: https://www.kry.se/fakta/fragor-och-svar/slem-i-halsen/
+111. [Sluta dricka alkohol]: https://www.kry.se/fakta/fragor-och-svar/sluta-dricka-alkohol/
+112. [Sluta röka]: https://www.kry.se/fakta/fragor-och-svar/sluta-roka/
+113. [Sluta snusa]: https://www.kry.se/fakta/fragor-och-svar/sluta-snusa/
+114. [Smärta vid ägglossning]: https://www.kry.se/fakta//fragor-och-svar/smarta-vid-agglossning/
+115. [Soleksem]: https://www.kry.se/fakta/fragor-och-svar/soleksem/
+116. [Svårt att andas vid ansträngning]: https://www.kry.se/fakta/fragor-och-svar/svart-att-andas-vid-anstrangning/
+117. [Svårt att komma till ro]: https://www.kry.se/fakta/fragor-och-svar/svart-att-komma-till-ro/
+118. [Svårt att koncentrera sig]: https://www.kry.se/fakta/fragor-och-svar/svart-att-koncentrera-sig/
+119. [Svårt att äta]: https://www.kry.se/fakta/fragor-och-svar/svart-att-ata/
+120. [Sömnsvårigheter]: https://www.kry.se/fakta/fragor-och-svar/somnsvarigheter/
+121. [Tennisarmbåge]: https://www.kry.se/fakta/fragor-och-svar/tennisarmbage/
+122. [Torr hårbotten]: https://www.kry.se/fakta/fragor-och-svar/torr-harbotten/
+123. [Torsk i mun hos barn]: https://www.kry.se/fakta/fragor-och-svar/torsk-i-munnen-hos-barn/
+124. [Utslag i ansiktet]: https://www.kry.se/fakta/fragor-och-svar/utslag-i-ansiktet/
+125. [Utslag i pannan]: https://www.kry.se/fakta/fragor-och-svar/utslag-i-pannan/
+126. [Varför sticker det och pirrar i händer och fötter?]: https://www.kry.se/fakta/fragor-och-svar/stickningar-hander-fotter/
+127. [Vaxpropp]: https://www.kry.se/fakta/fragor-och-svar/vaxpropp/
+128. [Värk i benen]: https://www.kry.se/fakta/fragor-och-svar/vark-i-benen/
+129. [Värmeutslag hos barn]: https://www.kry.se/fakta/fragor-och-svar/varmeutslag-hos-barn/
+130. [Ångest av alkohol]: https://www.kry.se/fakta/fragor-och-svar/angest-av-alkohol/
