@@ -12,7 +12,7 @@ export function Header() {
       </div>
 
       {/* Main header content */}
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 sm:h-20 md:px-4 ml-[225px] sm:ml-[280px]">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 sm:h-20 md:px-4 ml-[40px] sm:ml-[70px]">
         {/* Left Section */}
         <div className="flex items-center h-full px-0 sm:px-2 justify-start gap-0 sm:gap-2 md:gap-4">
           <SelectRegion />

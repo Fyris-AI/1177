@@ -31,10 +31,7 @@ export const HeaderLogo = () => {
 
   const audience =
     theme?.split("-")[1] === "personal" ? "personal" : "invanare";
-  const logoSource =
-    audience === "personal"
-      ? "/1177_vardpersonal.png"
-      : "/1177_region_uppsala.png";
+  const logoSource = audience === "personal" ? "/kry.png" : "/kry.png";
 
   return (
     <Image

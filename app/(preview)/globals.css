@@ -10,10 +10,13 @@
   --red: 347 71% 44%;
   --red-dark: 332 100% 21%;
   --pink-light: 350 55% 96%;
-  --blue: 212 44% 40%;
-  --blue-dark: 230 27% 32%;
-  --blue-light: 211 28% 83%;
   --grey-light: 30 29% 97%;
+
+  --blue-dark: 205 100% 13%;
+  --blue: 202 92% 51%;
+  --blue-light: 201 100% 85%;
+  --green: 164 75% 84%;
+  --green-light: 170 55% 96%;
 }
 
 @layer base {
@@ -59,26 +62,26 @@
     --background: var(--white);
     --foreground: var(--black);
 
-    --primary: var(--red);
+    --primary: var(--blue-dark);
     --primary-foreground: var(--white);
 
-    --secondary: var(--pink-light);
+    --secondary: var(--blue-light);
     --secondary-foreground: var(--black);
 
-    --accent: var(--red);
+    --accent: var(--blue-dark);
     --accent-foreground: var(--white);
 
-    --muted: var(--grey-light);
+    --muted: var(--green-light);
     --muted-foreground: var(--black);
 
     --border: var(--black);
     --input: var(--black);
-    --ring: var(--red);
+    --ring: var(--blue-dark);
 
-    --header-background: var(--pink-light);
-    --header-text: var(--red);
-    --title: var(--red);
-    --icon: var(--red-dark);
+    --header-background: var(--green-light);
+    --header-text: var(--blue-dark);
+    --title: var(--blue);
+    --icon: var(--blue-dark);
   }
 
   [data-theme='dark-invanare'] {
