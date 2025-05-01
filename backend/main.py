@@ -198,17 +198,17 @@ def format_llm2_prompt(user_query: str, relevant_context: str) -> str:
     Formats the prompt for the second LLM, instructing it to generate a JSON response.
     """
     # Keep prompt in Swedish
-    prompt = f"""Du är en hjälpsam AI-assistent. Din uppgift är att svara på användarens fråga baserat *endast* på den tillhandahållna kontexten nedan. Kontexten består av ett eller flera dokument, åtskilda av '--- Dokument: [filnamn] ---'. Varje dokument innehåller ofta en titel och en URL-källa nära början.
+    prompt = f"""Du är en hjälpsam AI-assistent. Din uppgift är att svara på användarens fråga baserat på den tillhandahållna kontexten nedan. Kontexten består av ett eller flera dokument, åtskilda av '--- Dokument: [filnamn] ---'. Varje dokument innehåller ofta en titel och en URL-källa nära början.
 
 Svara ALLTID med ett JSON-objekt, och inget annat. JSON-objektet ska ha följande struktur:
 {{
-  "message": "Ett tydligt och koncist svar på användarens fråga, endast baserat på informationen i kontexten.",
+  "message": "Ett tydligt och koncist svar på användarens fråga baserat på informationen i kontexten.",
   "source_links": ["En lista med URL-källor (strängar) från de specifika dokument i kontexten som informationen i 'message' hämtades från."],
   "source_names": ["En lista med korta, beskrivande namn (strängar) för de specifika dokument i kontexten som informationen i 'message' hämtades från. Försök extrahera den mest relevanta delen av dokumentets titel (ofta före ' - ')."]
 }}
 
 Viktiga regler:
-- Basera svaret ('message') *enbart* på den givna kontexten. Om svaret inte finns, ange det i 'message'. Hitta inte på information.
+- Basera svaret ('message') baserat på den givna kontexten. Hitta inte på information.
 - Inkludera *endast* länkar och namn från de dokument som faktiskt användes för att formulera svaret i 'message'.
 - Om inga dokument i kontexten var relevanta för att svara, eller om kontexten är tom, returnera:
   {{

@@ -1,6 +1,5 @@
 {
-  "/api/proxy/route": "app/api/proxy/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/api/chat/route": "app/api/chat/route.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/(preview)/page": "app/(preview)/page.js"
 }
