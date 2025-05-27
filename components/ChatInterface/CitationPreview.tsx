@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, FileText } from "lucide-react";
 
 interface CitationPreviewProps {
   url: string;
@@ -14,8 +14,11 @@ const CitationPreview: React.FC<CitationPreviewProps> = ({
   const [error, setError] = useState<string | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const domain = url ? new URL(url).hostname.replace("www.", "") : "";
-  const proxyUrl = `/api/proxy?url=${encodeURIComponent(url)}`;
+  const isPdf = url.toLowerCase().endsWith(".pdf");
+  const domain = !isPdf && url ? new URL(url).hostname.replace("www.", "") : "";
+  const proxyUrl = isPdf
+    ? `/api/pdf/${encodeURIComponent(url)}`
+    : `/api/proxy?url=${encodeURIComponent(url)}`;
 
   const handleIframeLoad = () => {
     setIsLoading(false);
@@ -23,7 +26,11 @@ const CitationPreview: React.FC<CitationPreviewProps> = ({
 
   const handleIframeError = () => {
     setIsLoading(false);
-    setError("Det gick inte att ladda webbsidan.");
+    setError(
+      isPdf
+        ? "Det gick inte att ladda PDF-filen."
+        : "Det gick inte att ladda webbsidan."
+    );
   };
 
   return (
@@ -45,11 +52,11 @@ const CitationPreview: React.FC<CitationPreviewProps> = ({
           ref={iframeRef}
           src={proxyUrl}
           className="w-full h-full"
-          title={`Preview ${domain}`}
+          title={isPdf ? "PDF Preview" : `Preview ${domain}`}
           onLoad={handleIframeLoad}
           onError={handleIframeError}
           loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
+          sandbox={isPdf ? "" : "allow-scripts allow-same-origin"}
           referrerPolicy="no-referrer"
         />
       )}

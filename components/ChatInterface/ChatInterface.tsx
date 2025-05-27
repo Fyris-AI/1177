@@ -24,7 +24,7 @@ import {
   DrawerFooter,
 } from "@/components/ui/drawer";
 import { AppMessage } from "@/lib/types";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 import { useTheme } from "next-themes";
 
 export default function ChatInterface() {
@@ -32,7 +32,7 @@ export default function ChatInterface() {
   const { theme } = useTheme();
 
   const [messages, setMessages] = useState<AppMessage[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,15 +52,15 @@ export default function ChatInterface() {
     setError(null);
     setIsLoading(true);
 
-    const newUserMessage: AppMessage = { 
-      id: nanoid(), 
-      role: 'user', 
-      content: input 
+    const newUserMessage: AppMessage = {
+      id: nanoid(),
+      role: "user",
+      content: input,
     };
 
-    setMessages(prev => [...prev, newUserMessage]); 
+    setMessages((prev) => [...prev, newUserMessage]);
     const currentMessages = [...messages, newUserMessage];
-    setInput('');
+    setInput("");
 
     const [mode, audience] = (theme || "light-invanare").split("-") as [
       "light" | "dark",
@@ -68,37 +68,43 @@ export default function ChatInterface() {
     ];
 
     try {
-      const apiPayload = { 
+      const apiPayload = {
         messages: currentMessages,
-        audience: audience
-      }; 
+        audience: audience,
+      };
 
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(apiPayload),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || `API request failed with status ${response.status}`);
+        throw new Error(
+          errorData.error || `API request failed with status ${response.status}`
+        );
       }
 
       const assistantResponseData = await response.json();
-      
+
       const newAssistantMessage: AppMessage = {
         id: nanoid(),
-        role: 'assistant',
-        content: assistantResponseData.message || "No message content received.",
+        role: "assistant",
+        content:
+          assistantResponseData.message || "No message content received.",
         source_names: assistantResponseData.source_names || [],
         source_links: assistantResponseData.source_links || [],
       };
 
-      setMessages(prev => [...prev, newAssistantMessage]); 
-
+      setMessages((prev) => [...prev, newAssistantMessage]);
     } catch (err: unknown) {
       console.error("Error fetching chat response:", err);
-      setError(err instanceof Error ? err.message : "Ett oväntat fel uppstod vid hämtning av svar.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Ett oväntat fel uppstod vid hämtning av svar."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -138,7 +144,7 @@ export default function ChatInterface() {
               <>
                 <div className="text-center py-10 sm:py-14 md:py-22">
                   <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-[30vh] text-center text-title">
-                    Vad kan jag hjälpa dig med?
+                    What can I help you with today?
                   </h2>
                 </div>
                 <div>

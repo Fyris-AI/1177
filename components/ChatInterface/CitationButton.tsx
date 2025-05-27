@@ -1,47 +1,47 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ExternalLink } from "lucide-react";
+import { ExternalLink, FileText } from "lucide-react";
+import { useConfig } from "@/contexts/ConfigContext";
+import CitationPreview from "./CitationPreview";
 
 interface CitationButtonProps {
-  link: string;
-  name: string;
-  onClick: (link: string) => void;
+  url: string;
+  className?: string;
 }
 
-// Get variant from .env with Variant 1 as default
-const CITATION_PREVIEW_IFRAME =
-  process.env.NEXT_PUBLIC_CITATION_PREVIEW_IFRAME !== "false";
+const CitationButton: React.FC<CitationButtonProps> = ({ url, className }) => {
+  const { config } = useConfig();
+  const isPdf = url.toLowerCase().endsWith(".pdf");
+  const Icon = isPdf ? FileText : ExternalLink;
 
-const CitationButton: React.FC<CitationButtonProps> = ({
-  link,
-  name,
-  onClick,
-}) => {
-  return CITATION_PREVIEW_IFRAME ? (
-    // Variant 1: Using the BookOpen icon to open CitationPreview
-    <Button
-      variant="link"
-      size="sm"
-      className="h-auto px-1 py-0.5 text-muted-foreground hover:text-primary"
-      onClick={() => onClick(link)}
-    >
-      <BookOpen className="h-3 w-3 mr-1" />
-      {name}
-    </Button>
-  ) : (
-    // Variant 2: Using the ExternalLink icon to open the link directly
-    <Button
-      variant="link"
-      size="sm"
-      className="h-auto px-1 py-0.5 text-muted-foreground hover:text-primary"
-      onClick={() => window.open(link, "_blank")}
-    >
-      <ExternalLink className="h-3 w-3 mr-1" />
-      {name}
-    </Button>
+  if (config.openLinksInNewTab) {
+    return (
+      <Button
+        variant="ghost"
+        size="icon"
+        className={className}
+        onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
+        title={isPdf ? "Öppna PDF" : "Öppna länk i ny flik"}
+      >
+        <Icon className="h-4 w-4" />
+      </Button>
+    );
+  }
+
+  return (
+    <div className="relative">
+      <CitationPreview url={url} className={className} />
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute top-2 right-2 z-20"
+        title={isPdf ? "Öppna PDF" : "Öppna länk i ny flik"}
+        onClick={() => window.open(url, "_blank", "noopener,noreferrer")}
+      >
+        <Icon className="h-4 w-4" />
+      </Button>
+    </div>
   );
 };
-
-CitationButton.displayName = "CitationButton";
 
 export default CitationButton;

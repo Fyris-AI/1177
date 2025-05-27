@@ -14,28 +14,24 @@ export const ThemeModeToggle = () => {
 
   if (!mounted) return null;
 
-  const [mode, audience] = (theme || "light-invanare").split("-") as [
-    "light" | "dark",
-    "invanare" | "personal"
-  ];
-
   const toggleMode = () => {
-    const newTheme = `${mode === "dark" ? "light" : "dark"}-${audience}`;
-    setTheme(newTheme);
+    setTheme(theme === "dark" ? "light" : "dark");
   };
+
+  const isDark = resolvedTheme === "dark";
 
   return (
     <div
       onClick={toggleMode}
-      className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem] md:basis-[3.6rem]"
+      className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem] md:basis-[4rem]"
     >
-      {mode === "dark" ? (
+      {isDark ? (
         <Sun className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
       ) : (
         <Moon className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
       )}
       <p className="text-xs text-header-text hidden md:block">
-        {mode === "dark" ? "Ljust läge" : "Mörkt läge"}
+        {isDark ? "Light mode" : "Dark mode"}
       </p>
     </div>
   );
