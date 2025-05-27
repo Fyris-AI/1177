@@ -11,11 +11,26 @@ export function CitationWindowActions({
   onClose,
   className,
 }: CitationActionsProps) {
+  const getPdfUrl = (filename: string) => {
+    if (filename.startsWith("/api/pdf/")) {
+      return filename;
+    }
+    return `/api/pdf/${encodeURIComponent(filename)}`;
+  };
+
+  const handleOpenInNewTab = () => {
+    if (!citationUrl) return;
+
+    const isPdf = citationUrl.toLowerCase().endsWith(".pdf");
+    const url = isPdf ? getPdfUrl(citationUrl) : citationUrl;
+    window.open(url, "_blank");
+  };
+
   return (
     <div className={`flex gap-2 w-full ${className}`}>
       <Button
         variant="secondary"
-        onClick={() => window.open(citationUrl || "", "_blank")}
+        onClick={handleOpenInNewTab}
         className="w-full h-8"
         disabled={!citationUrl}
       >

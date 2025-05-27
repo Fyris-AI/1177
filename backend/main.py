@@ -108,14 +108,25 @@ def format_llm1_batch_prompt(user_query: str,
     doc_separator = "\n\n---\n\n"
     formatted_docs = []
     for filename, content in batch_content:
-        # Add clear separators including the filename
         formatted_docs.append(
             f"--- Start Document: {filename} ---\n{content}\n--- End Document: {filename} ---"
         )
 
     docs_string = doc_separator.join(formatted_docs)
 
-    prompt = f"""You are an AI assistant specialized in flap surgery, burn care, and related reconstructive surgery.\n\nUser question: \"{user_query}\"\n\nDocument batch:\n{docs_string}\n\nYou have received a batch of several documents (delimited by --- Start Document: [filename] --- and --- End Document: [filename] ---). Carefully review each document in the batch. Identify ALL documents whose content is relevant to answering the user's question.\nReturn a list containing ONLY the exact filenames of all relevant documents you find in this batch. Separate the filenames with commas (e.g. file1.md,file3.md,file8.md).\nIf none of the documents in the batch are relevant, reply only with 'None'. Do not include any explanatory text before or after the list of filenames or 'None'.\n\nRelevant filenames:"""
+    prompt = f"""You are an AI assistant specialized in helping surgical professionals with flap surgery, burn care, and reconstructive surgery. Your role is to help identify relevant surgical information that can assist healthcare providers in their practice.
+
+User question: \"{user_query}\"
+
+Document batch:
+{docs_string}
+
+You have received a batch of surgical documents (delimited by --- Start Document: [filename] --- and --- End Document: [filename] ---). Your task is to carefully review each document and identify ALL documents that contain information relevant to answering the surgical professional's question. Consider both direct answers and supplementary information that might be helpful in a surgical context.
+
+Return a list containing ONLY the exact filenames of all relevant documents you find in this batch. Separate the filenames with commas (e.g. file1.md,file3.md,file8.md).
+If none of the documents in the batch are relevant to surgical practice, reply only with 'None'. Do not include any explanatory text before or after the list of filenames or 'None'.
+
+Relevant filenames:"""
     return prompt
 
 
@@ -186,7 +197,61 @@ def format_llm2_prompt(user_query: str, relevant_context: str) -> str:
     """
     Formats the prompt for the second LLM, instructing it to generate a JSON response.
     """
-    prompt = f"""You are an AI assistant specialized in flap surgery, burn care, and related reconstructive surgery. Your task is to answer the user's question based on the provided context below. The context consists of one or more documents, separated by '--- Document: [filename] ---'. Each document often contains a title and a source URL near the beginning.\n\nALWAYS respond with a JSON object, and nothing else. The JSON object should have the following structure:\n{{\n  \"message\": \"A clear and concise answer to the user's question based on the information in the context.\",\n  \"source_links\": [\"A list of URL sources (strings) from the specific documents in the context that the information in 'message' was taken from.\"],\n  \"source_names\": [\"A list of short, descriptive names (strings) for the specific documents in the context that the information in 'message' was taken from. Try to extract the most relevant part of the document's title (often before ' - ').\"]\n}}\n\nImportant rules:\n- Base the answer ('message') strictly on the given context. Do not make up information.\n- Include *only* links and names from the documents that were actually used to formulate the answer in 'message'.\n- If none of the documents in the context were relevant to answer, or if the context is empty, return:\n  {{\n    \"message\": \"I could not find relevant information in the provided documents to answer your question.\",\n    \"source_links\": [],\n    \"source_names\": []\n  }}\n- Ensure the output is a valid JSON object and nothing else (no extra text before or after).\n\nUser Question: \"{user_query}\"\n\nProvided Context:\n---\n{relevant_context}\n---\n\nJSON Answer:\n"""
+    prompt = f"""You are an AI assistant specialized in helping surgical professionals with flap surgery, burn care, and reconstructive surgery. Your role is to provide clear, practical, and supportive guidance to healthcare providers. You should be conversational, kind, and professional while maintaining technical accuracy.
+
+Your task is to answer the surgical professional's question based on the provided context below. The context consists of one or more documents, separated by '--- Document: [filename] ---'. Each document often contains a title and a source URL near the beginning.
+
+IMPORTANT: Keep your answers concise and to the point. Aim for 2-3 short paragraphs maximum. Focus on the most relevant and actionable information.
+
+ALWAYS respond with a JSON object, and nothing else. The JSON object should have the following structure:
+{{
+  "message": "A clear, concise, and helpful answer that addresses the surgical professional's question. Use markdown formatting to improve readability:
+    - Use **bold** for key surgical terms and critical information
+    - Use *italics* for emphasis on important considerations
+    - Use bullet points (•) for listing key points
+    - Use numbered lists (1., 2., etc.) only for sequential steps
+    - Use > for important warnings
+    - Use `code blocks` for specific measurements or technical specifications
+    Keep the response focused and brief while maintaining professional accuracy.",
+  "source_links": ["A list of PDF filenames ONLY (e.g., 'surgical-guidelines.pdf') from the data/pdf directory. IMPORTANT: Only include .pdf files, not .md files. If a source is a markdown file, look for its corresponding PDF version."],
+  "source_names": ["A list of short, descriptive names for the PDFs (e.g., 'Surgical Guidelines 2023'). Keep these brief and relevant."]
+}}
+
+Important guidelines:
+- Keep answers concise (2-3 paragraphs maximum)
+- Focus on the most relevant and actionable information
+- Base your answer strictly on the given context
+- Use markdown formatting to make the response more readable
+- IMPORTANT: Only include PDF files in source_links (e.g., 'document.pdf'), not markdown files
+- If a source is a markdown file, look for its corresponding PDF version in the data/pdf directory
+- If none of the documents were relevant, or if the context is empty, return:
+  {{
+    "message": "I understand you're looking for information about this surgical topic. While I couldn't find specific details in my current knowledge base, I'd be happy to help you explore other aspects of flap surgery or reconstructive procedures that might be relevant to your practice.",
+    "source_links": [],
+    "source_names": []
+  }}
+- Ensure the output is a valid JSON object and nothing else
+
+Example of good formatting (note the brevity):
+"Here's what you need to know about the **pedicled flap** procedure:
+
+• **Key Components**:
+  - *Blood supply*: `2-3 cm` pedicle width
+  - *Flap dimensions*: Maximum `20x10 cm`
+
+> Important: Always verify vascular supply before proceeding
+
+The procedure involves identifying the **donor site**, marking the *flap boundaries*, and elevating with `2-3 mm` of subcutaneous tissue. *Consider patient's medical history when planning*."
+
+User Question: \"{user_query}\"
+
+Provided Context:
+---
+{relevant_context}
+---
+
+JSON Answer:
+"""
     return prompt
 
 

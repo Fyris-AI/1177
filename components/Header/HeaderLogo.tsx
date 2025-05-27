@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 
 export const HeaderLogo = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
   const router = useRouter();
 
   const handleImageClick = () => {
@@ -29,21 +28,10 @@ export const HeaderLogo = () => {
       <div className="h-full w-[280px] animate-pulse bg-gray-200 rounded" />
     );
 
-  const audience =
-    theme?.split("-")[1] === "personal" ? "personal" : "invanare";
-  const logoSource =
-    audience === "personal"
-      ? "/1177_vardpersonal.png"
-      : "/1177_region_uppsala.png";
-
   return (
     <Image
-      src={logoSource}
-      alt={
-        audience === "personal"
-          ? "1177 Vårdpersonal Logo"
-          : "1177 Region Uppsala Logo"
-      }
+      src="/1177_region_uppsala.png"
+      alt="1177 Region Uppsala Logo"
       width={280}
       height={32}
       priority

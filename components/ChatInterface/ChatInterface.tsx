@@ -25,11 +25,9 @@ import {
 } from "@/components/ui/drawer";
 import { AppMessage } from "@/lib/types";
 import { nanoid } from "nanoid";
-import { useTheme } from "next-themes";
 
 export default function ChatInterface() {
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
-  const { theme } = useTheme();
 
   const [messages, setMessages] = useState<AppMessage[]>([]);
   const [input, setInput] = useState("");
@@ -62,21 +60,11 @@ export default function ChatInterface() {
     const currentMessages = [...messages, newUserMessage];
     setInput("");
 
-    const [mode, audience] = (theme || "light-invanare").split("-") as [
-      "light" | "dark",
-      "invanare" | "personal"
-    ];
-
     try {
-      const apiPayload = {
-        messages: currentMessages,
-        audience: audience,
-      };
-
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(apiPayload),
+        body: JSON.stringify({ messages: currentMessages }),
       });
 
       if (!response.ok) {
@@ -219,6 +207,7 @@ export default function ChatInterface() {
       >
         <DrawerContent className="h-[85vh]">
           <DrawerHeader className="flex-1 overflow-hidden flex flex-col">
+            <DrawerTitle className="sr-only">Citation Preview</DrawerTitle>
             <DrawerDescription className="flex-1 overflow-auto">
               {citationUrl ? (
                 <CitationPreview url={citationUrl} className="h-full" />

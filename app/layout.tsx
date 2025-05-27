@@ -6,8 +6,8 @@ import { ConfigProvider } from "@/contexts/ConfigContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "1177 AI Assistant",
-  description: "AI-powered medical information assistant",
+  title: "Flap AI-assistent",
+  description: "AI-powered flap surgery assistant",
 };
 
 export default function RootLayout({
