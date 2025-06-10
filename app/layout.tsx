@@ -6,7 +6,7 @@ import { ConfigProvider } from "@/contexts/ConfigContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Flap AI-assistent",
+  title: "Lambå Atlas",
   description: "AI-powered flap surgery assistant",
 };
 

@@ -177,7 +177,7 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
           >
             <div className="flex items-center gap-2 rounded-lg px-4 py-2 bg-muted">
               <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Tänker...</span>
+              <span>Thinking...</span>
             </div>
           </motion.div>
         )}
