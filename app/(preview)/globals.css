@@ -13,7 +13,10 @@
   --blue: 212 44% 40%;
   --blue-dark: 230 27% 32%;
   --blue-light: 211 28% 83%;
-  --grey-light: 30 29% 97%;
+  --grey-light: 0 0% 93%;
+  --grey: 0 0% 69%;
+  --orange: 35 100% 64%;
+  --orange-dark: 35 100% 54%;
 }
 
 @layer base {
@@ -27,13 +30,13 @@
     --popover: var(--white);
     --popover-foreground: var(--black);
 
-    --primary: var(--red);
-    --primary-foreground: var(--white);
+    --primary: var(--orange);
+    --primary-foreground: var(--black);
 
-    --secondary: var(--pink-light);
+    --secondary: var(--grey-light);
     --secondary-foreground: var(--black);
 
-    --accent: var(--red);
+    --accent: var(--orange);
     --accent-foreground: var(--white);
 
     --muted: var(--grey-light);
@@ -41,12 +44,12 @@
 
     --border: var(--black);
     --input: var(--black);
-    --ring: var(--red);
+    --ring: var(--orange);
 
-    --header-background: var(--pink-light);
-    --header-text: var(--red);
-    --title: var(--red);
-    --icon: var(--red-dark);
+    --header-background: var(--grey-light);
+    --header-text: var(--black);
+    --title: var(--black);
+    --icon: var(--orange);
 
     --radius: 0.5rem;
   }
@@ -61,13 +64,13 @@
     --popover: var(--grey-dark);
     --popover-foreground: var(--grey-light);
 
-    --primary: var(--red);
+    --primary: var(--orange);
     --primary-foreground: var(--white);
 
-    --secondary: var(--red-dark);
+    --secondary: var(--orange-dark);
     --secondary-foreground: var(--white);
 
-    --accent: var(--red-dark);
+    --accent: var(--orange-dark);
     --accent-foreground: var(--white);
 
     --muted: var(--black-charcoal);
@@ -80,7 +83,7 @@
     --header-background: var(--black-charcoal);
     --header-text: var(--pink-light);
     --title: var(--grey-light);
-    --icon: var(--red);
+    --icon: var(--orange);
   }
 }
 

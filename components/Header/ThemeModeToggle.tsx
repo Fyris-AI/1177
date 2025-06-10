@@ -26,9 +26,9 @@ export const ThemeModeToggle = () => {
       className="flex flex-col items-center justify-center gap-1 cursor-pointer min-w-[2.5rem] md:basis-[4rem]"
     >
       {isDark ? (
-        <Sun className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
+        <Sun className="h-6 w-6 sm:h-8 sm:w-8 text-header-text" />
       ) : (
-        <Moon className="h-6 w-6 sm:h-8 sm:w-8 text-icon" />
+        <Moon className="h-6 w-6 sm:h-8 sm:w-8 text-header-text" />
       )}
       <p className="text-xs text-header-text hidden md:block">
         {isDark ? "Light mode" : "Dark mode"}

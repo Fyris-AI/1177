@@ -6,9 +6,9 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-header-background">
       {/* Left positioned logo */}
-      <div className="absolute left-0 top-0 h-full flex items-center pl-0">
+      {/* <div className="absolute left-0 top-0 h-full flex items-center pl-0">
         <HeaderLogo />
-      </div>
+      </div> */}
 
       {/* Center title - absolutely positioned */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-0 sm:w-auto invisible sm:visible text-lg sm:text-xl md:text-2xl font-semibold text-center text-title overflow-hidden">
