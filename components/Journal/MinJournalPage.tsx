@@ -112,7 +112,7 @@ export function MinJournalPage({ onBack }: MinJournalPageProps) {
 
           {/* Current status */}
           {data.current && (
-            <JournalSection title="Aktuell status" icon={Activity}>
+            <JournalSection title="Senase värden" icon={Activity}>
               <LabResultsTable title="Labvärden" data={data.current.labs} />
               {data.current.ekg && (
                 <div className="mt-3 p-3 bg-muted/50 rounded-lg">
