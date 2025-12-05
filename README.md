@@ -1,6 +1,6 @@
 # Fråga 1177
 
-A project made by Fyris AI.
+A project made by Fyris AI. hej
 
 This project implements a Context-Augmented Generation (CAG) system using Google Gemini models and a FastAPI backend with a Next.js frontend.
 
