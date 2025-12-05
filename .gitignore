@@ -7,3 +7,6 @@ backend/__pycache__/
 backend/.DS_Store
 backend/venv
 backend/.env
+venv/
+__pycache__/
+*.pyc

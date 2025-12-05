@@ -1,13 +1,11 @@
 // app/api/chat/route.ts
-// Remove Vercel AI SDK imports if not needed
-// import { StreamingTextResponse, streamText, LangChainStream } from 'ai'; 
 
 export const maxDuration = 60; // Keep or adjust timeout
 
 export async function POST(req: Request) {
   try {
-    // Extract the user query and audience from the request body
-    const { messages, audience } = await req.json();
+    // Extract the user query, audience, and optional journal data from the request body
+    const { messages, audience, journalData } = await req.json();
     // Get the last message from the user
     const userQuery = messages[messages.length - 1]?.content;
 
@@ -26,18 +24,26 @@ export async function POST(req: Request) {
       });
     }
 
-    console.log('Frontend API route received query:', userQuery, 'Audience:', audience);
+    const hasJournalData = journalData !== null && journalData !== undefined;
+    console.log('Frontend API route received query:', userQuery, 'Audience:', audience, 'Has Journal Data:', hasJournalData);
 
     // --- Call the FastAPI Backend ---
-    const backendUrl = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000'; 
-    console.log(`Calling backend: ${backendUrl}/api/chat`);
+    const backendUrl = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000';
+    
+    // Use the personalized endpoint if journal data is provided
+    const endpoint = hasJournalData ? '/api/chat-with-journal' : '/api/chat';
+    console.log(`Calling backend: ${backendUrl}${endpoint}`);
 
-    const backendResponse = await fetch(`${backendUrl}/api/chat`, {
+    const requestBody = hasJournalData 
+      ? { query: userQuery, audience: audience, journal_data: journalData }
+      : { query: userQuery, audience: audience };
+
+    const backendResponse = await fetch(`${backendUrl}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query: userQuery, audience: audience }),
+      body: JSON.stringify(requestBody),
     });
 
     console.log('Backend status:', backendResponse.status);
@@ -71,7 +77,6 @@ export async function POST(req: Request) {
 
   } catch (error: unknown) {
     console.error("Frontend API Route Error:", error);
-    const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred processing the chat request.";
     // Return a standard error response in JSON format
      return new Response(
        JSON.stringify({ error: "Failed to process chat request" }), 

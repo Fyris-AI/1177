@@ -1,0 +1,101 @@
+{
+    "labs_and_exams": {
+        "youth": {
+            "labs": {
+                "Hb": 143,
+                "LPK": 7.2,
+                "CRP": "<5",
+                "Na": 139,
+                "K": 4.2,
+                "Ca": 2.34,
+                "Kreatinin": 72
+            },
+            "imaging": {
+                "underbensfraktur_14": "Spiralfraktur distala tibia, reponerad.",
+                "handledsfraktur_17": "Distal radiusfraktur, lätt dorsal vinkling.",
+                "nyckelbensfraktur_19": "Odislocerad medial klavikelfraktur."
+            }
+        },
+        "adult": {
+            "labs_initial": {
+                "Hb": 150,
+                "TSH": 1.8,
+                "Na": 140,
+                "K": 4.1,
+                "Kreatinin": 80,
+                "Glukos_faste": 6.1,
+                "HbA1c": 38,
+                "LDL": 4.2,
+                "Triglycerider": 2.1,
+                "HDL": 1.0
+            },
+            "ekg": "Sinusrytm, lätt LVH i 50-årsåldern."
+        },
+        "knee_arthrosis_period": {
+            "xray": "Avancerad medial artros med osteofyter.",
+            "postop": "Knäprotes i gott läge, ingen lossning."
+        },
+        "urology": {
+            "PSA_trend": [
+                1.8,
+                2.2,
+                2.7,
+                3.1
+            ],
+            "urine": "Nitrit neg, leukocyter neg.",
+            "ultrasound": "Prostata 45 g, residual 80 ml."
+        },
+        "cardiometabolic": {
+            "10_years_ago": {
+                "HbA1c": 42,
+                "LDL": 3.6,
+                "Triglycerider": 2.0,
+                "BMI": 30.5
+            },
+            "5_years_ago": {
+                "HbA1c": 45,
+                "LDL": 2.5,
+                "Triglycerider": 1.8,
+                "Kreatinin": 92,
+                "eGFR": 72
+            },
+            "2_years_ago": {
+                "HbA1c": 47,
+                "LDL": 2.1,
+                "HDL": 1.1
+            }
+        },
+        "cognitive": {
+            "labs": {
+                "B12": 310,
+                "Folat": 7.5,
+                "TSH": 2.3,
+                "Ca": 2.32,
+                "CRP": "<5"
+            },
+            "MMT": 27,
+            "clock_test": "Lätt nedsatt.",
+            "MRT": "Mild atrofi och lätt leukoarios."
+        },
+        "current": {
+            "labs": {
+                "Hb": 144,
+                "LPK": 6.4,
+                "Trombocyter": 260,
+                "Na": 139,
+                "K": 3.9,
+                "Kreatinin": 96,
+                "eGFR": 68,
+                "CRP": "<5",
+                "HbA1c": 46,
+                "LDL": 2.0,
+                "HDL": 1.1,
+                "Triglycerider": 1.7,
+                "Vitamin_D": 74
+            },
+            "ekg": "Sinusrytm 69/min, lätt LVH.",
+            "lungröntgen": "Normalt hjärta, lätt aortaskleros.",
+            "eko": "EF 60%, lätt LVH."
+        }
+    }
+}

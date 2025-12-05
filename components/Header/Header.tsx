@@ -2,8 +2,13 @@ import { ThemeAudienceToggle } from "./ThemeAudienceToggle";
 import { ThemeModeToggle } from "./ThemeModeToggle";
 import { SelectRegion } from "./SelectRegion";
 import { HeaderLogo } from "./HeaderLogo";
+import { MinJournalButton } from "./MinJournalButton";
 
-export function Header() {
+interface HeaderProps {
+  onMinJournalClick?: () => void;
+}
+
+export function Header({ onMinJournalClick }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full bg-header-background">
       {/* Absolute positioned logo */}
@@ -25,6 +30,7 @@ export function Header() {
 
         {/* Right Section */}
         <div className="flex items-center h-full px-0 sm:px-4 md:px-0 justify-end gap-0 sm:gap-2 md:gap-4">
+          {onMinJournalClick && <MinJournalButton onClick={onMinJournalClick} />}
           <ThemeAudienceToggle />
           <ThemeModeToggle />
         </div>

@@ -7,7 +7,7 @@ import MessageContainer from "./MessageContainer";
 import { useMediaQuery } from "react-responsive";
 import CitationPreview from "./CitationPreview";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Shield } from "lucide-react";
 import ChatInput from "./ChatInput";
 import {
   ResizableHandle,
@@ -26,10 +26,12 @@ import {
 import { AppMessage } from "@/lib/types";
 import { nanoid } from 'nanoid';
 import { useTheme } from "next-themes";
+import { useAuth } from "@/lib/auth-context";
 
 export default function ChatInterface() {
   const isLargeScreen = useMediaQuery({ minWidth: 768 });
   const { theme } = useTheme();
+  const { isAuthenticated, journalData, user } = useAuth();
 
   const [messages, setMessages] = useState<AppMessage[]>([]);
   const [input, setInput] = useState('');
@@ -68,9 +70,11 @@ export default function ChatInterface() {
     ];
 
     try {
+      // Include journal data if user is authenticated (for invånare audience only)
       const apiPayload = { 
         messages: currentMessages,
-        audience: audience
+        audience: audience,
+        journalData: (isAuthenticated && audience === "invanare" && journalData) ? journalData : null
       }; 
 
       const response = await fetch('/api/chat', {
@@ -126,6 +130,15 @@ export default function ChatInterface() {
     setcitationUrl(null);
   };
 
+  // Parse audience from theme
+  const [, audience] = (theme || "light-invanare").split("-") as [
+    "light" | "dark",
+    "invanare" | "personal"
+  ];
+
+  // Show personalization banner only for invånare when authenticated
+  const showPersonalizationBanner = isAuthenticated && audience === "invanare";
+
   return (
     <>
       <ResizablePanelGroup
@@ -134,12 +147,27 @@ export default function ChatInterface() {
       >
         <ResizablePanel id="chat-panel" order={1}>
           <div className="flex flex-col h-full bg-background">
+            {/* Personalization banner */}
+            {showPersonalizationBanner && (
+              <div className="bg-green-500/10 border-b border-green-500/20 px-4 py-2 flex items-center justify-center gap-2">
+                <Shield className="h-4 w-4 text-green-600" />
+                <span className="text-sm text-green-700">
+                  Inloggad som <strong>{user?.name}</strong> – dina svar är personliga baserat på din journal
+                </span>
+              </div>
+            )}
+            
             {messages.length === 0 && !isLoading ? (
               <>
                 <div className="text-center py-10 sm:py-14 md:py-22">
                   <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-[30vh] text-center text-title">
                     Vad kan jag hjälpa dig med?
                   </h2>
+                  {showPersonalizationBanner && (
+                    <p className="text-muted-foreground mt-4 text-sm">
+                      Dina frågor kommer besvaras med hänsyn till din medicinska historik
+                    </p>
+                  )}
                 </div>
                 <div>
                   <ChatInput

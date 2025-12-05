@@ -3,12 +3,12 @@ import json
 import math
 import re
 import concurrent.futures
-from typing import List, Dict, Tuple, Set, Optional
+from typing import List, Dict, Tuple, Set, Optional, Any
 from dotenv import load_dotenv
 import google.generativeai as genai
 from pydantic import ValidationError, BaseModel
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from models import ChatbotResponse
 
@@ -18,7 +18,7 @@ load_dotenv()
 
 # --- Configuration ---
 DATA_DIR = "data"  # Base data directory
-BATCH_SIZE = 5  # Number of documents to process in each batch for LLM 1
+BATCH_SIZE = 20  # Number of documents to process in each batch for LLM 1
 DEBUG = True  # Set to True for verbose output
 MAX_WORKERS = 20  # Max concurrent workers for LLM 1 batches (Added)
 
@@ -31,7 +31,7 @@ if not api_key:
     )
 genai.configure(api_key=api_key)
 
-GEMINI_MODEL_NAME = "gemini-1.5-flash-latest"
+GEMINI_MODEL_NAME = "gemini-2.0-flash"
 
 # Initialize the generative model clients (can be reused)
 try:
@@ -541,5 +541,365 @@ async def chat_endpoint(chat_request: ChatRequest):
         raise HTTPException(
             status_code=500,
             detail=f"Internal server error processing chat request for audience '{audience}'.")
+
+# --- Journal Data Endpoint ---
+JOURNAL_DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "journal", "patient_data.json")
+
+@app.get("/api/journal")
+async def get_journal_data():
+    """
+    API endpoint to retrieve patient journal data.
+    In a real application, this would require authentication and return user-specific data.
+    """
+    print(f"LOG: [get_journal_data] Attempting to read journal data from: {JOURNAL_DATA_PATH}")
+    
+    if not os.path.isfile(JOURNAL_DATA_PATH):
+        print(f"Error: Journal data file not found at {JOURNAL_DATA_PATH}")
+        raise HTTPException(status_code=404, detail="Journal data not found")
+    
+    try:
+        with open(JOURNAL_DATA_PATH, 'r', encoding='utf-8') as f:
+            journal_data = json.load(f)
+        return JSONResponse(content=journal_data)
+    except Exception as e:
+        print(f"Error reading journal data: {e}")
+        raise HTTPException(status_code=500, detail="Failed to read journal data")
+
+
+# --- Chat with Journal Context Endpoint ---
+class ChatWithJournalRequest(BaseModel):
+    query: str
+    audience: str
+    journal_data: Optional[dict] = None  # Optional journal data for personalized responses
+
+@app.post("/api/chat-with-journal")
+async def chat_with_journal_endpoint(chat_request: ChatWithJournalRequest):
+    """
+    API endpoint to handle chat requests with optional journal context.
+    When journal_data is provided, the response will be personalized using the patient's medical history.
+    """
+    user_query = chat_request.query
+    audience = chat_request.audience
+    journal_data = chat_request.journal_data
+
+    # Basic validation
+    if not user_query:
+        raise HTTPException(status_code=400, detail="Query cannot be empty")
+    if not audience or audience not in ["invanare", "personal"]:
+        print(f"Error: Invalid audience received: {audience}")
+        raise HTTPException(status_code=400, detail=f"Invalid audience specified: {audience}")
+
+    print(f"\n--- Received API Request (with journal) --- Query: '{user_query}', Audience: '{audience}', Has Journal: {journal_data is not None} ---")
+
+    try:
+        # If journal data is provided, run the personalized pipeline
+        if journal_data:
+            response_json_str = run_personalized_pipeline(user_query, audience, journal_data)
+        else:
+            # Fall back to the regular pipeline
+            response_json_str = run_new_cag_pipeline(user_query, audience)
+
+        response_data = json.loads(response_json_str)
+
+        print("\n--- API Request Processing Complete ---")
+        return JSONResponse(content=response_data)
+
+    except Exception as e:
+        print(f"Error processing API request in endpoint: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(
+            status_code=500,
+            detail=f"Internal server error processing chat request for audience '{audience}'.")
+
+
+def format_journal_context(journal_data: dict) -> str:
+    """Formats journal data into a readable context string for the LLM."""
+    context_parts = []
+    
+    if "labs_and_exams" in journal_data:
+        data = journal_data["labs_and_exams"]
+        
+        # Youth history - important for fracture history etc.
+        if "youth" in data:
+            youth = data["youth"]
+            context_parts.append("=== UNGDOMSHISTORIK ===")
+            if "labs" in youth:
+                labs = youth["labs"]
+                vals_str = ", ".join([f"{k}={v}" for k, v in labs.items()])
+                context_parts.append(f"Labvärden (ungdom): {vals_str}")
+            if "imaging" in youth:
+                context_parts.append("Tidigare frakturer och skador:")
+                for key, value in youth["imaging"].items():
+                    # Parse age from key (e.g., "nyckelbensfraktur_19" -> 19 år)
+                    parts = key.rsplit('_', 1)
+                    if len(parts) == 2 and parts[1].isdigit():
+                        injury_name = parts[0].replace('_', ' ').capitalize()
+                        age = parts[1]
+                        context_parts.append(f"  - {injury_name} ({age} års ålder): {value}")
+                    else:
+                        context_parts.append(f"  - {key}: {value}")
+        
+        # Adult initial values
+        if "adult" in data:
+            adult = data["adult"]
+            context_parts.append("\n=== VUXEN (INITIAL BEDÖMNING) ===")
+            if "labs_initial" in adult:
+                labs = adult["labs_initial"]
+                vals_str = ", ".join([f"{k}={v}" for k, v in labs.items()])
+                context_parts.append(f"Initiala labvärden: {vals_str}")
+            if "ekg" in adult:
+                context_parts.append(f"EKG: {adult['ekg']}")
+        
+        # Current status
+        if "current" in data:
+            current = data["current"]
+            context_parts.append("\n=== AKTUELLA VÄRDEN ===")
+            if "labs" in current:
+                labs = current["labs"]
+                vals_str = ", ".join([f"{k}={v}" for k, v in labs.items()])
+                context_parts.append(f"Aktuella labvärden: {vals_str}")
+            if "ekg" in current:
+                context_parts.append(f"EKG: {current['ekg']}")
+            if "lungröntgen" in current:
+                context_parts.append(f"Lungröntgen: {current['lungröntgen']}")
+            if "eko" in current:
+                context_parts.append(f"Ekokardiografi: {current['eko']}")
+        
+        # Cardiometabolic history
+        if "cardiometabolic" in data:
+            context_parts.append("\n=== HJÄRT-KÄRL OCH METABOLISM (HISTORIK) ===")
+            for period, values in data["cardiometabolic"].items():
+                period_name = period.replace("_", " ")
+                vals_str = ", ".join([f"{k}={v}" for k, v in values.items()])
+                context_parts.append(f"{period_name}: {vals_str}")
+        
+        # Cognitive assessment
+        if "cognitive" in data:
+            cog = data["cognitive"]
+            context_parts.append("\n=== KOGNITIV BEDÖMNING ===")
+            if "labs" in cog:
+                labs = cog["labs"]
+                vals_str = ", ".join([f"{k}={v}" for k, v in labs.items()])
+                context_parts.append(f"Labvärden: {vals_str}")
+            if "MMT" in cog:
+                context_parts.append(f"MMT: {cog['MMT']}/30")
+            if "clock_test" in cog:
+                context_parts.append(f"Klocktest: {cog['clock_test']}")
+            if "MRT" in cog:
+                context_parts.append(f"MRT: {cog['MRT']}")
+        
+        # Orthopedics - Knee
+        if "knee_arthrosis_period" in data:
+            knee = data["knee_arthrosis_period"]
+            context_parts.append("\n=== ORTOPEDI (KNÄ) ===")
+            if "xray" in knee:
+                context_parts.append(f"Knäröntgen: {knee['xray']}")
+            if "postop" in knee:
+                context_parts.append(f"Postoperativ knäprotes: {knee['postop']}")
+        
+        # Urology
+        if "urology" in data:
+            uro = data["urology"]
+            context_parts.append("\n=== UROLOGI ===")
+            if "PSA_trend" in uro:
+                context_parts.append(f"PSA-trend: {' → '.join(map(str, uro['PSA_trend']))}")
+            if "urine" in uro:
+                context_parts.append(f"Urinprov: {uro['urine']}")
+            if "ultrasound" in uro:
+                context_parts.append(f"Ultraljud prostata: {uro['ultrasound']}")
+    
+    return "\n".join(context_parts)
+
+
+def format_llm2_prompt_with_journal(user_query: str, relevant_context: str, journal_context: str) -> str:
+    """
+    Formats the prompt for the second LLM with both public 1177 content and patient journal data.
+    """
+    prompt = f"""Du är en hjälpsam AI-assistent för 1177 Vårdguiden. Du har tillgång till två typer av information:
+
+1. ALLMÄN MEDICINSK INFORMATION från 1177.se (nedan under "Tillhandahållen Kontext")
+2. PATIENTENS PERSONLIGA JOURNALDATA (nedan under "Patientens Journal")
+
+Din uppgift är att ge ett PERSONLIGT och relevant svar som kombinerar:
+- Allmän medicinsk information från 1177.se
+- Personliga insikter baserade på patientens medicinska historik
+
+VIKTIGT: När patientens journal innehåller relevant information för frågan (t.ex. tidigare frakturer, labvärden, diagnoser), MÅSTE du referera till denna personliga historik i ditt svar. Till exempel:
+- Om patienten frågar om en fraktur och har haft liknande frakturer tidigare, nämn detta
+- Om patienten frågar om labvärden, referera till deras aktuella och historiska värden
+- Om patienten har en knäprotes och frågar om knäproblem, ta hänsyn till detta
+
+Svara ALLTID med ett JSON-objekt, och inget annat. JSON-objektet ska ha följande struktur:
+{{
+  "message": "Ett tydligt och koncist svar på användarens fråga. DU MÅSTE referera till patientens specifika journaldata när det är relevant för frågan. Börja gärna med att bekräfta patientens historik om det är relevant.",
+  "source_links": ["En lista med URL-källor (strängar) från de specifika dokument i kontexten som informationen i 'message' hämtades från."],
+  "source_names": ["En lista med korta, beskrivande namn (strängar) för de specifika dokument i kontexten som informationen i 'message' hämtades från."]
+}}
+
+Viktiga regler:
+- ALLTID kombinera allmän information med patientens specifika journaldata för personliga svar
+- Om patientens journal innehåller relevant historik (frakturer, operationer, labvärden), NÄMN DEM i svaret
+- Ge inte medicinsk rådgivning som ersätter läkarkontakt, men hjälp patienten förstå sina värden och historik
+- Basera svaret på den givna kontexten. Hitta inte på information.
+- Inkludera *endast* länkar och namn från de 1177-dokument som faktiskt användes
+- Om frågan inte kan besvaras med tillgänglig information, var tydlig med det
+- Se till att outputen är ett giltigt JSON-objekt och inget annat
+
+Användarens Fråga: "{user_query}"
+
+=== PATIENTENS PERSONLIGA JOURNAL ===
+{journal_context}
+
+=== ALLMÄN INFORMATION FRÅN 1177.SE ===
+{relevant_context}
+
+JSON Svar:
+"""
+    return prompt
+
+
+def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict) -> str:
+    """
+    Runs the CAG pipeline with personalized journal context.
+    """
+    print(f"\n--- Starting Personalized CAG Pipeline for Query: '{user_query}', Audience: '{audience}' ---")
+
+    # Format journal data into readable context
+    journal_context = format_journal_context(journal_data)
+    print(f"LOG: Formatted journal context ({len(journal_context)} characters)")
+
+    # 1. List documents from the specific audience directory
+    all_filenames = get_document_filenames(DATA_DIR, audience)
+    if not all_filenames:
+        # Even without public docs, we can still answer with journal data
+        print("Warning: No public documents found, using only journal data")
+        
+        # Create a response using only journal context
+        prompt = format_llm2_prompt_with_journal(user_query, "Inga offentliga dokument tillgängliga.", journal_context)
+        try:
+            response = llm2_model.generate_content(prompt)
+            response_text = response.text.strip()
+            
+            # Parse JSON from response
+            json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", response_text, re.DOTALL | re.IGNORECASE)
+            if json_match:
+                json_string = json_match.group(1)
+            else:
+                try:
+                    start_index = response_text.index('{')
+                    end_index = response_text.rindex('}')
+                    json_string = response_text[start_index:end_index + 1]
+                except ValueError:
+                    json_string = None
+            
+            if json_string:
+                response_data = ChatbotResponse.model_validate_json(json_string)
+                return response_data.model_dump_json(indent=2)
+        except Exception as e:
+            print(f"Error generating journal-only response: {e}")
+        
+        error_response = ChatbotResponse(
+            message="Kunde inte bearbeta din förfrågan. Vänligen försök igen.",
+            source_links=[],
+            source_names=[])
+        return error_response.model_dump_json(indent=2)
+
+    total_files = len(all_filenames)
+    print(f"Found {total_files} documents to process for audience '{audience}'.")
+
+    # 2. Process in batches with LLM 1 (same as regular pipeline)
+    aggregated_relevant_filenames: Set[str] = set()
+    num_batches = math.ceil(total_files / BATCH_SIZE)
+
+    batches = []
+    for i in range(num_batches):
+        start_index = i * BATCH_SIZE
+        end_index = min(start_index + BATCH_SIZE, total_files)
+        batches.append(all_filenames[start_index:end_index])
+
+    print(f"Processing documents in {num_batches} batches.")
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_to_batch_num = {
+            executor.submit(
+                process_single_batch,
+                batch_filenames,
+                user_query,
+                DATA_DIR,
+                audience,
+                llm1_model,
+                i + 1,
+                num_batches):
+            i + 1
+            for i, batch_filenames in enumerate(batches)
+        }
+
+        for future in concurrent.futures.as_completed(future_to_batch_num):
+            batch_num = future_to_batch_num[future]
+            try:
+                relevant_in_batch = future.result()
+                aggregated_relevant_filenames.update(relevant_in_batch)
+            except Exception as exc:
+                print(f'Batch {batch_num} generated an exception: {exc}')
+
+    print(f"\n--- Aggregation Complete ---")
+    print(f"Total relevant files: {len(aggregated_relevant_filenames)}")
+
+    # 3. Build context from relevant documents
+    script_dir = os.path.dirname(__file__)
+    audience_data_dir = os.path.join(script_dir, DATA_DIR, audience)
+    
+    final_context_parts = []
+    for filename in sorted(list(aggregated_relevant_filenames)):
+        filepath = os.path.join(audience_data_dir, filename)
+        content = read_file_content(filepath)
+        if content:
+            final_context_parts.append(f"--- Dokument: {filename} ---\n{content}")
+
+    final_context = "\n\n".join(final_context_parts) if final_context_parts else "Inga relevanta dokument hittades."
+
+    # 4. Call LLM 2 with both contexts
+    print("\n--- Calling LLM 2 for Personalized Answer ---")
+    llm2_prompt = format_llm2_prompt_with_journal(user_query, final_context, journal_context)
+
+    try:
+        response = llm2_model.generate_content(llm2_prompt)
+        response_text = response.text.strip()
+
+        if DEBUG:
+            print(f"LLM 2 Raw Response:\n{response_text[:500]}...")
+
+        # Parse JSON
+        json_string = None
+        json_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", response_text, re.DOTALL | re.IGNORECASE)
+        if json_match:
+            json_string = json_match.group(1)
+        else:
+            try:
+                start_index = response_text.index('{')
+                end_index = response_text.rindex('}')
+                json_string = response_text[start_index:end_index + 1]
+            except ValueError:
+                pass
+
+        if json_string:
+            response_data = ChatbotResponse.model_validate_json(json_string)
+            print("\n--- Personalized Pipeline Complete ---")
+            return response_data.model_dump_json(indent=2)
+        else:
+            raise ValueError("Could not extract JSON from response")
+
+    except Exception as e:
+        print(f"Error in personalized pipeline: {e}")
+        import traceback
+        traceback.print_exc()
+        
+        error_response = ChatbotResponse(
+            message="Ett fel uppstod vid bearbetning av din förfrågan.",
+            source_links=[],
+            source_names=[])
+        return error_response.model_dump_json(indent=2)
+
 
 # Remove the old __main__ block if it exists

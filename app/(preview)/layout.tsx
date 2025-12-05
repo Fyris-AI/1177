@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
+import { AuthProvider } from "@/lib/auth-context";
 
 import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ai-sdk-preview-rag.vercel.app"),
-  title:
-    "Retrieval-Augmented Generation Preview - Azure AI Search, Azure OpenAI, and Vercel AI SDK",
+  title: "1177 - Fråga 1177",
   description:
-    "Augment language model generations with vector based retrieval using Azure AI Search, text generation from Azure OpenAI, and orchestration with Vercel AI SDK",
+    "Fråga 1177 om hälsa och vård. Få personliga svar baserade på din journal.",
 };
 
 export default function RootLayout({
@@ -17,14 +17,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="sv" suppressHydrationWarning>
       <body className="transition-colors duration-300 ease-in-out">
         <ThemeProvider
           attribute="data-theme"
           defaultTheme="light-invanare"
           enableSystem={false}
         >
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
