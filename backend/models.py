@@ -25,5 +25,14 @@ class ChatbotResponse(BaseModel):
     def remove_empty_names(cls, v):
         if v is None:
             return []
-        # Ensure v is iterable and elements are strings before stripping
-        return [name for name in v if isinstance(name, str) and name.strip()] 
+        # Ensure v is iterable and elements are strings before stripping and truncating
+        MAX_CITATION_LENGTH = 30
+        processed_names = []
+        for name in v:
+            if isinstance(name, str) and name.strip():
+                # Truncate to 30 characters, adding "..." if truncated
+                truncated = name.strip()
+                if len(truncated) > MAX_CITATION_LENGTH:
+                    truncated = truncated[:MAX_CITATION_LENGTH - 3] + "..."
+                processed_names.append(truncated)
+        return processed_names 

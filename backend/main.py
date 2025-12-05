@@ -88,6 +88,36 @@ def get_document_filenames(base_data_dir: str, audience: str) -> List[str]:
         return []
 
 
+def truncate_citation_name(name: str, max_length: int = 30) -> str:
+    """
+    Truncates a citation name to max_length characters, adding "..." if truncated.
+    """
+    if not name or not isinstance(name, str):
+        return ""
+    name = name.strip()
+    if len(name) <= max_length:
+        return name
+    return name[:max_length - 3] + "..."
+
+
+def extract_document_metadata(content: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extracts URL and Title metadata from document content.
+    Returns (url, title) tuple. Returns (None, None) if not found.
+    """
+    url = None
+    title = None
+    
+    lines = content.split('\n')
+    for i, line in enumerate(lines[:10]):  # Check first 10 lines for metadata
+        if line.startswith('URL Source:'):
+            url = line.replace('URL Source:', '').strip()
+        elif line.startswith('Title:'):
+            title = line.replace('Title:', '').strip()
+    
+    return (url, title)
+
+
 def read_file_content(filepath: str) -> str:
     """Reads the entire content of a file."""
     # ADDED LOG
@@ -193,23 +223,39 @@ def call_llm_1_relevance_batch(model: genai.GenerativeModel,
         return "Inga"  # Default to 'Inga' on error
 
 
-def format_llm2_prompt(user_query: str, relevant_context: str) -> str:
+def format_llm2_prompt(user_query: str, relevant_context: str, document_metadata: Dict[str, Dict[str, str]]) -> str:
     """
     Formats the prompt for the second LLM, instructing it to generate a JSON response.
+    document_metadata: Dict mapping filename -> {"url": "...", "title": "..."}
     """
+    # Build metadata reference section for the prompt
+    metadata_section = ""
+    if document_metadata:
+        metadata_section = "\n\nViktig information om dokumentmetadata:\n"
+        for filename, meta in document_metadata.items():
+            if meta.get("url") or meta.get("title"):
+                metadata_section += f"- Dokument '{filename}': "
+                if meta.get("title"):
+                    metadata_section += f"Titel: {meta['title']}, "
+                if meta.get("url"):
+                    metadata_section += f"URL: {meta['url']}"
+                metadata_section += "\n"
+    
     # Keep prompt in Swedish
-    prompt = f"""Du är en hjälpsam AI-assistent. Din uppgift är att svara på användarens fråga baserat på den tillhandahållna kontexten nedan. Kontexten består av ett eller flera dokument, åtskilda av '--- Dokument: [filnamn] ---'. Varje dokument innehåller ofta en titel och en URL-källa nära början.
+    prompt = f"""Du är en hjälpsam AI-assistent. Din uppgift är att svara på användarens fråga baserat på den tillhandahållna kontexten nedan. Kontexten består av ett eller flera dokument, åtskilda av '--- Dokument: [filnamn] ---'. Varje dokument börjar med metadata-rader som innehåller "Filename:", "Title:", och "URL Source:" högst upp i dokumentet.
 
 Svara ALLTID med ett JSON-objekt, och inget annat. JSON-objektet ska ha följande struktur:
 {{
   "message": "Ett tydligt och koncist svar på användarens fråga baserat på informationen i kontexten.",
-  "source_links": ["En lista med URL-källor (strängar) från de specifika dokument i kontexten som informationen i 'message' hämtades från."],
-  "source_names": ["En lista med korta, beskrivande namn (strängar) för de specifika dokument i kontexten som informationen i 'message' hämtades från. Försök extrahera den mest relevanta delen av dokumentets titel (ofta före ' - ')."]
+  "source_links": ["En lista med URL-källor (strängar) från de specifika dokument i kontexten som informationen i 'message' hämtades från. Hämta URL:en från raden som börjar med 'URL Source:' i varje dokument du använder."],
+  "source_names": ["En lista med korta, beskrivande namn (strängar) för de specifika dokument i kontexten som informationen i 'message' hämtades från. Hämta namnet från raden som börjar med 'Title:' i varje dokument. Om titeln innehåller ' - ', använd bara den delen före ' - '. Varje namn måste vara MAX 30 tecken långt - förkorta om nödvändigt."]
 }}
 
 Viktiga regler:
 - Basera svaret ('message') baserat på den givna kontexten. Hitta inte på information.
-- Inkludera *endast* länkar och namn från de dokument som faktiskt användes för att formulera svaret i 'message'.
+- Inkludera *ALLTID* länkar och namn från *ALLA* dokument som faktiskt användes för att formulera svaret i 'message'.
+- Varje dokument i kontexten har metadata högst upp: leta efter rader som börjar med "Title:" och "URL Source:" för att få källnamn och URL.
+- Om du använder information från ett dokument, MÅSTE du inkludera dess URL och titel i source_links respektive source_names.
 - Om inga dokument i kontexten var relevanta för att svara, eller om kontexten är tom, returnera:
   {{
     "message": "Jag kunde inte hitta relevant information i de tillhandahållna dokumenten för att svara på din fråga.",
@@ -217,6 +263,9 @@ Viktiga regler:
     "source_names": []
   }}
 - Se till att outputen är ett giltigt JSON-objekt och inget annat (ingen extra text före eller efter).
+- source_links och source_names måste ha samma längd och motsvarande positioner (index 0 i source_links motsvarar index 0 i source_names).
+
+{metadata_section}
 
 Användarens Fråga: "{user_query}"
 
@@ -253,6 +302,7 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
 
     print("\\n--- Preparing Context for LLM 2 ---")
     final_context_parts = []
+    document_metadata = {}  # Store metadata for each document: filename -> {url, title}
 
     for filename in relevant_filenames:
         # Construct full path to file within the specific audience directory
@@ -260,12 +310,25 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
         print(f"LOG: [generate_answer] Reading relevant file: {filepath}") # ADDED LOG
         content = read_file_content(filepath)
         if content:
+            # Extract metadata from document
+            url, title = extract_document_metadata(content)
+            document_metadata[filename] = {
+                "url": url or "",
+                "title": title or filename.replace('.md', '').replace('-', ' ').title()
+            }
+            print(f"LOG: [generate_answer] Extracted metadata for {filename}: URL={url is not None}, Title={title is not None}")
+            
             final_context_parts.append(
                 f"--- Dokument: {filename} ---\\n{content}")
         else:
             print(
                 f"Warning: Could not read relevant file {filename} from {audience_data_dir} for final context."
             )
+            # Still add to metadata with fallback values
+            document_metadata[filename] = {
+                "url": "",
+                "title": filename.replace('.md', '').replace('-', ' ').title()
+            }
 
     if not final_context_parts:
         print("Error: [generate_answer] Could not build final context (all relevant files failed to read).") # ADDED LOG
@@ -279,7 +342,7 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
     final_context = "\\n\\n".join(final_context_parts)
 
     print("\\n--- Calling LLM 2 for Final Answer JSON ---")
-    llm2_prompt = format_llm2_prompt(user_query, final_context)
+    llm2_prompt = format_llm2_prompt(user_query, final_context, document_metadata)
 
     if DEBUG:
         print("-" * 20 + " LLM 2 (JSON Generation) - START " + "-" * 20)
@@ -329,6 +392,56 @@ def generate_answer(model: genai.GenerativeModel, user_query: str,
         # Parse and validate
         response_data = ChatbotResponse.model_validate_json(json_string)
         print("LOG: [generate_answer] Successfully parsed JSON from LLM 2.")
+        
+        # Ensure all source_names are truncated to 30 characters (validator should handle this, but explicit check)
+        response_data.source_names = [truncate_citation_name(name) for name in response_data.source_names]
+
+        # Fallback: If LLM provided a meaningful answer but no citations, add them from metadata
+        error_indicators = [
+            "kunde inte hitta",
+            "ingen relevant",
+            "inget relevant",
+            "could not find",
+            "no relevant"
+        ]
+        message_lower = response_data.message.lower()
+        is_error_message = any(indicator in message_lower for indicator in error_indicators)
+        
+        # Apply fallback only if:
+        # 1. LLM provided no citations (empty lists)
+        # 2. We have relevant documents with metadata
+        # 3. The message is not an error message (meaningful answer was provided)
+        if (not response_data.source_links and not response_data.source_names) and document_metadata and not is_error_message:
+            print("LOG: [generate_answer] LLM provided answer but no citations, using extracted metadata as fallback.")
+            fallback_links = []
+            fallback_names = []
+            
+            # Use all relevant documents' metadata as citations
+            for filename in relevant_filenames:
+                meta = document_metadata.get(filename, {})
+                url = meta.get("url", "").strip()
+                title = meta.get("title", "").strip()
+                
+                if url:  # Only add if we have a URL
+                    fallback_links.append(url)
+                    # Extract clean title (before ' - ' if present)
+                    if ' - ' in title:
+                        title = title.split(' - ')[0].strip()
+                    if not title:
+                        title = filename.replace('.md', '').replace('-', ' ').title()
+                    # Truncate to 30 characters
+                    fallback_names.append(truncate_citation_name(title))
+            
+            if fallback_links:
+                response_data.source_links = fallback_links
+                response_data.source_names = fallback_names
+                print(f"LOG: [generate_answer] Applied fallback citations: {len(fallback_links)} sources")
+        elif len(response_data.source_links) != len(response_data.source_names):
+            # Fix mismatch in citation arrays
+            print("LOG: [generate_answer] Warning: source_links and source_names length mismatch, fixing...")
+            min_len = min(len(response_data.source_links), len(response_data.source_names))
+            response_data.source_links = response_data.source_links[:min_len]
+            response_data.source_names = response_data.source_names[:min_len]
 
         if DEBUG:
             print("-" * 20 + " LLM 2 (JSON Generation) - SUCCESS " + "-" * 20)
