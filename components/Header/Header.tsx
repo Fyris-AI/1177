@@ -1,6 +1,5 @@
 import { ThemeAudienceToggle } from "./ThemeAudienceToggle";
 import { ThemeModeToggle } from "./ThemeModeToggle";
-import { SelectRegion } from "./SelectRegion";
 import { HeaderLogo } from "./HeaderLogo";
 import { MinJournalButton } from "./MinJournalButton";
 
@@ -17,15 +16,15 @@ export function Header({ onMinJournalClick }: HeaderProps) {
       </div>
 
       {/* Main header content */}
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 sm:h-20 md:px-4 ml-[225px] sm:ml-[280px]">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 sm:h-20 md:px-4 ml-[180px] sm:ml-[220px]">
         {/* Left Section */}
         <div className="flex items-center h-full px-0 sm:px-2 justify-start gap-0 sm:gap-2 md:gap-4">
-          <SelectRegion />
+          {/* Region selector removed */}
         </div>
 
         {/* Center Section */}
         <div className="text-[2rem] font-semibold sm:text-xl text-center text-title">
-          {/* Fråga 1177 */}
+          {/* Title placeholder */}
         </div>
 
         {/* Right Section */}

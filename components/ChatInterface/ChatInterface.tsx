@@ -163,7 +163,9 @@ export default function ChatInterface() {
               <>
                 <div className="text-center py-10 sm:py-14 md:py-22">
                   <h2 className="text-2xl sm:text-3xl md:text-[2.5rem] font-semibold mt-[30vh] text-center text-title">
-                    Vad kan jag hjälpa dig med?
+                    {showPersonalizationBanner && user?.name
+                      ? `Hej ${user.name.split(' ')[0]}, vad kan jag hjälpa dig med?`
+                      : "Vad kan jag hjälpa dig med?"}
                   </h2>
                   {showPersonalizationBanner && (
                     <p className="text-muted-foreground mt-4 text-sm">
