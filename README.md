@@ -58,6 +58,20 @@ Follow these steps to set up and run the project on your local machine.
         ```bash
         npm install
         ```
+    *   Create a `.env.local` file in the root directory for TTS (Text-to-Speech):
+        ```dotenv
+        # .env.local
+        ELEVENLABS_API_KEY="YOUR_ELEVENLABS_API_KEY_HERE"
+        ```
+        Get your API key from [ElevenLabs](https://elevenlabs.io/).
+
+4.  **Configure Voice IDs (Optional):**
+    *   Edit `lib/voice-config.ts` to set your ElevenLabs voice IDs for each language:
+        - Swedish (`sv`)
+        - English (`en`)
+        - Arabic (`ar`)
+        - Finnish (`fi`)
+    *   Replace the `PLACEHOLDER_*_VOICE_ID` values with actual voice IDs from your ElevenLabs account.
 
 ### Running the Application
 

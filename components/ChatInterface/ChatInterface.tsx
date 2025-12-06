@@ -7,7 +7,8 @@ import MessageContainer from "./MessageContainer";
 import { useMediaQuery } from "react-responsive";
 import CitationPreview from "./CitationPreview";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Shield } from "lucide-react";
+import { Shield } from "lucide-react";
+import { VoiceLanguage, DEFAULT_LANGUAGE } from "@/lib/voice-config";
 import ChatInput from "./ChatInput";
 import {
   ResizableHandle,
@@ -40,6 +41,7 @@ export default function ChatInterface() {
 
   const [citationUrl, setcitationUrl] = useState<string | null>(null);
   const [isCitationShown, setIsCitationShown] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<VoiceLanguage>(DEFAULT_LANGUAGE);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const citationPanelRef = useRef<ImperativePanelHandle>(null);
 
@@ -175,6 +177,8 @@ export default function ChatInterface() {
                     onInputChange={handleInputChange}
                     onSubmit={handleSubmit}
                     isLoading={isLoading}
+                    selectedLanguage={selectedLanguage}
+                    onLanguageChange={setSelectedLanguage}
                   />
                 </div>
               </>
@@ -187,6 +191,7 @@ export default function ChatInterface() {
                     isLoading={isLoading}
                     showCitation={showCitation}
                     messagesEndRef={messagesEndRef}
+                    selectedLanguage={selectedLanguage}
                   />
                 </div>
 
@@ -196,6 +201,8 @@ export default function ChatInterface() {
                     onInputChange={handleInputChange}
                     onSubmit={handleSubmit}
                     isLoading={isLoading}
+                    selectedLanguage={selectedLanguage}
+                    onLanguageChange={setSelectedLanguage}
                   />
                 </div>
               </>
