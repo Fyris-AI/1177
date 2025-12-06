@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import CitationButton from "./CitationButton";
 import { Loader2, Volume2, VolumeX, Square } from "lucide-react";
-import { AppMessage } from "@/lib/types";
+import { AppMessage, ClarifyingOption } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { VoiceLanguage, VOICE_CONFIG } from "@/lib/voice-config";
 
@@ -13,6 +13,7 @@ interface MessageContainerProps {
   showCitation: (url: string) => void;
   messagesEndRef: React.RefObject<HTMLDivElement>;
   selectedLanguage: VoiceLanguage;
+  onOptionClick?: (option: ClarifyingOption) => void;
 }
 
 // TTS playback state for each message
@@ -29,8 +30,10 @@ const MessageItem: React.FC<{
   ttsState: TTSState;
   onPlayTTS: () => void;
   onStopTTS: () => void;
+  onOptionClick?: (option: ClarifyingOption) => void;
+  isLastMessage: boolean;
 }> = React.memo(
-  ({ message, showCitation, selectedLanguage, ttsState, onPlayTTS, onStopTTS }) => {
+  ({ message, showCitation, selectedLanguage, ttsState, onPlayTTS, onStopTTS, onOptionClick, isLastMessage }) => {
     return (
       <motion.div
         key={message.id}
@@ -52,7 +55,35 @@ const MessageItem: React.FC<{
             {message.content}
           </div>
 
-          {message.role === "assistant" && (
+          {/* Clarifying options - only show on the last message */}
+          {message.role === "assistant" &&
+            message.needs_clarification &&
+            message.clarifying_options &&
+            message.clarifying_options.length > 0 &&
+            isLastMessage &&
+            onOptionClick && (
+              <div className="mt-3 space-y-2">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
+                  {message.clarifying_question || "Välj ett alternativ:"}
+                </p>
+                <div className="flex flex-col gap-2">
+                  {message.clarifying_options.map((option) => (
+                    <Button
+                      key={option.id}
+                      variant="outline"
+                      className="justify-start text-left h-auto py-2 px-3 hover:bg-primary/10"
+                      onClick={() => onOptionClick(option)}
+                    >
+                      <span className="font-semibold mr-2">{option.id})</span>
+                      <span>{option.text}</span>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          {/* TTS and Citation buttons - ONLY show for final answers, NOT for clarifying questions */}
+          {message.role === "assistant" && !message.needs_clarification && (
             <div className="mt-2 flex flex-wrap gap-2 items-center">
               {/* TTS Play/Stop button */}
               <Button
@@ -78,18 +109,20 @@ const MessageItem: React.FC<{
               )}
 
               {/* Citation buttons */}
-              {message.source_links && message.source_names && (
-                <>
-                  {message.source_links.map((link, index) => (
-                    <CitationButton
-                      key={index}
-                      link={link}
-                      name={message.source_names?.[index] || `Källa ${index + 1}`}
-                      onClick={showCitation}
-                    />
-                  ))}
-                </>
-              )}
+              {message.source_links &&
+                message.source_names &&
+                message.source_links.length > 0 && (
+                  <>
+                    {message.source_links.map((link, index) => (
+                      <CitationButton
+                        key={index}
+                        link={link}
+                        name={message.source_names?.[index] || `Källa ${index + 1}`}
+                        onClick={showCitation}
+                      />
+                    ))}
+                  </>
+                )}
             </div>
           )}
         </div>
@@ -102,13 +135,14 @@ const MessageItem: React.FC<{
     prev.selectedLanguage === next.selectedLanguage &&
     prev.ttsState.isPlaying === next.ttsState.isPlaying &&
     prev.ttsState.isLoading === next.ttsState.isLoading &&
-    prev.ttsState.error === next.ttsState.error
+    prev.ttsState.error === next.ttsState.error &&
+    prev.isLastMessage === next.isLastMessage
 );
 
 MessageItem.displayName = "MessageItem";
 
 const MessageContainer: React.FC<MessageContainerProps> = React.memo(
-  ({ messages, error, isLoading, showCitation, messagesEndRef, selectedLanguage }) => {
+  ({ messages, error, isLoading, showCitation, messagesEndRef, selectedLanguage, onOptionClick }) => {
     // Track TTS state for each message
     const [ttsStates, setTTSStates] = useState<Record<string, TTSState>>({});
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -203,7 +237,7 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
       <div className="flex-1 overflow-y-auto space-y-4 w-full pt-4">
         <AnimatePresence initial={false}>
           {messages.map(
-            (message: AppMessage) =>
+            (message: AppMessage, index: number) =>
               message.content && (
                 <MessageItem
                   key={message.id}
@@ -213,6 +247,8 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
                   ttsState={getTTSState(message.id)}
                   onPlayTTS={() => playTTS(message)}
                   onStopTTS={() => stopTTS(message.id)}
+                  onOptionClick={onOptionClick}
+                  isLastMessage={index === messages.length - 1}
                 />
               )
           )}
@@ -252,7 +288,8 @@ const MessageContainer: React.FC<MessageContainerProps> = React.memo(
     prev.messages === next.messages &&
     prev.isLoading === next.isLoading &&
     prev.error === next.error &&
-    prev.selectedLanguage === next.selectedLanguage
+    prev.selectedLanguage === next.selectedLanguage &&
+    prev.onOptionClick === next.onOptionClick
 );
 
 MessageContainer.displayName = "MessageContainer";

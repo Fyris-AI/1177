@@ -8,18 +8,30 @@ class SourceSection(BaseModel):
     content: str 
     filename: Optional[str] = None
 
+class ClarifyingOption(BaseModel):
+    """A single option in a clarifying question"""
+    id: str  # e.g., "A", "B", "C"
+    text: str  # The option text
+
 class ChatbotResponse(BaseModel):
     message: str
-    source_links: List[str] = [] # Default to empty list
-    source_names: List[str] = [] # Changed from source_titles, default to empty list
-    # source_filenames field removed
+    source_links: List[str] = []  # Default to empty list
+    source_names: List[str] = []  # Changed from source_titles, default to empty list
+    # Clarifying question fields
+    needs_clarification: bool = False  # Whether the agent needs more info
+    clarifying_question: Optional[str] = None  # The question to ask the user
+    clarifying_options: List[ClarifyingOption] = []  # Multiple choice options
+    # Relevant docs for caching (used for follow-up questions)
+    relevant_docs: List[str] = []  # Filenames of relevant documents found
 
     @validator('source_links', pre=True, always=True)
     def remove_empty_links(cls, v):
         if v is None:
             return []
         # Ensure v is iterable and elements are strings before stripping
-        return [link for link in v if isinstance(link, str) and link.strip()]
+        # Also limit to max 4 sources
+        links = [link for link in v if isinstance(link, str) and link.strip()]
+        return links[:4]  # MAX 4 sources
 
     @validator('source_names', pre=True, always=True)
     def remove_empty_names(cls, v):
@@ -35,4 +47,4 @@ class ChatbotResponse(BaseModel):
                 if len(truncated) > MAX_CITATION_LENGTH:
                     truncated = truncated[:MAX_CITATION_LENGTH - 3] + "..."
                 processed_names.append(truncated)
-        return processed_names 
+        return processed_names[:4]  # MAX 4 sources

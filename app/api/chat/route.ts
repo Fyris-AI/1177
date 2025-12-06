@@ -2,10 +2,23 @@
 
 export const maxDuration = 60; // Keep or adjust timeout
 
+interface ConversationMessage {
+  role: string;
+  content: string;
+}
+
 export async function POST(req: Request) {
   try {
-    // Extract the user query, audience, and optional journal data from the request body
-    const { messages, audience, journalData } = await req.json();
+    // Extract the user query, audience, journal data, and conversation tracking from the request body
+    const { 
+      messages, 
+      audience, 
+      journalData, 
+      clarificationRound = 0, 
+      conversationHistory = [],
+      isFollowUp = false,
+      lastRelevantDocs = []
+    } = await req.json();
     // Get the last message from the user
     const userQuery = messages[messages.length - 1]?.content;
 
@@ -25,7 +38,7 @@ export async function POST(req: Request) {
     }
 
     const hasJournalData = journalData !== null && journalData !== undefined;
-    console.log('Frontend API route received query:', userQuery, 'Audience:', audience, 'Has Journal Data:', hasJournalData);
+    console.log('Frontend API route received query:', userQuery, 'Audience:', audience, 'Has Journal Data:', hasJournalData, 'Clarification Round:', clarificationRound, 'Is Follow-up:', isFollowUp);
 
     // --- Call the FastAPI Backend ---
     const backendUrl = process.env.PYTHON_BACKEND_URL || 'http://127.0.0.1:8000';
@@ -34,8 +47,20 @@ export async function POST(req: Request) {
     const endpoint = hasJournalData ? '/api/chat-with-journal' : '/api/chat';
     console.log(`Calling backend: ${backendUrl}${endpoint}`);
 
+    // Build request body with conversation tracking and follow-up info
     const requestBody = hasJournalData 
-      ? { query: userQuery, audience: audience, journal_data: journalData }
+      ? { 
+          query: userQuery, 
+          audience: audience, 
+          journal_data: journalData,
+          clarification_round: clarificationRound,
+          conversation_history: conversationHistory.map((msg: ConversationMessage) => ({
+            role: msg.role,
+            content: msg.content
+          })),
+          is_follow_up: isFollowUp,
+          last_relevant_docs: lastRelevantDocs
+        }
       : { query: userQuery, audience: audience };
 
     const backendResponse = await fetch(`${backendUrl}${endpoint}`, {
@@ -83,4 +108,4 @@ export async function POST(req: Request) {
        { status: 500, headers: { 'Content-Type': 'application/json' } }
      );
   }
-} 
+}

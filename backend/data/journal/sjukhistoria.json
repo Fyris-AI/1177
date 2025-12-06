@@ -1,0 +1,145 @@
+{
+  "patient": {
+    "name": "Lars Andersson",
+    "age": 69,
+    "sex": "Man",
+    "ethnicity": "Vit",
+    "family": {
+      "marital_status": "Gift",
+      "children": 2
+    },
+    "occupation": "Pensionerad elektriker",
+    "residence": "Villa, bor med hustru"
+  },
+  "chief_complaint": "Tilltagande trötthet, ansträngningsdyspné och minnesproblem sedan 1–2 år.",
+  "history_of_present_illness": {
+    "symptoms": [
+      "Trötthet",
+      "Ansträngningsdyspné",
+      "Minnesproblem (ökande glömska, svårighet att komma ihåg samtal, tappar tråden)"
+    ],
+    "denies": [
+      "Synkope",
+      "Bröstsmärta",
+      "Neurologiska bortfall"
+    ],
+    "informant_observations": "Hustrun noterar ökande glömska och svårigheter att organisera vardagsuppgifter."
+  },
+  "past_medical_history": {
+    "cardiovascular": {
+      "hypertension": {
+        "duration_years": 15,
+        "treatment": [
+          "ACE-hämmare",
+          "Tiaziddiuretika"
+        ],
+        "typical_bp": "135/80 mmHg"
+      },
+      "hyperlipidemia": {
+        "duration_years": 10,
+        "treatment": "Statin",
+        "adherence": "Måttligt god"
+      }
+    },
+    "metabolic": {
+      "overweight": {
+        "BMI": 31,
+        "weight_stability": "Stabil senaste åren",
+        "activity_level": "Begränsad fysisk aktivitet"
+      },
+      "prediabetes": {
+        "HbA1c": "43–47 mmol/mol",
+        "duration_years": 4,
+        "recommended": [
+          "Kostråd",
+          "Ökad motion"
+        ],
+        "adherence": "Delvis"
+      }
+    },
+    "urology": {
+      "BPH": {
+        "symptoms": "Måttliga miktionsbesvär",
+        "treatment": "Alfablockerare",
+        "response": "God symtomlindring"
+      }
+    },
+    "orthopedics": {
+      "fractures": [
+        {
+          "type": "Underbensfraktur",
+          "age": 14,
+          "cause": "Slalomolycka"
+        },
+        {
+          "type": "Handledsfraktur",
+          "age": 17,
+          "cause": "Fall vid fotboll"
+        },
+        {
+          "type": "Nyckelbensfraktur",
+          "age": 19,
+          "cause": "Cykelolycka"
+        }
+      ],
+      "fracture_outcome": "Samtliga läkta utan större men",
+      "knee_arthroplasty": {
+        "side": "Vänster",
+        "years_since_surgery": 6,
+        "outcome": "Bra funktion, lätt stelhet, gång upp till 1–2 km smärtfritt"
+      }
+    },
+    "neurology": {
+      "cognitive_issues": {
+        "duration_years": "1–2",
+        "suspected": "Mild kognitiv svikt",
+        "testing": {
+          "MMT": "27/30",
+          "klocktest": "Lätt nedsatt"
+        }
+      }
+    },
+    "other": {
+      "tobacco": "Icke-rökare sedan 30 år (tidigare 10 pack-years)",
+      "alcohol": "Vin 3–4 glas/vecka",
+      "physical_activity": "Promenader 2–3 gånger/vecka",
+      "allergies": "Inga kända"
+    }
+  },
+  "medications": [
+    "ACE-hämmare (t.ex. enalapril)",
+    "Tiaziddiuretika",
+    "Statin",
+    "Alfuzosin eller annan alfablockerare",
+    "Paracetamol vid behov",
+    "Vitamin D (egeninitierat)"
+  ],
+  "physical_exam": {
+    "general": "Gott, opåverkad",
+    "vitals": {
+      "blood_pressure": "138/82 mmHg",
+      "pulse": "72, regelbunden"
+    },
+    "lungs": "Vesikulärt andningsljud, u.a.",
+    "heart": "Regelbunden rytm, inga blåsljud",
+    "neurology": "Orienterad x3, något långsamt ordflöde, inga fokala bortfall",
+    "extremities": "Lätt fotledsödem, stabil gång",
+    "prostate": "Måttligt förstorad, slät, elastisk"
+  },
+  "assessment": {
+    "summary": "69-årig man med kardiometabola riskfaktorer, benign prostatahyperplasi, tidigare frakturer och knäprotes samt nytillkomna kognitiva besvär förenliga med mild kognitiv svikt.",
+    "clinical_impression": [
+      "Hypertoni",
+      "Hyperlipidemi",
+      "Prediabetes",
+      "Övervikt",
+      "Benign prostatahyperplasi",
+      "Knäprotes vänster",
+      "Mild kognitiv svikt"
+    ],
+    "plan": [
+      "Fortsatt utredning av minnesproblematik",
+      "Optimera kardiometabola riskfaktorer"
+    ]
+  }
+}

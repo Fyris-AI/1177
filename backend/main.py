@@ -10,7 +10,7 @@ from pydantic import ValidationError, BaseModel
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from models import ChatbotResponse
+from models import ChatbotResponse, ClarifyingOption
 
 # Load environment variables from .env file in the current directory (backend/)
 # Note: GOOGLE_APPLICATION_CREDENTIALS environment variable should be set for authentication
@@ -152,8 +152,19 @@ def format_llm1_batch_prompt(user_query: str,
 Dokumentbunt:
 {docs_string}
 
-Du har fått en bunt med flera dokument (avgränsade med --- Start Document: [filnamn] --- och --- End Document: [filnamn] ---). Gå igenom varje dokument i bunten noggrant. Identifiera ALLA dokument vars innehåll är relevant för att besvara användarfrågan.
-Returnera en lista med endast de exakta filnamnen för alla relevanta dokument du hittar i denna bunt. Separera filnamnen med kommatecken (t.ex. fil1.md,fil3.md,fil8.md).
+Du har fått en bunt med flera dokument (avgränsade med --- Start Document: [filnamn] --- och --- End Document: [filnamn] ---). 
+
+VIKTIGT: Var STRIKT vid bedömning av relevans. Ett dokument är ENDAST relevant om det:
+1. Handlar om SAMMA ämne/sjukdom/tillstånd som användarfrågan
+2. Kan ge DIREKT information för att besvara frågan
+
+INKLUDERA INTE dokument som bara:
+- Innehåller liknande ord (t.ex. "risk" i en fråga om demens matchar INTE "risk för hudcancer")
+- Handlar om ett helt annat medicinskt område
+- Bara tangentiellt nämner ämnet
+
+Identifiera ENDAST de dokument vars innehåll är DIREKT relevant för att besvara användarfrågan.
+Returnera en lista med endast de exakta filnamnen för relevanta dokument. Separera filnamnen med kommatecken (t.ex. fil1.md,fil3.md).
 Om inga dokument i bunten är relevanta, svara endast 'Inga'. Svara inte med någon förklarande text före eller efter listan med filnamn eller 'Inga'.
 
 Relevanta filnamn:"""
@@ -247,15 +258,20 @@ def format_llm2_prompt(user_query: str, relevant_context: str, document_metadata
 Svara ALLTID med ett JSON-objekt, och inget annat. JSON-objektet ska ha följande struktur:
 {{
   "message": "Ett tydligt och koncist svar på användarens fråga baserat på informationen i kontexten.",
-  "source_links": ["En lista med URL-källor (strängar) från de specifika dokument i kontexten som informationen i 'message' hämtades från. Hämta URL:en från raden som börjar med 'URL Source:' i varje dokument du använder."],
-  "source_names": ["En lista med korta, beskrivande namn (strängar) för de specifika dokument i kontexten som informationen i 'message' hämtades från. Hämta namnet från raden som börjar med 'Title:' i varje dokument. Om titeln innehåller ' - ', använd bara den delen före ' - '. Varje namn måste vara MAX 30 tecken långt - förkorta om nödvändigt."]
+  "source_links": ["MAXIMALT 3-4 URL-källor från de MEST relevanta dokumenten. Hämta URL:en från 'URL Source:' i varje dokument."],
+  "source_names": ["MAXIMALT 3-4 korta namn (max 30 tecken). Hämta från 'Title:' i varje dokument."]
 }}
 
-Viktiga regler:
+KRITISKA REGLER:
+- MAXIMALT 3-4 källor - välj de MEST relevanta dokumenten för frågan, använd endast en källa om om den är direkt relevant till frågan
+- Du MÅSTE ALLTID inkludera source_links och source_names när du refererar till information från 1177.se
+- ALDRIG säg "Du kan läsa mer på 1177.se" utan att inkludera den specifika URL:en i source_links
+- Om det finns relevanta dokument i kontexten, ANVÄND dem och INKLUDERA deras länkar
+- Varje dokument i kontexten har metadata högst upp: leta efter rader som börjar med "Title:" och "URL Source:"
+- Om du använder information från ett dokument, MÅSTE du inkludera dess URL och titel
+
+Andra viktiga regler:
 - Basera svaret ('message') baserat på den givna kontexten. Hitta inte på information.
-- Inkludera *ALLTID* länkar och namn från *ALLA* dokument som faktiskt användes för att formulera svaret i 'message'.
-- Varje dokument i kontexten har metadata högst upp: leta efter rader som börjar med "Title:" och "URL Source:" för att få källnamn och URL.
-- Om du använder information från ett dokument, MÅSTE du inkludera dess URL och titel i source_links respektive source_names.
 - Om inga dokument i kontexten var relevanta för att svara, eller om kontexten är tom, returnera:
   {{
     "message": "Jag kunde inte hitta relevant information i de tillhandahållna dokumenten för att svara på din fråga.",
@@ -263,7 +279,7 @@ Viktiga regler:
     "source_names": []
   }}
 - Se till att outputen är ett giltigt JSON-objekt och inget annat (ingen extra text före eller efter).
-- source_links och source_names måste ha samma längd och motsvarande positioner (index 0 i source_links motsvarar index 0 i source_names).
+- source_links och source_names måste ha samma längd och motsvarande positioner.
 
 {metadata_section}
 
@@ -680,20 +696,34 @@ async def get_journal_data():
 
 
 # --- Chat with Journal Context Endpoint ---
+class ConversationMessage(BaseModel):
+    role: str  # "user" or "assistant"
+    content: str
+
 class ChatWithJournalRequest(BaseModel):
     query: str
     audience: str
     journal_data: Optional[dict] = None  # Optional journal data for personalized responses
+    clarification_round: int = 0  # Track how many clarification rounds have occurred (0-2)
+    conversation_history: List[ConversationMessage] = []  # Previous messages for context
+    is_follow_up: bool = False  # Whether this is a follow-up to a previous question
+    last_relevant_docs: List[str] = []  # Cached relevant documents from previous question
 
 @app.post("/api/chat-with-journal")
 async def chat_with_journal_endpoint(chat_request: ChatWithJournalRequest):
     """
     API endpoint to handle chat requests with optional journal context.
     When journal_data is provided, the response will be personalized using the patient's medical history.
+    Supports up to 2 rounds of clarifying questions before providing a final answer.
+    For follow-up questions, skips document search (LLM1) and reuses cached relevant docs.
     """
     user_query = chat_request.query
     audience = chat_request.audience
     journal_data = chat_request.journal_data
+    clarification_round = chat_request.clarification_round
+    conversation_history = chat_request.conversation_history
+    is_follow_up = chat_request.is_follow_up
+    last_relevant_docs = chat_request.last_relevant_docs
 
     # Basic validation
     if not user_query:
@@ -702,12 +732,18 @@ async def chat_with_journal_endpoint(chat_request: ChatWithJournalRequest):
         print(f"Error: Invalid audience received: {audience}")
         raise HTTPException(status_code=400, detail=f"Invalid audience specified: {audience}")
 
-    print(f"\n--- Received API Request (with journal) --- Query: '{user_query}', Audience: '{audience}', Has Journal: {journal_data is not None} ---")
+    print(f"\n--- Received API Request (with journal) --- Query: '{user_query}', Audience: '{audience}', Has Journal: {journal_data is not None}, Clarification Round: {clarification_round}, Is Follow-up: {is_follow_up} ---")
 
     try:
         # If journal data is provided, run the personalized pipeline
         if journal_data:
-            response_json_str = run_personalized_pipeline(user_query, audience, journal_data)
+            response_json_str = run_personalized_pipeline(
+                user_query, audience, journal_data, 
+                clarification_round=clarification_round,
+                conversation_history=conversation_history,
+                is_follow_up=is_follow_up,
+                last_relevant_docs=last_relevant_docs
+            )
         else:
             # Fall back to the regular pipeline
             response_json_str = run_new_cag_pipeline(user_query, audience)
@@ -825,10 +861,57 @@ def format_journal_context(journal_data: dict) -> str:
     return "\n".join(context_parts)
 
 
-def format_llm2_prompt_with_journal(user_query: str, relevant_context: str, journal_context: str) -> str:
+def format_llm2_prompt_with_journal(user_query: str, relevant_context: str, journal_context: str, 
+                                     clarification_round: int = 0, conversation_history: List[Dict] = None,
+                                     must_answer: bool = False) -> str:
     """
     Formats the prompt for the second LLM with both public 1177 content and patient journal data.
+    Supports clarifying questions when the query is ambiguous.
     """
+    # Build conversation history section if available
+    history_section = ""
+    is_follow_up_context = False
+    original_topic = ""
+    if conversation_history and len(conversation_history) > 0:
+        is_follow_up_context = True
+        # Extract the original topic from the first user message
+        for msg in conversation_history:
+            if msg.get("role") == "user":
+                original_topic = msg.get("content", "")
+                break
+        
+        history_section = "\n=== TIDIGARE KONVERSATION (VIKTIGT - KONTEXT FÖR UPPFÖLJNINGSFRÅGOR) ===\n"
+        history_section += f"URSPRUNGLIGT ÄMNE: \"{original_topic}\"\n"
+        history_section += "Användaren ställer en UPPFÖLJNINGSFRÅGA. Du MÅSTE:\n"
+        history_section += "1. Svara baserat på SAMMA ÄMNE som den ursprungliga frågan\n"
+        history_section += "2. Endast använda källor som är DIREKT relevanta för det ursprungliga ämnet\n"
+        history_section += "3. IGNORERA dokument som handlar om andra ämnen (även om de finns i kontexten)\n\n"
+        history_section += "Konversationshistorik:\n"
+        for msg in conversation_history:
+            role = "Användare" if msg.get("role") == "user" else "Assistent"
+            history_section += f"{role}: {msg.get('content', '')}\n"
+        history_section += "\n"
+    
+    # Clarification instructions based on round
+    clarification_instructions = ""
+    if must_answer or clarification_round >= 2:
+        clarification_instructions = """
+VIKTIGT: Du har redan ställt förtydligande frågor. Du MÅSTE nu ge ett svar med de bästa 1-3 källorna baserat på tillgänglig information. Ställ INGA fler frågor."""
+    else:
+        clarification_instructions = f"""
+FÖRTYDLIGANDE FRÅGOR (Omgång {clarification_round + 1} av max 2):
+Om användarens fråga är otydlig eller kan ha flera olika tolkningar (t.ex. "ont i armen" kan bero på många olika saker), BÖR du ställa en förtydligande fråga MED FÄRDIGA SVARSALTERNATIV.
+
+När du ställer en förtydligande fråga, sätt "needs_clarification" till true och fyll i "clarifying_question" och "clarifying_options".
+Alternativen ska vara konkreta och relevanta för frågan (max 4 alternativ).
+
+Exempel på bra förtydligande frågor:
+- "Kan du beskriva smärtan närmare?" med alternativ: A) Skarp/stickande, B) Molande/dov, C) Brännande, D) Krampartad
+- "När började smärtan?" med alternativ: A) Efter en skada/fall, B) Gradvis utan orsak, C) Plötsligt utan orsak
+- "Var sitter smärtan?" med alternativ: A) Överarmen, B) Armbågen, C) Underarmen, D) Handleden
+
+Ställ ENDAST förtydligande frågor om det verkligen behövs för att ge ett bra svar. Om du kan ge ett bra svar direkt, gör det."""
+
     prompt = f"""Du är en hjälpsam AI-assistent för 1177 Vårdguiden. Du har tillgång till två typer av information:
 
 1. ALLMÄN MEDICINSK INFORMATION från 1177.se (nedan under "Tillhandahållen Kontext")
@@ -837,28 +920,55 @@ def format_llm2_prompt_with_journal(user_query: str, relevant_context: str, jour
 Din uppgift är att ge ett PERSONLIGT och relevant svar som kombinerar:
 - Allmän medicinsk information från 1177.se
 - Personliga insikter baserade på patientens medicinska historik
+{clarification_instructions}
 
-VIKTIGT: När patientens journal innehåller relevant information för frågan (t.ex. tidigare frakturer, labvärden, diagnoser), MÅSTE du referera till denna personliga historik i ditt svar. Till exempel:
-- Om patienten frågar om en fraktur och har haft liknande frakturer tidigare, nämn detta
-- Om patienten frågar om labvärden, referera till deras aktuella och historiska värden
-- Om patienten har en knäprotes och frågar om knäproblem, ta hänsyn till detta
+VIKTIGT: När patientens journal innehåller relevant information för frågan (t.ex. tidigare frakturer, labvärden, diagnoser), MÅSTE du referera till denna personliga historik i ditt svar.
 
-Svara ALLTID med ett JSON-objekt, och inget annat. JSON-objektet ska ha följande struktur:
+Svara ALLTID med ett JSON-objekt, och inget annat.
+
+OM DU GER ETT SVAR (needs_clarification = false):
 {{
-  "message": "Ett tydligt och koncist svar på användarens fråga. DU MÅSTE referera till patientens specifika journaldata när det är relevant för frågan. Börja gärna med att bekräfta patientens historik om det är relevant.",
-  "source_links": ["En lista med URL-källor (strängar) från de specifika dokument i kontexten som informationen i 'message' hämtades från."],
-  "source_names": ["En lista med korta, beskrivande namn (strängar) för de specifika dokument i kontexten som informationen i 'message' hämtades från."]
+  "message": "Ett tydligt och koncist svar på användarens fråga.",
+  "source_links": ["MAX 3-4 URL-källor. Hämta URL:en från 'URL Source:' i varje dokument."],
+  "source_names": ["MAX 3-4 korta namn (max 30 tecken). Hämta från 'Title:' i varje dokument."],
+  "needs_clarification": false,
+  "clarifying_question": null,
+  "clarifying_options": []
 }}
 
-Viktiga regler:
-- ALLTID kombinera allmän information med patientens specifika journaldata för personliga svar
-- Om patientens journal innehåller relevant historik (frakturer, operationer, labvärden), NÄMN DEM i svaret
-- Ge inte medicinsk rådgivning som ersätter läkarkontakt, men hjälp patienten förstå sina värden och historik
-- Basera svaret på den givna kontexten. Hitta inte på information.
-- Inkludera *endast* länkar och namn från de 1177-dokument som faktiskt användes
-- Om frågan inte kan besvaras med tillgänglig information, var tydlig med det
-- Se till att outputen är ett giltigt JSON-objekt och inget annat
+OM DU BEHÖVER STÄLLA EN FÖRTYDLIGANDE FRÅGA (max {2 - clarification_round} gånger till):
+{{
+  "message": "Din förtydligande fråga här (t.ex. 'För att ge dig ett bättre svar behöver jag veta mer. Var sitter smärtan?')",
+  "source_links": [],
+  "source_names": [],
+  "needs_clarification": true,
+  "clarifying_question": "Din förtydligande fråga här",
+  "clarifying_options": [
+    {{"id": "A", "text": "Alternativ 1"}},
+    {{"id": "B", "text": "Alternativ 2"}},
+    {{"id": "C", "text": "Alternativ 3"}}
+  ]
+}}
 
+VIKTIGT OM FÖRTYDLIGANDE FRÅGOR:
+- När du ställer en förtydligande fråga, inkludera ALDRIG några källor/referenser
+- source_links och source_names MÅSTE vara tomma listor []
+- Referenser ska ENDAST visas i det SLUTGILTIGA svaret efter att du har samlat tillräcklig information
+
+KRITISKA REGLER:
+- När needs_clarification är true: source_links och source_names MÅSTE vara tomma listor []
+- När needs_clarification är false: Inkludera MAXIMALT 3-4 källor - välj de MEST relevanta för ÄMNET
+- Om du inte kan avgöra vilka källor som är mest relevanta, STÄLL EN FÖRTYDLIGANDE FRÅGA (utan källor!)
+- ALDRIG säg "Du kan läsa mer på 1177.se" utan att inkludera den specifika URL:en
+- Basera svaret på den givna kontexten. Hitta inte på information.
+- Om patientens journal innehåller relevant historik, NÄMN DEN i svaret
+
+REGLER FÖR UPPFÖLJNINGSFRÅGOR (om det finns TIDIGARE KONVERSATION):
+- HÅLL DIG TILL ÄMNET från den ursprungliga frågan
+- Välj ENDAST källor som är relevanta för det ursprungliga ämnet
+- IGNORERA dokument om andra ämnen även om de finns i kontexten
+- Exempel: Om första frågan handlade om DEMENS, använd INTE källor om cancer, hudsjukdomar eller annat orelaterat
+{history_section}
 Användarens Fråga: "{user_query}"
 
 === PATIENTENS PERSONLIGA JOURNAL ===
@@ -872,11 +982,28 @@ JSON Svar:
     return prompt
 
 
-def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict) -> str:
+def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict,
+                              clarification_round: int = 0, 
+                              conversation_history: List[Any] = None,
+                              is_follow_up: bool = False,
+                              last_relevant_docs: List[str] = None) -> str:
     """
     Runs the CAG pipeline with personalized journal context.
+    Supports up to 2 rounds of clarifying questions before providing a final answer.
+    For follow-up questions, skips LLM1 document search and reuses cached relevant docs.
     """
-    print(f"\n--- Starting Personalized CAG Pipeline for Query: '{user_query}', Audience: '{audience}' ---")
+    if conversation_history is None:
+        conversation_history = []
+    if last_relevant_docs is None:
+        last_relevant_docs = []
+    
+    # Convert conversation history to dict format for the prompt
+    history_dicts = [{"role": msg.role, "content": msg.content} for msg in conversation_history] if conversation_history else []
+    
+    # Determine if we must provide an answer (no more clarifications allowed)
+    must_answer = clarification_round >= 2
+    
+    print(f"\n--- Starting Personalized CAG Pipeline for Query: '{user_query}', Audience: '{audience}', Round: {clarification_round}, Must Answer: {must_answer}, Is Follow-up: {is_follow_up} ---")
 
     # Format journal data into readable context
     journal_context = format_journal_context(journal_data)
@@ -889,7 +1016,10 @@ def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict
         print("Warning: No public documents found, using only journal data")
         
         # Create a response using only journal context
-        prompt = format_llm2_prompt_with_journal(user_query, "Inga offentliga dokument tillgängliga.", journal_context)
+        prompt = format_llm2_prompt_with_journal(
+            user_query, "Inga offentliga dokument tillgängliga.", journal_context,
+            clarification_round=clarification_round, conversation_history=history_dicts, must_answer=must_answer
+        )
         try:
             response = llm2_model.generate_content(prompt)
             response_text = response.text.strip()
@@ -921,60 +1051,79 @@ def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict
     total_files = len(all_filenames)
     print(f"Found {total_files} documents to process for audience '{audience}'.")
 
-    # 2. Process in batches with LLM 1 (same as regular pipeline)
+    # 2. For follow-up questions, SKIP LLM1 and reuse cached relevant docs
     aggregated_relevant_filenames: Set[str] = set()
-    num_batches = math.ceil(total_files / BATCH_SIZE)
+    
+    if is_follow_up and last_relevant_docs:
+        # SKIP LLM1 - reuse cached relevant documents for faster follow-up responses
+        print(f"FOLLOW-UP: Skipping LLM1 document search, reusing {len(last_relevant_docs)} cached relevant docs")
+        aggregated_relevant_filenames = set(last_relevant_docs)
+    else:
+        # Normal flow: Process in batches with LLM 1
+        num_batches = math.ceil(total_files / BATCH_SIZE)
 
-    batches = []
-    for i in range(num_batches):
-        start_index = i * BATCH_SIZE
-        end_index = min(start_index + BATCH_SIZE, total_files)
-        batches.append(all_filenames[start_index:end_index])
+        batches = []
+        for i in range(num_batches):
+            start_index = i * BATCH_SIZE
+            end_index = min(start_index + BATCH_SIZE, total_files)
+            batches.append(all_filenames[start_index:end_index])
 
-    print(f"Processing documents in {num_batches} batches.")
+        print(f"Processing documents in {num_batches} batches.")
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        future_to_batch_num = {
-            executor.submit(
-                process_single_batch,
-                batch_filenames,
-                user_query,
-                DATA_DIR,
-                audience,
-                llm1_model,
-                i + 1,
-                num_batches):
-            i + 1
-            for i, batch_filenames in enumerate(batches)
-        }
+        with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            future_to_batch_num = {
+                executor.submit(
+                    process_single_batch,
+                    batch_filenames,
+                    user_query,
+                    DATA_DIR,
+                    audience,
+                    llm1_model,
+                    i + 1,
+                    num_batches):
+                i + 1
+                for i, batch_filenames in enumerate(batches)
+            }
 
-        for future in concurrent.futures.as_completed(future_to_batch_num):
-            batch_num = future_to_batch_num[future]
-            try:
-                relevant_in_batch = future.result()
-                aggregated_relevant_filenames.update(relevant_in_batch)
-            except Exception as exc:
-                print(f'Batch {batch_num} generated an exception: {exc}')
+            for future in concurrent.futures.as_completed(future_to_batch_num):
+                batch_num = future_to_batch_num[future]
+                try:
+                    relevant_in_batch = future.result()
+                    aggregated_relevant_filenames.update(relevant_in_batch)
+                except Exception as exc:
+                    print(f'Batch {batch_num} generated an exception: {exc}')
 
     print(f"\n--- Aggregation Complete ---")
     print(f"Total relevant files: {len(aggregated_relevant_filenames)}")
 
-    # 3. Build context from relevant documents
+    # 3. Build context from relevant documents and extract metadata
     script_dir = os.path.dirname(__file__)
     audience_data_dir = os.path.join(script_dir, DATA_DIR, audience)
     
     final_context_parts = []
+    document_metadata = {}  # Store metadata for fallback: filename -> {url, title}
+    
     for filename in sorted(list(aggregated_relevant_filenames)):
         filepath = os.path.join(audience_data_dir, filename)
         content = read_file_content(filepath)
         if content:
             final_context_parts.append(f"--- Dokument: {filename} ---\n{content}")
+            # Extract metadata from document
+            url, title = extract_document_metadata(content)
+            document_metadata[filename] = {
+                "url": url or "",
+                "title": title or filename.replace('.md', '').replace('-', ' ').title()
+            }
+            print(f"LOG: [run_personalized_pipeline] Extracted metadata for {filename}: URL={url is not None}, Title={title is not None}")
 
     final_context = "\n\n".join(final_context_parts) if final_context_parts else "Inga relevanta dokument hittades."
 
     # 4. Call LLM 2 with both contexts
     print("\n--- Calling LLM 2 for Personalized Answer ---")
-    llm2_prompt = format_llm2_prompt_with_journal(user_query, final_context, journal_context)
+    llm2_prompt = format_llm2_prompt_with_journal(
+        user_query, final_context, journal_context,
+        clarification_round=clarification_round, conversation_history=history_dicts, must_answer=must_answer
+    )
 
     try:
         response = llm2_model.generate_content(llm2_prompt)
@@ -998,6 +1147,67 @@ def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict
 
         if json_string:
             response_data = ChatbotResponse.model_validate_json(json_string)
+            
+            # CRITICAL: When asking clarifying questions, NEVER include sources
+            if response_data.needs_clarification:
+                response_data.source_links = []
+                response_data.source_names = []
+                # Include relevant docs for caching (so follow-ups can reuse them)
+                response_data.relevant_docs = sorted(list(aggregated_relevant_filenames))
+                print("LOG: [run_personalized_pipeline] Clarifying question - cleared all sources, cached relevant docs")
+                print("\n--- Personalized Pipeline Complete (Clarification) ---")
+                return response_data.model_dump_json(indent=2)
+            
+            # Truncate source names and limit to max 4
+            response_data.source_names = [truncate_citation_name(name) for name in response_data.source_names][:4]
+            response_data.source_links = response_data.source_links[:4]
+            
+            # Fallback: If LLM provided a meaningful answer but no citations, add them from metadata
+            error_indicators = [
+                "kunde inte hitta",
+                "ingen relevant",
+                "inget relevant",
+                "could not find",
+                "no relevant"
+            ]
+            message_lower = response_data.message.lower()
+            is_error_message = any(indicator in message_lower for indicator in error_indicators)
+            
+            # Apply fallback only if:
+            # 1. LLM provided no citations (empty lists)
+            # 2. We have relevant documents with metadata
+            # 3. The message is not an error message (meaningful answer was provided)
+            if (not response_data.source_links and not response_data.source_names) and document_metadata and not is_error_message:
+                print("LOG: [run_personalized_pipeline] LLM provided answer but no citations, using extracted metadata as fallback.")
+                fallback_links = []
+                fallback_names = []
+                
+                # Use all relevant documents' metadata as citations
+                for filename in sorted(list(aggregated_relevant_filenames)):
+                    meta = document_metadata.get(filename, {})
+                    url = meta.get("url", "").strip()
+                    title = meta.get("title", "").strip()
+                    
+                    if url:  # Only add if we have a URL
+                        fallback_links.append(url)
+                        # Extract clean title (before ' - ' if present)
+                        if ' - ' in title:
+                            title = title.split(' - ')[0].strip()
+                        if not title:
+                            title = filename.replace('.md', '').replace('-', ' ').title()
+                        # Truncate to 30 characters
+                        fallback_names.append(truncate_citation_name(title))
+                
+                if fallback_links:
+                    # Limit to max 4 sources
+                    response_data.source_links = fallback_links[:4]
+                    response_data.source_names = fallback_names[:4]
+                    print(f"LOG: [run_personalized_pipeline] Applied fallback citations: {len(response_data.source_links)} sources (limited to 4)")
+            
+            # Include relevant docs for caching (so follow-ups can reuse them)
+            response_data.relevant_docs = sorted(list(aggregated_relevant_filenames))
+            print(f"LOG: [run_personalized_pipeline] Returning {len(response_data.relevant_docs)} relevant docs for caching")
+            
             print("\n--- Personalized Pipeline Complete ---")
             return response_data.model_dump_json(indent=2)
         else:
