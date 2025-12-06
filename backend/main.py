@@ -154,20 +154,14 @@ Dokumentbunt:
 
 Du har fått en bunt med flera dokument (avgränsade med --- Start Document: [filnamn] --- och --- End Document: [filnamn] ---). 
 
-MYCKET VIKTIGT - FRÅGOR OM PERSONLIG JOURNAL/SJUKHISTORIA:
-Om användarfrågan handlar om användarens EGEN journal, sjukhistoria, labvärden, undersökningar eller medicinska historik (t.ex. "min journal", "min sjukhistoria", "mina labvärden", "sammanfatta min...", "vad säger journalen"), ska du svara 'Inga' eftersom dessa dokument från 1177.se INTE innehåller personlig patientdata.
-Personliga journalfrågor kräver INTE offentliga 1177.se-dokument.
-
 VIKTIGT: Var STRIKT vid bedömning av relevans. Ett dokument är ENDAST relevant om det:
 1. Handlar om SAMMA ämne/sjukdom/tillstånd som användarfrågan
 2. Kan ge DIREKT information för att besvara frågan
-3. Frågan handlar om ALLMÄN medicinsk information (INTE om användarens personliga journal)
 
 INKLUDERA INTE dokument som bara:
 - Innehåller liknande ord (t.ex. "risk" i en fråga om demens matchar INTE "risk för hudcancer")
 - Handlar om ett helt annat medicinskt område
 - Bara tangentiellt nämner ämnet
-- Är generell information när frågan handlar om användarens PERSONLIGA data
 
 Identifiera ENDAST de dokument vars innehåll är DIREKT relevant för att besvara användarfrågan.
 Returnera en lista med endast de exakta filnamnen för relevanta dokument. Separera filnamnen med kommatecken (t.ex. fil1.md,fil3.md).
@@ -1167,63 +1161,6 @@ def run_personalized_pipeline(user_query: str, audience: str, journal_data: dict
             # Truncate source names and limit to max 4
             response_data.source_names = [truncate_citation_name(name) for name in response_data.source_names][:4]
             response_data.source_links = response_data.source_links[:4]
-            
-            # Fallback: If LLM provided a meaningful answer but no citations, add them from metadata
-            error_indicators = [
-                "kunde inte hitta",
-                "ingen relevant",
-                "inget relevant",
-                "could not find",
-                "no relevant"
-            ]
-            message_lower = response_data.message.lower()
-            is_error_message = any(indicator in message_lower for indicator in error_indicators)
-            
-            # Detect journal-specific queries - don't apply fallback for these
-            journal_query_indicators = [
-                "min journal", "mina journal", "min sjukhistoria", "mina sjukhistoria",
-                "mina labvärden", "mitt labvärde", "mina värden", "mina provsvar",
-                "sammanfatta min", "sammanfatta mina", "min medicinska", "mina medicinska",
-                "min historik", "mina historik", "baserat på min journal", "enligt min journal",
-                "vad säger min journal", "vad visar min journal", "min hälsa", "mina diagnoser"
-            ]
-            query_lower = user_query.lower()
-            is_journal_specific_query = any(indicator in query_lower for indicator in journal_query_indicators)
-            
-            if is_journal_specific_query:
-                print("LOG: [run_personalized_pipeline] Journal-specific query detected - skipping fallback citations")
-            
-            # Apply fallback only if:
-            # 1. LLM provided no citations (empty lists)
-            # 2. We have relevant documents with metadata
-            # 3. The message is not an error message (meaningful answer was provided)
-            # 4. NOT a journal-specific query (those don't need 1177.se sources)
-            if (not response_data.source_links and not response_data.source_names) and document_metadata and not is_error_message and not is_journal_specific_query:
-                print("LOG: [run_personalized_pipeline] LLM provided answer but no citations, using extracted metadata as fallback.")
-                fallback_links = []
-                fallback_names = []
-                
-                # Use all relevant documents' metadata as citations
-                for filename in sorted(list(aggregated_relevant_filenames)):
-                    meta = document_metadata.get(filename, {})
-                    url = meta.get("url", "").strip()
-                    title = meta.get("title", "").strip()
-                    
-                    if url:  # Only add if we have a URL
-                        fallback_links.append(url)
-                        # Extract clean title (before ' - ' if present)
-                        if ' - ' in title:
-                            title = title.split(' - ')[0].strip()
-                        if not title:
-                            title = filename.replace('.md', '').replace('-', ' ').title()
-                        # Truncate to 30 characters
-                        fallback_names.append(truncate_citation_name(title))
-                
-                if fallback_links:
-                    # Limit to max 4 sources
-                    response_data.source_links = fallback_links[:4]
-                    response_data.source_names = fallback_names[:4]
-                    print(f"LOG: [run_personalized_pipeline] Applied fallback citations: {len(response_data.source_links)} sources (limited to 4)")
             
             # Include relevant docs for caching (so follow-ups can reuse them)
             response_data.relevant_docs = sorted(list(aggregated_relevant_filenames))
